@@ -1,0 +1,33 @@
+# Talos - generated configuration files
+talos/clusterconfig/*controlplane*
+talos/clusterconfig/*worker*
+talos/clusterconfig/*talosconfig*
+
+# Talos - unencrypted secrets
+talos/*secret*
+
+# SOPS/Age - keys
+*.key
+*.agekey
+
+# Kubernetes - unencrypted secrets
+kubernetes/**/*secret*.yaml
+
+# Helm - local chart files generated during debugging
+kubernetes/**/*.tgz
+charts/
+
+# Flux - local overrides that should not be pushed
+kubernetes/**/*override*.yaml
+
+# General safety net - decrypted files (e.g. VSCode + SOPS plugin)
+.decrypted*
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Editor specific
+.vscode/settings.json
+*.swp
+*.swo
