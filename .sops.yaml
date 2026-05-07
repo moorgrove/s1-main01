@@ -1,5 +1,5 @@
 creation_rules:
-  - path_regex: (stdin|.*/(patch|controlplane|worker|secret|cluster)[^/]*\.yaml)$
+  - path_regex: (stdin|.*/[^/]*(patch|controlplane|worker|secret|cluster)[^/]*\.yaml)$
     encrypted_regex: '^(token|crt|key|id|secret|secretboxEncryptionSecret|auths|endpoint|wwid)$'
     age: "age1n2cvg7fc40lvdnuu98glfhmp3mq2yz0vv28sqekqmw2nqmgmpduqpwc4u9"
   - path_regex: .*talosconfig.*
