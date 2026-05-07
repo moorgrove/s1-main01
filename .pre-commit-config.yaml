@@ -1,0 +1,28 @@
+repos:
+-   repo: local
+    hooks:
+    -   id: sops-encryption-check
+        name: Check SOPS encryption (sync with .sops.yaml)
+        language: system
+        files: '.*'
+        pass_filenames: true
+        entry: |
+          bash -c '
+            PATTERNS=$(grep "path_regex:" .sops.yaml | sed "s/.*path_regex: //" | tr -d "\"" | tr -d "\047")
+            EXIT_CODE=0
+            for FILE in "$@"; do
+              # Skip binary files
+              if ! file "$FILE" | grep -q "text"; then
+                continue
+              fi
+              for REGEX in $PATTERNS; do
+                if echo "$FILE" | grep -qE "$REGEX"; then
+                  if ! sops --decrypt "$FILE" > /dev/null 2>&1; then
+                    echo "🛑 ERROR: $FILE matches SOPS rule but is NOT encrypted!"
+                    EXIT_CODE=1
+                  fi
+                  break
+                fi
+              done
+            done
+            exit $EXIT_CODE' --
