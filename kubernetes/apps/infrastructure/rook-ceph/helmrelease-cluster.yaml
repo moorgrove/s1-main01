@@ -29,7 +29,9 @@ spec:
             storage:
                 useAllNodes: false
                 useAllDevices: false
-                devices:
+                nodes:
+                - name: s1-main01-cpwr01
+                  devices:
                     # HDD disks
                     - name: naa.50014ee217016a21
                     - name: naa.5000039da8d00a9a
