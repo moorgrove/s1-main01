@@ -36,7 +36,7 @@ spec:
                         - name: naa.50014ee217016a21
                         - name: naa.5000039da8d00a9a
                         # NVMe disk
-                        - name: eui.001b448b4b44c26c
+                        #- name: eui.001b448b4b44c26c
         
         
         cephBlockPools:
@@ -50,19 +50,6 @@ spec:
             enabled: true
             name: ceph-block-hdd
             isDefault: true
-            reclaimPolicy: Delete
-            allowVolumeExpansion: true
-
-        - name: ceph-blockpool-nvme
-          spec:
-            failureDomain: osd
-            replicated:
-                size: 1
-            deviceClass: nvme
-          storageClass:
-            enabled: true
-            name: ceph-block-nvme
-            isDefault: false
             reclaimPolicy: Delete
             allowVolumeExpansion: true
 
