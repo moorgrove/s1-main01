@@ -16,10 +16,14 @@ spec:
         namespace: flux-system
   values:
     operator:
-      replicas: 1    # Single-node setup
+      replicas: 1
     ipam:
       mode: kubernetes
     kubeProxyReplacement: true
+    l2announcements:
+      enabled: true
+    externalIPs:
+      enabled: true
     securityContext:
       capabilities:
         ciliumAgent:
