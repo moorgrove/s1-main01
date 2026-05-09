@@ -29,14 +29,12 @@ spec:
             storage:
                 useAllNodes: false
                 useAllDevices: false
-                nodes:
-                    - name: s1-main01-cpwr01
-                      devices:
-                        # HDD disks
-                        - name: naa.50014ee217016a21
-                        - name: naa.5000039da8d00a9a
-                        # NVMe disk
-                        #- name: eui.001b448b4b44c26c
+                devices:
+                    # HDD disks
+                    - name: naa.50014ee217016a21
+                    - name: naa.5000039da8d00a9a
+                    # NVMe disk
+                    #- name: eui.001b448b4b44c26c
         
         
         cephBlockPools:
