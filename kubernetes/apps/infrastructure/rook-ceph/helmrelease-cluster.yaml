@@ -41,85 +41,30 @@ spec:
         
         cephBlockPools:
         - name: ceph-blockpool-hdd
-            spec:
-            failureDomain: osd
-            replicated:
-                size: 2
-            deviceClass: hdd
-            storageClass:
+          spec:
+                failureDomain: osd
+                replicated:
+                    size: 2
+                deviceClass: hdd
+          storageClass:
             enabled: true
             name: ceph-block-hdd
             isDefault: true
             reclaimPolicy: Delete
             allowVolumeExpansion: true
 
-      - name: ceph-blockpool-nvme
-        spec:
-          failureDomain: osd
-          replicated:
-            size: 1
-          deviceClass: nvme
-        storageClass:
-          enabled: true
-          name: ceph-block-nvme
-          isDefault: false
-          reclaimPolicy: Delete
-          allowVolumeExpansion: true
-
-    cephFileSystems:
-      - name: ceph-filesystem-hdd
-        spec:
-          metadataPool:
+        - name: ceph-blockpool-nvme
+          spec:
             failureDomain: osd
             replicated:
-              size: 2
-          dataPools:
-            - name: data
-              failureDomain: osd
-              replicated:
-                size: 2
-          metadataServer:
-            activeCount: 1
-            activeStandby: false
-        storageClass:
-          enabled: true
-          name: ceph-filesystem-hdd
-          reclaimPolicy: Delete
-
-      - name: ceph-filesystem-nvme
-        spec:
-          metadataPool:
-            failureDomain: osd
-            replicated:
-              size: 1
-          dataPools:
-            - name: data
-              failureDomain: osd
-              replicated:
                 size: 1
-          metadataServer:
-            activeCount: 1
-            activeStandby: false
-        storageClass:
-          enabled: true
-          name: ceph-filesystem-nvme
-          reclaimPolicy: Delete
+            deviceClass: nvme
+          storageClass:
+            enabled: true
+            name: ceph-block-nvme
+            isDefault: false
+            reclaimPolicy: Delete
+            allowVolumeExpansion: true
 
-    cephObjectStores:
-      - name: ceph-objectstore-hdd
-        spec:
-          metadataPool:
-            failureDomain: osd
-            replicated:
-              size: 2
-          dataPool:
-            failureDomain: osd
-            replicated:
-              size: 2
-          gateway:
-            port: 80
-            instances: 1
-        storageClass:
-          enabled: true
-          name: ceph-bucket-hdd
-          reclaimPolicy: Delete
+        cephFileSystems: []
+        cephObjectStores: []
