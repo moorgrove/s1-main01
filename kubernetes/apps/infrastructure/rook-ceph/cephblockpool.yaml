@@ -7,7 +7,7 @@ metadata:
 spec:
   failureDomain: osd
   replicated:
-    size: 1
+    size: 2
   deviceClass: hdd
 ---
 apiVersion: storage.k8s.io/v1
@@ -16,19 +16,18 @@ metadata:
   name: ceph-block-hdd
   annotations:
     storageclass.kubernetes.io/is-default-class: "true"
-spec:
-  provisioner: rook-ceph.rbd.csi.ceph.com
-  parameters:
-    clusterID: rook-ceph
-    pool: ceph-blockpool-hdd
-    imageFormat: "2"
-    imageFeatures: layering
-    csi.storage.k8s.io/provisioner-secret-name: csi-rbd-secret
-    csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
-    csi.storage.k8s.io/controller-expand-secret-name: csi-rbd-secret
-    csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
-    csi.storage.k8s.io/node-stage-secret-name: csi-rbd-secret
-    csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
-    csi.storage.k8s.io/fstype: ext4
-  reclaimPolicy: Delete
-  allowVolumeExpansion: true
+provisioner: rook-ceph.rbd.csi.ceph.com
+parameters:
+  clusterID: rook-ceph
+  pool: ceph-blockpool-hdd
+  imageFormat: "2"
+  imageFeatures: layering
+  csi.storage.k8s.io/provisioner-secret-name: csi-rbd-secret
+  csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+  csi.storage.k8s.io/controller-expand-secret-name: csi-rbd-secret
+  csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+  csi.storage.k8s.io/node-stage-secret-name: csi-rbd-secret
+  csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+  csi.storage.k8s.io/fstype: ext4
+reclaimPolicy: Delete
+allowVolumeExpansion: true

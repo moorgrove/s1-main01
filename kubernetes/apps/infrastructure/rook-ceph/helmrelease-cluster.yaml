@@ -1,0 +1,42 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: rook-ceph-cluster
+  namespace: rook-ceph
+spec:
+  interval: 30m
+  dependsOn:
+    - name: rook-ceph
+  chart:
+    spec:
+      chart: rook-ceph-cluster
+      version: "v1.19.*"
+      sourceRef:
+        kind: HelmRepository
+        name: rook-release
+        namespace: flux-system
+  values:
+    operatorNamespace: rook-ceph
+    cephClusterSpec:
+      cephVersion:
+        image: quay.io/ceph/ceph:v19.2.3
+      mon:
+        count: 1
+        allowMultiplePerNode: true
+      mgr:
+        count: 1
+      dashboard:
+        enabled: true
+        ssl: false
+      storage:
+        useAllNodes: false
+        useAllDevices: false
+        nodes:
+          - name: s1-main01-cpwr01
+            devices:
+              - name: naa.50014ee217016a21
+              - name: naa.5000039da8d00a9a
+    cephBlockPools: []
+    cephFileSystems: []
+    cephObjectStores: []
