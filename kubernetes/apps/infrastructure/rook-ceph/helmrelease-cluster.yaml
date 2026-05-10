@@ -18,6 +18,9 @@ spec:
         namespace: flux-system
   values:
     operatorNamespace: rook-ceph
+    cephImage:
+      repository: quay.io/ceph/ceph
+      tag: v19.2.3
     cephClusterSpec:
       mon:
         count: 1
