@@ -35,10 +35,8 @@ spec:
         nodes:
           - name: s1-main01-cpwr01
             devices:
-              - name: wwn-0x50014ee217016a21
-              - name: wwn-0x5000039da8d00a9a
-              #- name: naa.50014ee217016a21
-              #- name: naa.5000039da8d00a9a
+              - name: 'wwn-0x50014ee217016a21'
+              - name: 'wwn-0x5000039da8d00a9a'
     cephBlockPools: []
     cephFileSystems: []
     cephObjectStores: []
