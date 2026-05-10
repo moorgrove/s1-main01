@@ -6,4 +6,3 @@ resources:
   - helmrepository.yaml
   - helmrelease-operator.yaml
   - helmrelease-cluster.yaml
-  - cephblockpool.yaml
