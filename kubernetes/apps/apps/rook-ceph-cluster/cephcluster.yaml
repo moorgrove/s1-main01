@@ -32,10 +32,10 @@ spec:
     osd:
       requests:
         memory: 1Gi
-        cpu: "200m"
+        cpu: "500m"
       limits:
         memory: 1500Mi
-        cpu: "500m"
+        cpu: "1000m"
     mon:
       requests:
         memory: 128Mi
