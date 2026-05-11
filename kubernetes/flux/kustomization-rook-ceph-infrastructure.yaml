@@ -5,9 +5,9 @@ metadata:
   name: rook-ceph-infrastructure
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: flux-system
-    - name: cilium-infrastructure
+#  dependsOn:
+#    - name: flux-system
+#    - name: cilium-infrastructure
   interval: 10m
   sourceRef:
     kind: GitRepository

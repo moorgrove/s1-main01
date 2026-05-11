@@ -5,8 +5,8 @@ metadata:
   name: cilium-infrastructure
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: flux-system
+#  dependsOn:
+#    - name: flux-system
   interval: 10m
   sourceRef:
     kind: GitRepository
