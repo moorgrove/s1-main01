@@ -3,5 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - flux-system
-  - kustomization-infrastructure.yaml
-  - kustomization-rook-cluster.yaml
+  - cilium-infrastructure
+  - rook-ceph-infrastructure
+  - rook-ceph-operator
+  - rook-ceph-cluster
