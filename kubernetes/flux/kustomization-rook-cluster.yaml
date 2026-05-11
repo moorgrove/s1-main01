@@ -9,7 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./kubernetes/apps/rook-cluster
+  path: ./kubernetes/apps/apps/rook-cluster
   prune: true
   wait: true
   timeout: 30m
