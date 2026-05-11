@@ -5,7 +5,3 @@ resources:
   - namespace.yaml
   - helmrepository.yaml
   - helmrelease-operator.yaml
-  - cephcluster.yaml
-#  - cephblockpool.yaml
-  - resourcequota.yaml
-#  - toolbox.yaml

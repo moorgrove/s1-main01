@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - flux-system
   - kustomization-infrastructure.yaml
+  - kustomization-rook-cluster.yaml

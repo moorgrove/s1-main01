@@ -2,14 +2,16 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: infrastructure
+  name: rook-cluster
   namespace: flux-system
 spec:
   interval: 10m
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./kubernetes/apps/infrastructure
+  path: ./kubernetes/apps/rook-cluster
   prune: true
   wait: true
   timeout: 30m
+  dependsOn:
+    - name: infrastructure
