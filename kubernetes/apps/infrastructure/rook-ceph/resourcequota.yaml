@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: rook-ceph-quota
+  namespace: rook-ceph
+spec:
+  hard:
+    requests.memory: 1792Mi
+    limits.memory: 6144Mi
+    requests.cpu: "1250m"
+    limits.cpu: "4000m"
