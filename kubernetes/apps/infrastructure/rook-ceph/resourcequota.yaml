@@ -9,4 +9,4 @@ spec:
     requests.memory: 6000Mi
     limits.memory: 7000Mi
     requests.cpu: "4000m"
-    limits.cpu: "5000m"
+    limits.cpu: "5500m"
