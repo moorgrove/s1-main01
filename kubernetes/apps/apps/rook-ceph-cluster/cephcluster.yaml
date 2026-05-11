@@ -22,31 +22,31 @@ spec:
     prepareosd:
       requests:
         memory: 128Mi
-        cpu: "250m"
+        cpu: "100m"
       limits:
         memory: 256Mi
-        cpu: "500m"
+        cpu: "200m"
     osd:
       requests:
         memory: 128Mi
-        cpu: "250m"
+        cpu: "100m"
       limits:
         memory: 256Mi
-        cpu: "500m"
+        cpu: "200m"
     mon:
       requests:
         memory: 128Mi
-        cpu: "250m"
+        cpu: "100m"
       limits:
         memory: 256Mi
-        cpu: "500m"
+        cpu: "200m"
     mgr:
       requests:
         memory: 128Mi
-        cpu: "250m"
+        cpu: "100m"
       limits:
         memory: 256Mi
-        cpu: "500m"
+        cpu: "200m"
   storage:
     useAllNodes: false
     useAllDevices: false
