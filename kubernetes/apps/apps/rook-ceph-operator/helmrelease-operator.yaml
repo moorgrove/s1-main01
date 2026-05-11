@@ -21,21 +21,21 @@ spec:
       csiRBDProvisionerResource:
         limits:
           cpu: "250m"
-          memory: "256Mi"
+          memory: "512Mi"
         requests:
-          cpu: "100m"
+          cpu: "128m"
           memory: "128Mi"
       csiRBDPluginResource:
         limits:
           cpu: "250m"
-          memory: "256Mi"
+          memory: "512Mi"
         requests:
-          cpu: "100m"
+          cpu: "128m"
           memory: "128Mi"
     resources:
       limits:
         cpu: "200m"
-        memory: "256Mi"
+        memory: "512Mi"
       requests:
-        cpu: "100m"
+        cpu: "128m"
         memory: "128Mi"

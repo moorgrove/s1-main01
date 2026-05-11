@@ -9,6 +9,9 @@ spec:
     image: quay.io/ceph/ceph:v19.2.3
     allowUnsupported: false
   dataDirHostPath: /var/lib/rook
+  cephConfig:
+    global:
+      osd_memory_target: "1073741824"
   mon:
     count: 1
     allowMultiplePerNode: true
@@ -28,11 +31,11 @@ spec:
         cpu: "200m"
     osd:
       requests:
-        memory: 128Mi
-        cpu: "100m"
-      limits:
         memory: 256Mi
         cpu: "200m"
+      limits:
+        memory: 512Mi
+        cpu: "500m"
     mon:
       requests:
         memory: 128Mi
@@ -55,4 +58,4 @@ spec:
         devices:
           - name: /dev/disk/by-id/wwn-0x50014ee217016a21
           - name: /dev/disk/by-id/wwn-0x5000039da8d00a9a
-          - name: /dev/disk/by-id/001b448b4b44c26c
+          - name: /dev/disk/by-id/nvme-eui.001b448b4b44c26c
