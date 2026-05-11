@@ -6,7 +6,7 @@ metadata:
   namespace: rook-ceph
 spec:
   hard:
-    requests.memory: 2000Mi
+    requests.memory: 6000Mi
     limits.memory: 7000Mi
-    requests.cpu: "1250m"
+    requests.cpu: "4000m"
     limits.cpu: "5000m"
