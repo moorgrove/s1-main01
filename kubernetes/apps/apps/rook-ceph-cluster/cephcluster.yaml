@@ -39,4 +39,3 @@ spec:
         devices:
           - name: /dev/disk/by-id/wwn-0x50014ee217016a21
           - name: /dev/disk/by-id/wwn-0x5000039da8d00a9a
-          - name: /dev/disk/by-id/nvme-eui.001b448b4b44c26c
