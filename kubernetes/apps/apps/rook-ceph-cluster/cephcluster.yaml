@@ -18,10 +18,10 @@ spec:
     exporter: low-priority
   cephConfig:
     global:
-      osd_memory_target: "2147483648"
-      osd_memory_base: "536870912"
-      osd_memory_cache_min: "268435456"
-      bluestore_cache_size: "1073741824"
+      osd_memory_target: "1073741824"
+      osd_memory_base: "268435456"
+      osd_memory_cache_min: "134217728"
+      bluestore_cache_size: "536870912"
   mon:
     count: 1
     allowMultiplePerNode: true
