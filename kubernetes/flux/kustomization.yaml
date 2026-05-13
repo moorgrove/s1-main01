@@ -3,7 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - flux-system
-  - ./kubernetes/apps/infrastructure/priority-classes
+  - kustomization-priority-classes.yaml
   - kustomization-cilium-infrastructure.yaml
   - kustomization-rook-ceph-infrastructure.yaml
   - kustomization-rook-ceph-operator.yaml
