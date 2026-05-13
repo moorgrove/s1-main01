@@ -17,25 +17,3 @@ spec:
   values:
     monitoring:
       enabled: false
-    csi:
-      csiRBDProvisionerResource:
-        limits:
-          cpu: "250m"
-          memory: "512Mi"
-        requests:
-          cpu: "128m"
-          memory: "128Mi"
-      csiRBDPluginResource:
-        limits:
-          cpu: "250m"
-          memory: "512Mi"
-        requests:
-          cpu: "128m"
-          memory: "128Mi"
-    resources:
-      limits:
-        cpu: "200m"
-        memory: "512Mi"
-      requests:
-        cpu: "128m"
-        memory: "128Mi"
