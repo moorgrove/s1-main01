@@ -18,10 +18,10 @@ spec:
     exporter: low-priority
   cephConfig:
     global:
-      osd_memory_target: "2147483648"    # 2GB per OSD
-      osd_memory_base: "536870912"       # 512MB base memory
-      osd_memory_cache_min: "268435456"  # 256MB cache minimum
-      bluestore_cache_size: "1073741824"  # 1GB bluestore cache size
+      osd_memory_target: 2147483648
+      osd_memory_base: 536870912
+      osd_memory_cache_min: 268435456
+      bluestore_cache_size: 1073741824
   mon:
     count: 1
     allowMultiplePerNode: true
@@ -39,4 +39,4 @@ spec:
         devices:
           - name: /dev/disk/by-id/wwn-0x50014ee217016a21
           - name: /dev/disk/by-id/wwn-0x5000039da8d00a9a
-#          - name: /dev/disk/by-id/nvme-eui.001b448b4b44c26c
+          - name: /dev/disk/by-id/nvme-eui.001b448b4b44c26c
