@@ -19,3 +19,5 @@ spec:
       enabled: false
     csi:
       priorityClassName: urgent-priority
+      provisionerPriorityClassName: urgent-priority
+      pluginPriorityClassName: urgent-priority
