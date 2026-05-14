@@ -4,4 +4,7 @@ kind: Kustomization
 resources:
   - cephcluster.yaml
   - cephblockpool.yaml
-#  - toolbox.yaml
+  - cephobjectstore.yaml
+  - cephfilesystem.yaml
+  - cephnfs.yaml
+  - toolbox.yaml
