@@ -17,7 +17,7 @@ spec:
   values:
     operator:
       replicas: 1
-    priorityClassName: high-priority
+    priorityClassName: critical-priority
     ipam:
       mode: kubernetes
     kubeProxyReplacement: true
