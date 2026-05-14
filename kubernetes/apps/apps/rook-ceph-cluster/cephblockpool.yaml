@@ -8,10 +8,10 @@ spec:
   name: .mgr
   failureDomain: osd
   replicated:
-    size: 1
+    size: 2
     requireSafeReplicaSize: false
   parameters:
-    crush_rule: replicated_rule
+    deviceClass: ""
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
