@@ -38,7 +38,8 @@ spec:
   storage:
     useAllNodes: false
     useAllDevices: false
-    encryptedDevice: true
+    config:
+        encryptedDevice: "true"
     nodes:
       - name: s1-main01-cpwr01
         devices:
