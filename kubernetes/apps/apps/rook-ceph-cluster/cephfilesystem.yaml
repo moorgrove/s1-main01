@@ -1,0 +1,86 @@
+---
+apiVersion: ceph.rook.io/v1
+kind: CephFilesystem
+metadata:
+  name: ceph-filesystem-hdd
+  namespace: rook-ceph
+spec:
+  metadataPool:
+    failureDomain: osd
+    replicated:
+      size: 2
+      requireSafeReplicaSize: false
+    deviceClass: hdd
+  dataPools:
+    - name: data
+      failureDomain: osd
+      replicated:
+        size: 2
+        requireSafeReplicaSize: false
+      deviceClass: hdd
+  preserveFilesystemOnDelete: true
+  metadataServer:
+    activeCount: 1
+    activeStandby: false
+    priorityClassName: low-priority
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ceph-filesystem-hdd
+provisioner: rook-ceph.cephfs.csi.ceph.com
+parameters:
+  clusterID: rook-ceph
+  fsName: ceph-filesystem-hdd
+  pool: ceph-filesystem-hdd-data
+  csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+  csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+  csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
+  csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+  csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+  csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+reclaimPolicy: Delete
+allowVolumeExpansion: true
+---
+apiVersion: ceph.rook.io/v1
+kind: CephFilesystem
+metadata:
+  name: ceph-filesystem-nvme
+  namespace: rook-ceph
+spec:
+  metadataPool:
+    failureDomain: osd
+    replicated:
+      size: 1
+      requireSafeReplicaSize: false
+    deviceClass: nvme
+  dataPools:
+    - name: data
+      failureDomain: osd
+      replicated:
+        size: 1
+        requireSafeReplicaSize: false
+      deviceClass: nvme
+  preserveFilesystemOnDelete: true
+  metadataServer:
+    activeCount: 1
+    activeStandby: false
+    priorityClassName: low-priority
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ceph-filesystem-nvme
+provisioner: rook-ceph.cephfs.csi.ceph.com
+parameters:
+  clusterID: rook-ceph
+  fsName: ceph-filesystem-nvme
+  pool: ceph-filesystem-nvme-data
+  csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+  csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+  csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
+  csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+  csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+  csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+reclaimPolicy: Delete
+allowVolumeExpansion: true
