@@ -18,6 +18,7 @@ spec:
     exporter: low-priority
   cephConfig:
     global:
+      osd_pool_default_crush_rule: "0"
       osd_memory_target: "1073741824"
       osd_memory_base: "268435456"
       osd_memory_cache_min: "134217728"
@@ -38,5 +39,11 @@ spec:
       - name: s1-main01-cpwr01
         devices:
           - name: /dev/disk/by-id/wwn-0x50014ee217016a21
+            config:
+                encryptedDevice: "true"
           - name: /dev/disk/by-id/wwn-0x5000039da8d00a9a
+            config:
+                encryptedDevice: "true"
           - name: /dev/disk/by-id/nvme-eui.001b448b4b44c26c
+            config:
+                encryptedDevice: "true"
