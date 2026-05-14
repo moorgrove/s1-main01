@@ -11,7 +11,7 @@ spec:
     size: 2
     requireSafeReplicaSize: false
   parameters:
-    deviceClass: ""
+    deviceClass: hdd
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
