@@ -20,7 +20,7 @@ spec:
     global:
       osd_pool_default_size: "2"
       osd_pool_default_min_size: "1"
-#      osd_crush_chooseleaf_type: "0"
+      osd_crush_chooseleaf_type: "0"
       osd_pool_default_crush_rule: "0"
       osd_memory_target: "1073741824"
       osd_memory_base: "268435456"
@@ -38,6 +38,7 @@ spec:
   storage:
     useAllNodes: false
     useAllDevices: false
+    encryptedDevice: true
     nodes:
       - name: s1-main01-cpwr01
         devices:
