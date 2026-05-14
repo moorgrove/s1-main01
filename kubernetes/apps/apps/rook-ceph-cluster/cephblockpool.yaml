@@ -2,6 +2,19 @@
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
 metadata:
+  name: .mgr
+  namespace: rook-ceph
+spec:
+  failureDomain: osd
+  replicated:
+    size: 3
+    requireSafeReplicaSize: false
+  parameters:
+    crush_rule: replicated_rule
+---
+apiVersion: ceph.rook.io/v1
+kind: CephBlockPool
+metadata:
   name: ceph-blockpool-hdd
   namespace: rook-ceph
 spec:
