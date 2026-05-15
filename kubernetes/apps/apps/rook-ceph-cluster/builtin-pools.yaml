@@ -66,8 +66,8 @@ spec:
   name: .nfs
   failureDomain: osd
   replicated:
-    size: 1
+    size: 3
     requireSafeReplicaSize: false
     targetSizeRatio: .01
   parameters:
-    deviceClass: all_devices_osd_rule
+    crush_rule: all_devices_osd_rule
