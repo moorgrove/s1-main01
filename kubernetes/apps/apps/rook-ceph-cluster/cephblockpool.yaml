@@ -16,6 +16,20 @@ spec:
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
 metadata:
+  name: builtin-nfs
+  namespace: rook-ceph
+spec:
+  name: .nfs
+  failureDomain: osd
+  replicated:
+    size: 2
+    requireSafeReplicaSize: false
+  parameters:
+    deviceClass: hdd
+---
+apiVersion: ceph.rook.io/v1
+kind: CephBlockPool
+metadata:
   name: ceph-blockpool-hdd
   namespace: rook-ceph
 spec:
