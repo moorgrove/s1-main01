@@ -14,12 +14,13 @@ spec:
         command: ["/bin/bash", "-c"]
         args:
           - |
+            mkdir -p /etc/ceph
+            CLEAN_MONS=$(cat /etc/rook/data | sed 's/[a-z]=//g')
             cat <<EOF > /etc/ceph/ceph.conf
             [global]
-            mon_host = $(cat /etc/rook/mon-endpoints)
-            keyring = /etc/ceph/keyring-store/keyring
+            mon_host = $CLEAN_MONS
             EOF
-            ceph -n client.admin osd crush rule create-replicated all_devices_osd_rule default osd
+            ceph -n client.admin -k /etc/ceph/keyring-store/keyring osd crush rule create-replicated all_devices_osd_rule default osd
         volumeMounts:
         - name: ceph-config
           mountPath: /etc/ceph
@@ -36,7 +37,7 @@ spec:
           name: rook-ceph-mon-endpoints
           items:
           - key: data
-            path: mon-endpoints
+            path: data
       - name: admin-keyring
         secret:
           secretName: rook-ceph-admin-keyring
