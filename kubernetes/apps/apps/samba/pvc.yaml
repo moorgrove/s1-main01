@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: samba-hdd
+  namespace: samba
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ceph-filesystem-hdd
+  resources:
+    requests:
+      storage: 1Ti

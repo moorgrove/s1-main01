@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: samba
+  namespace: samba
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: samba
+  template:
+    metadata:
+      labels:
+        app: samba
+    spec:
+      priorityClassName: medium-priority
+      containers:
+        - name: samba
+          image: dperson/samba:latest
+          env:
+            - name: USERID
+              valueFrom:
+                secretKeyRef:
+                  name: samba-auth
+                  key: SMB_USER
+            - name: USERPASS
+              valueFrom:
+                secretKeyRef:
+                  name: samba-auth
+                  key: SMB_PASS
+          args:
+            - "-u"
+            - "$(USERID);$(USERPASS)"
+            - "-s"
+            - "TimeMachine;/mnt/ceph;yes;no;no;$(USERID)"
+            - "-g"
+            - "vfs objects = fruit streams_xattr"
+            - "-g"
+            - "fruit:aapl = yes"
+            - "-g"
+            - "fruit:time machine = yes"
+          ports:
+            - containerPort: 445
+              name: smb
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          volumeMounts:
+            - name: ceph-data
+              mountPath: /mnt/ceph
+      volumes:
+        - name: ceph-data
+          persistentVolumeClaim:
+            claimName: samba-hdd
