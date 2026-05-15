@@ -10,6 +10,7 @@ spec:
     allowUnsupported: false
   dataDirHostPath: /var/lib/rook
   priorityClassNames:
+    all: medium-priority
     mon: high-priority
     osd: low-priority
     prepareosd: low-priority
@@ -18,9 +19,9 @@ spec:
     exporter: low-priority
   cephConfig:
     global:
+      mon_warn_on_pool_no_redundancy: "false"
       osd_pool_default_size: "2"
       osd_pool_default_min_size: "1"
-#      osd_crush_chooseleaf_type: "0"
       osd_pool_default_crush_rule: "0"
       osd_memory_target: "1073741824"
       osd_memory_base: "268435456"
