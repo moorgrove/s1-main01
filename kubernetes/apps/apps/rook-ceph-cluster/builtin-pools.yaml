@@ -1,3 +1,4 @@
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -13,11 +14,12 @@ spec:
         command: ["/bin/bash", "-c"]
         args:
           - |
-            MON_ENDPOINTS=$(cat /etc/rook/mon-endpoints)
-            ceph -n client.admin \
-                 -k /etc/ceph/keyring-store/keyring \
-                 -m "$MON_ENDPOINTS" \
-                 osd crush rule create-replicated all_devices_osd_rule default osd
+            cat <<EOF > /etc/ceph/ceph.conf
+            [global]
+            mon_host = $(cat /etc/rook/mon-endpoints)
+            keyring = /etc/ceph/keyring-store/keyring
+            EOF
+            ceph -n client.admin osd crush rule create-replicated all_devices_osd_rule default osd
         volumeMounts:
         - name: ceph-config
           mountPath: /etc/ceph
