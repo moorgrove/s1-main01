@@ -7,5 +7,8 @@ metadata:
 spec:
   interfaces:
     - enp0s31f6
+    - ^enp.*$
+    - ^eth.*$
+    - ^ens.*$
   externalIPs: true
   loadBalancerIPs: true
