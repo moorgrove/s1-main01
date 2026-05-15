@@ -13,6 +13,9 @@ talos/*secret*
 # Kubernetes - unencrypted secrets
 kubernetes/**/*secret*.yaml
 
+# Allow Kubernetes - encrypted files (e.g. SOPS) that should be committed
+!kubernetes/**/*.enc.yaml
+
 # Helm - local chart files generated during debugging
 kubernetes/**/*.tgz
 charts/
