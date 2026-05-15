@@ -51,7 +51,7 @@ spec:
   name: .mgr
   failureDomain: osd
   replicated:
-    size: 1
+    size: 2
     requireSafeReplicaSize: false
     targetSizeRatio: .01
   parameters:
