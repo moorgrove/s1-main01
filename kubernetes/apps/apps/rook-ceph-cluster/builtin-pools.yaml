@@ -4,25 +4,26 @@ kind: Job
 metadata:
   name: create-universal-crush-rule
   namespace: rook-ceph
-  annotations:
-    fluxcd.io/hook-delete-policy: hook-succeeded
 spec:
   template:
     spec:
+      serviceAccountName: rook-ceph-osd
       containers:
       - name: ceph-cli
         image: rook/ceph:v1.19.5
         command: ["/bin/bash", "-c"]
         args:
           - |
-            ceph osd crush rule create-replicated all_devices_osd_rule default osd
+            ceph -n client.admin --keyring=/etc/ceph/keyring-store/keyring \
+            osd crush rule create-replicated all_devices_osd_rule default osd
         volumeMounts:
         - name: ceph-config
           mountPath: /etc/ceph
         - name: mon-endpoint-volume
           mountPath: /etc/rook
+        - name: admin-keyring
+          mountPath: /etc/ceph/keyring-store
       restartPolicy: OnFailure
-      serviceAccountName: rook-ceph-osd
       volumes:
       - name: ceph-config
         emptyDir: {}
@@ -32,6 +33,9 @@ spec:
           items:
           - key: data
             path: mon-endpoints
+      - name: admin-keyring
+        secret:
+          secretName: rook-ceph-admin-keyring
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
