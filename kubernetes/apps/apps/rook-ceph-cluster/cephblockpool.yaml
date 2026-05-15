@@ -4,9 +4,12 @@ kind: CephBlockPool
 metadata:
   name: builtin-mgr
   namespace: rook-ceph
+  annotations:
+    rook.io/managed: "true"
 spec:
   name: .mgr
   failureDomain: osd
+  targetSizeRatio: .01
   replicated:
     size: 2
     requireSafeReplicaSize: false
