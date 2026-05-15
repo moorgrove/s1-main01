@@ -1,0 +1,49 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-universal-crush-rule
+  namespace: rook-ceph
+  annotations:
+    fluxcd.io/hook-delete-policy: hook-succeeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: ceph-cli
+        image: rook/ceph:v1.19.5
+        command: ["/bin/bash", "-c"]
+        args:
+          - |
+            ceph osd crush rule create-replicated all_devices_osd_rule default osd
+        volumeMounts:
+        - name: ceph-config
+          mountPath: /etc/ceph
+        - name: mon-endpoint-volume
+          mountPath: /etc/rook
+      restartPolicy: OnFailure
+      serviceAccountName: rook-ceph-osd
+      volumes:
+      - name: ceph-config
+        emptyDir: {}
+      - name: mon-endpoint-volume
+        configMap:
+          name: rook-ceph-mon-endpoints
+          items:
+          - key: data
+            path: mon-endpoints
+---
+apiVersion: ceph.rook.io/v1
+kind: CephBlockPool
+metadata:
+  name: builtin-mgr
+  namespace: rook-ceph
+spec:
+  name: .mgr
+  failureDomain: osd
+  replicated:
+    size: 2
+    requireSafeReplicaSize: false
+    targetSizeRatio: .01
+  parameters:
+    crush_rule: all_devices_osd_rule

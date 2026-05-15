@@ -2,23 +2,6 @@
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
 metadata:
-  name: builtin-mgr
-  namespace: rook-ceph
-  annotations:
-    rook.io/managed: "true"
-spec:
-  name: .mgr
-  failureDomain: osd
-  replicated:
-    size: 2
-    requireSafeReplicaSize: false
-    targetSizeRatio: .01
-  parameters:
-    deviceClass: hdd
----
-apiVersion: ceph.rook.io/v1
-kind: CephBlockPool
-metadata:
   name: builtin-nfs
   namespace: rook-ceph
 spec:
