@@ -9,10 +9,10 @@ metadata:
 spec:
   name: .mgr
   failureDomain: osd
-  targetSizeRatio: .01
   replicated:
     size: 2
     requireSafeReplicaSize: false
+    targetSizeRatio: .01
   parameters:
     deviceClass: hdd
 ---
