@@ -52,6 +52,7 @@ spec:
   failureDomain: osd
   replicated:
     size: 3
+    minSize: 2
     requireSafeReplicaSize: false
     targetSizeRatio: .01
   parameters:
@@ -67,6 +68,7 @@ spec:
   failureDomain: osd
   replicated:
     size: 3
+    minSize: 2
     requireSafeReplicaSize: false
     targetSizeRatio: .01
   parameters:
