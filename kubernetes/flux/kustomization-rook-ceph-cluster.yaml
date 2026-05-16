@@ -14,4 +14,4 @@ spec:
   path: ./kubernetes/apps/apps/rook-ceph-cluster
   prune: true
   wait: true
-  timeout: 3m
+  timeout: 30m
