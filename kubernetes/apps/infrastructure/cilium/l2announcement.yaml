@@ -6,8 +6,7 @@ metadata:
   namespace: kube-system
 spec:
   interfaces:
-    - eno1
-    - enp0s31f6
+    - ^eno.*$
     - ^enp.*$
     - ^eth.*$
     - ^ens.*$
