@@ -14,6 +14,13 @@ spec:
         app: samba
     spec:
       priorityClassName: medium-priority
+      initContainers:
+        - name: fix-cephfs-permissions
+          image: alpine:latest
+          command: ["sh", "-c", "chmod 777 /mnt/ceph && chown 1000:1000 /mnt/ceph"]
+          volumeMounts:
+            - name: ceph-data
+              mountPath: /mnt/ceph
       containers:
         - name: samba
           image: dperson/samba:latest
