@@ -18,7 +18,7 @@ spec:
         - name: samba
           image: dperson/samba:latest
           env:
-            - name: USERID
+            - name: USERNAME
               valueFrom:
                 secretKeyRef:
                   name: samba-auth
@@ -30,9 +30,9 @@ spec:
                   key: SMB_PASS
           args:
             - "-u"
-            - "$(USERID);$(USERPASS)"
+            - "$(USERNAME);$(USERPASS)"
             - "-s"
-            - "TimeMachine;/mnt/ceph;yes;no;no;$(USERID)"
+            - "TimeMachine;/mnt/ceph;yes;no;no;$(USERNAME)"
             - "-g"
             - "vfs objects = fruit streams_xattr"
             - "-g"
