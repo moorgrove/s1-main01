@@ -9,8 +9,12 @@ spec:
     image: quay.io/ceph/ceph:v19.2.3
     allowUnsupported: false
   dataDirHostPath: /var/lib/rook
-  upgrade:
-    continueUpgradeAfterChecksEvenIfNotHealthy: true
+  skipUpgradeChecks: false
+  continueUpgradeAfterChecksEvenIfNotHealthy: true
+  disruptionManagement:
+    managePodBudgets: true
+    osdMaintenanceTimeout: 30
+    pgHealthCheckTimeout: 10
   priorityClassNames:
     all: medium-priority
     mon: high-priority
