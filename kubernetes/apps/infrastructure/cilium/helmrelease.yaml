@@ -21,6 +21,7 @@ spec:
     ipam:
       mode: kubernetes
     kubeProxyReplacement: true
+    devices: "{eth0,enp0s31f6}"
     l2announcements:
       enabled: true
     externalIPs:
