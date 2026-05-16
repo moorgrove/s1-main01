@@ -10,6 +10,7 @@ spec:
   path: ./kubernetes/apps/apps/rook-ceph-operator
   prune: true
   wait: true
+  timeout: 30m
   sourceRef:
     kind: GitRepository
     name: flux-system
