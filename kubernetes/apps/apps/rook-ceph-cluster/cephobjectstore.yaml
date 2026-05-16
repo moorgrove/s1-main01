@@ -39,4 +39,4 @@ provisioner: rook-ceph.ceph.rook.io/bucket
 parameters:
   objectStoreName: ceph-objectstore-hdd
   objectStoreNamespace: rook-ceph
-reclaimPolicy: Delete
+ReclaimPolicy: Retain
