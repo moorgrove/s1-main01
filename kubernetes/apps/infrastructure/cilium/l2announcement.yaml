@@ -5,6 +5,10 @@ metadata:
   name: default
   namespace: kube-system
 spec:
+  nodeSelector:
+      matchExpressions:
+        - key: node-role.kubernetes.io/control-plane
+          operator: DoesNotExist
   interfaces:
     - enp0s31f6
     - ^enp.*$
