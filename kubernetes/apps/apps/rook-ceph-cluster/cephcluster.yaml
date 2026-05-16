@@ -9,8 +9,10 @@ spec:
     image: quay.io/ceph/ceph:v19.2.3
     allowUnsupported: false
   dataDirHostPath: /var/lib/rook
+  upgrade:
+    continueUpgradeAfterChecksEvenIfNotHealthy: true
   priorityClassNames:
-#    all: medium-priority
+    all: medium-priority
     mon: high-priority
     osd: low-priority
     prepareosd: low-priority
