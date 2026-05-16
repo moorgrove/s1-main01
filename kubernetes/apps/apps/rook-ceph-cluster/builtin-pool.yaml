@@ -56,18 +56,3 @@ spec:
     targetSizeRatio: .01
   parameters:
     crush_rule: all_devices_osd_rule
----
-apiVersion: ceph.rook.io/v1
-kind: CephBlockPool
-metadata:
-  name: builtin-nfs
-  namespace: rook-ceph
-spec:
-  name: .nfs
-  failureDomain: osd
-  replicated:
-    size: 2
-    requireSafeReplicaSize: false
-    targetSizeRatio: .01
-  parameters:
-    crush_rule: all_devices_osd_rule

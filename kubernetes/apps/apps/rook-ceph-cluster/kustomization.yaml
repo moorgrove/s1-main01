@@ -3,7 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - cephcluster.yaml
-  - builtin-pools.yaml
+  - builtin-pool.yaml
   - cephblockpool.yaml
   - cephobjectstore.yaml
   - cephfilesystem.yaml
