@@ -7,5 +7,4 @@ resources:
   - cephblockpool.yaml
   - cephobjectstore.yaml
   - cephfilesystem.yaml
-  - cephnfs.yaml
   - toolbox.yaml
