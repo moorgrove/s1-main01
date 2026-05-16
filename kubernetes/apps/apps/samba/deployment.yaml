@@ -49,13 +49,6 @@ spec:
           ports:
             - containerPort: 445
               name: smb
-          resources:
-            requests:
-              memory: "256Mi"
-              cpu: "100m"
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
           volumeMounts:
             - name: ceph-data
               mountPath: /mnt/ceph
