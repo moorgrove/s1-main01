@@ -10,9 +10,6 @@ talos/*secret*
 *.key
 *.agekey
 
-# Kubernetes - unencrypted secrets
-kubernetes/**/*secret*.yaml
-
 # Allow Kubernetes - encrypted files (e.g. SOPS) that should be committed
 !kubernetes/**/*.enc.yaml
 
