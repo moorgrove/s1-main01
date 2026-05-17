@@ -6,6 +6,7 @@ metadata:
 spec:
   dependsOn:
     - name: rook-ceph-infrastructure
+    - name: rook-ceph-secrets
   interval: 1h
   path: ./kubernetes/apps/apps/rook-ceph-operator
   prune: true

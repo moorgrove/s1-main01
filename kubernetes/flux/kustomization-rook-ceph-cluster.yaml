@@ -7,11 +7,16 @@ metadata:
 spec:
   dependsOn:
     - name: rook-ceph-operator
+    - name: rook-ceph-secrets
   interval: 10m
   sourceRef:
     kind: GitRepository
     name: flux-system
   path: ./kubernetes/apps/apps/rook-ceph-cluster
-  prune: true
+  prune: false
   wait: true
   timeout: 30m
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
