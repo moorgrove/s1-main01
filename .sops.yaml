@@ -1,5 +1,5 @@
 creation_rules:
-  - path_regex: (stdin|.*/[^/]*(patch|controlplane|worker|secret.enc|config)[^/]*\.yaml)$
+  - path_regex: (stdin|.*/[^/]*(patch|controlplane|worker|secret.enc|secrets.enc|config)[^/]*\.yaml)$
     encrypted_regex: '^(token|crt|key|id|secret|secretboxEncryptionSecret|auths|endpoint|wwid|SMB_USER|SMB_PASS|keyring|mon_host|mon_initial_members|ceph-secret|ceph-username|fsid|mon-secret)$'
     age: "age1n2cvg7fc40lvdnuu98glfhmp3mq2yz0vv28sqekqmw2nqmgmpduqpwc4u9"
   - path_regex: .*talosconfig.*
