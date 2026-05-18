@@ -20,7 +20,7 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
-healthChecks:
+  healthChecks:
     - apiVersion: ceph.rook.io/v1
       kind: CephCluster
       name: rook-ceph
