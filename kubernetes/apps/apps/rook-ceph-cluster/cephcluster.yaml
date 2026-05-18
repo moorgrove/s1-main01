@@ -25,6 +25,8 @@ spec:
     exporter: low-priority
   cephConfig:
     global:
+      mon_osd_down_out_interval: "3600"
+      osd_recovery_delay_start: "30"
       mon_warn_on_pool_no_redundancy: "false"
       osd_pool_default_size: "2"
       osd_pool_default_min_size: "1"
