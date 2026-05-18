@@ -5,3 +5,4 @@ resources:
   - cephcluster.yaml
   - builtin-pool.yaml
   - toolbox.yaml
+  - osd-wait-job.yaml

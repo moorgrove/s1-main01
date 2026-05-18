@@ -1,0 +1,62 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: rook-ceph-osd-waiter
+  namespace: rook-ceph
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: rook-ceph-osd-waiter-role
+  namespace: rook-ceph
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rook-ceph-osd-waiter-binding
+  namespace: rook-ceph
+subjects:
+  - kind: ServiceAccount
+    name: rook-ceph-osd-waiter
+roleRef:
+  kind: Role
+  name: rook-ceph-osd-waiter-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wait-for-osd-ready
+  namespace: rook-ceph
+spec:
+  backoffLimit: 4
+  template:
+    spec:
+      serviceAccountName: rook-ceph-osd-waiter
+      restartPolicy: OnFailure
+      containers:
+        - name: wait
+          image: bitnami/kubectl:latest
+          command:
+            - /bin/bash
+            - -c
+            - |
+              echo "Väntar på att Rook-operatorn ska skapa OSD-poddar..."
+              
+              # Loopa tills minst en podd med etiketten app=rook-ceph-osd existerar
+              while [[ $(kubectl get pods -n rook-ceph -l app=rook-ceph-osd --no-headers 2>/dev/null | wc -l) -eq 0 ]]; do
+                echo "Inga OSD-poddar hittade än. Väntar 10 sekunder..."
+                sleep 10
+              done
+              
+              echo "OSD-poddar hittades! Väntar nu på att alla ska gå från Init till Ready..."
+              
+              # Vänta tills alla poddar med denna etikett är klara (max 30 min)
+              kubectl wait --for=condition=Ready pod -l app=rook-ceph-osd -n rook-ceph --timeout=30m
+              
+              echo "Alla OSD-poddar är nu Ready! Klustret är redo för lagringspooler."
