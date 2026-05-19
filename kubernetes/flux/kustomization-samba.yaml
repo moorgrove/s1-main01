@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cilium-infrastructure
     - name: rook-ceph-pools
-  interval: 10m
+  interval: 60m
   path: ./kubernetes/apps/apps/samba
   prune: true
   wait: true
