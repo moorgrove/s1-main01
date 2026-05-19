@@ -3,4 +3,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - helmrelease-operator.yaml
-  - rook-global-config.yaml
+  - rook-config-override.yaml
