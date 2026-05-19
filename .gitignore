@@ -17,9 +17,6 @@ talos/*secret*
 kubernetes/**/*.tgz
 charts/
 
-# Flux - local overrides that should not be pushed
-kubernetes/**/*override*.yaml
-
 # General safety net - decrypted files (e.g. VSCode + SOPS plugin)
 .decrypted*
 
