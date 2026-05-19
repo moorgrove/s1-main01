@@ -34,6 +34,7 @@ metadata:
   name: wait-for-osd-ready
   namespace: rook-ceph
 spec:
+  ttlSecondsAfterFinished: 60 # Städning så att jobbet kan köras om nästa gång
   backoffLimit: 4
   template:
     spec:
