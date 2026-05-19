@@ -5,6 +5,8 @@ metadata:
   name: create-universal-crush-rule
   namespace: rook-ceph
 spec:
+  ttlSecondsAfterFinished: 60
+  backoffLimit: 4
   template:
     spec:
       serviceAccountName: rook-ceph-osd
