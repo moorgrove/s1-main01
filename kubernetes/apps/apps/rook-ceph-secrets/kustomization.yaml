@@ -3,6 +3,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - rook-ceph-admin-keyring-secret.enc.yaml
-  - rook-ceph-config-secret.enc.yaml
   - rook-ceph-mon-secret.enc.yaml
   - rook-ceph-mons-keyring-secret.enc.yaml
