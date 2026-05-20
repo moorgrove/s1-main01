@@ -50,8 +50,7 @@ spec:
   security:
     kms:
       connectionDetails:
-        KMS_PROVIDER: secrets.metadata
-      tokenSecretName: rook-ceph-kms-secrets
+        KMS_PROVIDER: k8s
   storage:
     useAllNodes: false
     useAllDevices: false
