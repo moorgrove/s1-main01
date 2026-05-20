@@ -53,14 +53,14 @@ spec:
     replicated:
       size: 1
       requireSafeReplicaSize: false
-    deviceClass: nvme
+    deviceClass: ssd
   dataPools:
     - name: data
       failureDomain: osd
       replicated:
         size: 1
         requireSafeReplicaSize: false
-      deviceClass: nvme
+      deviceClass: ssd
   preserveFilesystemOnDelete: true
   metadataServer:
     activeCount: 1
