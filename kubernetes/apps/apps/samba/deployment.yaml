@@ -17,29 +17,51 @@ spec:
       initContainers:
         - name: fix-cephfs-permissions
           image: alpine:latest
+          resources:
+            requests:
+              cpu: 500m
+              memory: 500Mi
+            limits:
+              cpu: 1000m
+              memory: 1000Mi
           command: ["sh", "-c", "chmod 777 /mnt/ceph && chown 1000:1000 /mnt/ceph"]
           volumeMounts:
-            - name: ceph-data
-              mountPath: /mnt/ceph
+            - name: vol-andreas
+              mountPath: /mnt/tm-claes-hedlund
+            - name: vol-evert
+              mountPath: /mnt/tm-asa-hedlund
       containers:
         - name: samba
           image: dperson/samba:latest
+          resources:
+            requests:
+              cpu: 1000m
+              memory: 500Mi
+            limits:
+              cpu: 2000m
+              memory: 1000Mi
           env:
-            - name: USERNAME
+            - name: PASS_CLAES_HEDLUND
               valueFrom:
                 secretKeyRef:
                   name: samba-auth
-                  key: SMB_USER
-            - name: USERPASS
+                  key: pass_claes_hedlund
+            - name: PASS_ASA_HEDLUND
               valueFrom:
                 secretKeyRef:
                   name: samba-auth
-                  key: SMB_PASS
+                  key: pass_asa_hedlund
           args:
             - "-u"
-            - "$(USERNAME);$(USERPASS)"
+            - "andreas;$(PASS_CLAES_HEDLUND)"
+            - "-u"
+            - "evert;$(PASS_ASA_HEDLUND)"
+
             - "-s"
-            - "TimeMachine;/mnt/ceph;yes;no;no;$(USERNAME)"
+            - "TM-Claes Hedlund;/mnt/tm-claes-hedlund;yes;no;no;claes_hedlund"
+            - "-s"
+            - "TM-Asa Hedlund;/mnt/tm-asa-hedlund;yes;no;no;asa_hedlund"
+
             - "-g"
             - "vfs objects = fruit streams_xattr"
             - "-g"
@@ -50,9 +72,14 @@ spec:
             - containerPort: 445
               name: smb
           volumeMounts:
-            - name: ceph-data
-              mountPath: /mnt/ceph
+            - name: vol-claes-hedlund
+              mountPath: /mnt/tm-claes-hedlund
+            - name: vol-asa-hedlund
+              mountPath: /mnt/tm-asa-hedlund
       volumes:
-        - name: ceph-data
+        - name: vol-claes-hedlund
           persistentVolumeClaim:
-            claimName: samba-hdd
+            claimName: samba-tm-claes-hedlund-pvc
+        - name: vol-asa-hedlund
+          persistentVolumeClaim:
+            claimName: samba-tm-asa-hedlund-pvc

@@ -1,12 +1,66 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: samba-tm-claes-hedlund-pv
+spec:
+  accessModes: ["ReadWriteMany"]
+  capacity: { storage: 500Gi }
+  storageClassName: ceph-filesystem-hdd
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: rook-ceph.cephfs.csi.ceph.com
+    volumeHandle: tm-claes-hedlund-handle
+    volumeAttributes:
+      clusterID: rook-ceph
+      fsName: ceph-filesystem-hdd
+      pool: ceph-filesystem-hdd-data
+      subvolumePath: "/volumes/csi/tm-claes-hedlund"
+    nodeStageSecretRef:
+      name: rook-csi-cephfs-node
+      namespace: rook-ceph
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: samba-hdd
+  name: samba-tm-claes-hedlund-pvc
   namespace: samba
 spec:
-  accessModes:
-    - ReadWriteMany
+  accessModes: ["ReadWriteMany"]
   storageClassName: ceph-filesystem-hdd
   resources:
-    requests:
-      storage: 1Ti
+    requests: { storage: 500Gi }
+  volumeName: samba-tm-claes-hedlund-pv
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: samba-tm-asa-hedlund-pv
+spec:
+  accessModes: ["ReadWriteMany"]
+  capacity: { storage: 500Gi }
+  storageClassName: ceph-filesystem-nvme
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: rook-ceph.cephfs.csi.ceph.com
+    volumeHandle: tm-asa-hedlund-handle
+    volumeAttributes:
+      clusterID: rook-ceph
+      fsName: ceph-filesystem-nvme
+      pool: ceph-filesystem-nvme-data
+      subvolumePath: "/volumes/csi/tm-asa-hedlund"
+    nodeStageSecretRef:
+      name: rook-csi-cephfs-node
+      namespace: rook-ceph
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: samba-tm-asa-hedlund-pvc
+  namespace: samba
+spec:
+  accessModes: ["ReadWriteMany"]
+  storageClassName: ceph-filesystem-nvme
+  resources:
+    requests: { storage: 500Gi }
+  volumeName: samba-tm-asa-hedlund-pv

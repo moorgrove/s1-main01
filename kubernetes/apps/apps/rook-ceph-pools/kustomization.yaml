@@ -5,3 +5,4 @@ resources:
   - ceph-blockpool.yaml
   - ceph-objectstore.yaml
   - ceph-filesystem.yaml
+  - ceph-filesystem-subvolumes.yaml

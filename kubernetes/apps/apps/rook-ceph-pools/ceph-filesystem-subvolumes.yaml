@@ -1,0 +1,20 @@
+---
+apiVersion: ceph.rook.io/v1
+kind: CephFilesystemSubvolume
+metadata:
+  name: tm-claes-hedlund
+  namespace: rook-ceph
+spec:
+  filesystemName: ceph-filesystem-hdd
+  size: 500Gi
+---
+---
+apiVersion: ceph.rook.io/v1
+kind: CephFilesystemSubvolume
+metadata:
+  name: tm-asa-hedlund
+  namespace: rook-ceph
+spec:
+  filesystemName: ceph-filesystem-nvme
+  size: 500Gi
+---
