@@ -20,6 +20,15 @@ charts/
 # General safety net - decrypted files (e.g. VSCode + SOPS plugin)
 .decrypted*
 
+# Backup folder
+backup/*
+
+# Temporary files
+*.tmp
+
+# Database files
+*.db
+
 # OS specific
 .DS_Store
 Thumbs.db
