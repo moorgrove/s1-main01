@@ -1,0 +1,58 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ceph-luks-restore
+  namespace: rook-ceph
+spec:
+  ttlSecondsAfterFinished: 300
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: restore
+          image: quay.io/ceph/ceph:v19.2.3
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              until ceph status &>/dev/null; do
+                echo "Waiting for mon..."
+                sleep 5
+              done
+
+              FIRST_KEY=$(grep "config-key set" /etc/luks-keys/keys.sh | head -1 | awk '{print $4}')
+
+              if ceph config-key get "$FIRST_KEY" &>/dev/null; then
+                echo "LUKS keys already exist in Ceph config-key store, skipping restore"
+                exit 0
+              fi
+
+              echo "LUKS keys not found, restoring..."
+              bash /etc/luks-keys/keys.sh
+
+              echo "Verifying restored keys..."
+              while IFS= read -r line; do
+                KEY=$(echo "$line" | awk '{print $4}')
+                if ceph config-key get "$KEY" &>/dev/null; then
+                  echo "OK: $KEY"
+                else
+                  echo "FAIL: $KEY"
+                  exit 1
+                fi
+              done < <(grep "config-key set" /etc/luks-keys/keys.sh)
+          volumeMounts:
+            - name: luks-keys
+              mountPath: /etc/luks-keys
+              readOnly: true
+            - name: rook-config
+              mountPath: /var/lib/rook
+          env:
+            - name: CEPH_ARGS
+              value: "--cluster ceph"
+      volumes:
+        - name: luks-keys
+          secret:
+            secretName: ceph-luks-keys
+        - name: rook-config
+          hostPath:
+            path: /var/lib/rook

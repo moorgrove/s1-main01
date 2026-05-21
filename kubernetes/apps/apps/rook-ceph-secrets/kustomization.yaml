@@ -5,4 +5,5 @@ resources:
   - rook-ceph-admin-keyring-secret.enc.yaml
   - rook-ceph-mon-secret.enc.yaml
   - rook-ceph-mons-keyring-secret.enc.yaml
-  - rook-ceph-osd-secret.enc.yaml
+  - luks-secret.enc.yaml
+  - luks-restore-job.yaml

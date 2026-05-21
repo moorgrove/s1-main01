@@ -47,10 +47,6 @@ spec:
   dashboard:
     enabled: true
     ssl: false
-  security:
-    kms:
-      connectionDetails:
-        KMS_PROVIDER: k8s
   storage:
     useAllNodes: false
     useAllDevices: false
