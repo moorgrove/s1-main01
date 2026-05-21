@@ -6,4 +6,3 @@ resources:
   - rook-ceph-mon-secret.enc.yaml
   - rook-ceph-mons-keyring-secret.enc.yaml
   - luks-secret.enc.yaml
-  - luks-restore-job.yaml
