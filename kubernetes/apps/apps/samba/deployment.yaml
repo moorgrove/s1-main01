@@ -26,9 +26,9 @@ spec:
               memory: 1000Mi
           command: ["sh", "-c", "chmod 777 /mnt/ceph && chown 1000:1000 /mnt/ceph"]
           volumeMounts:
-            - name: vol-andreas
+            - name: vol-claes-hedlund
               mountPath: /mnt/tm-claes-hedlund
-            - name: vol-evert
+            - name: vol-asa-hedlund
               mountPath: /mnt/tm-asa-hedlund
       containers:
         - name: samba
