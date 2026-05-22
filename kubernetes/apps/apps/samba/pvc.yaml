@@ -11,6 +11,7 @@ spec:
   resources:
     requests:
       storage: 500Gi
+  volumeName: pvc-6c6e4641-bc1b-41c6-a944-b2081b83a8fd
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -24,3 +25,4 @@ spec:
   resources:
     requests:
       storage: 500Gi
+  volumeName: pvc-3280b328-d6e4-4573-9edc-060c82fad1c0
