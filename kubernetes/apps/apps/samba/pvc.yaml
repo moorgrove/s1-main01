@@ -10,7 +10,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: rook-ceph.cephfs.csi.ceph.com
-    volumeHandle: tm-claes-hedlund-handle
+    volumeHandle: tmClaesHedlundHandle
     volumeAttributes:
       clusterID: rook-ceph
       fsName: ceph-filesystem-hdd
@@ -43,7 +43,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: rook-ceph.cephfs.csi.ceph.com
-    volumeHandle: tm-asa-hedlund-handle
+    volumeHandle: tmAsaHedlundHandle
     volumeAttributes:
       clusterID: rook-ceph
       fsName: ceph-filesystem-nvme
