@@ -1,20 +1,21 @@
 ---
 apiVersion: ceph.rook.io/v1
-kind: CephFilesystemSubvolume
+kind: CephFilesystemSubVolumeGroup
 metadata:
   name: tm-claes-hedlund
   namespace: rook-ceph
 spec:
   filesystemName: ceph-filesystem-hdd
-  size: 500Gi
----
+  pinning:
+    distributed: 1
 ---
 apiVersion: ceph.rook.io/v1
-kind: CephFilesystemSubvolume
+kind: CephFilesystemSubVolumeGroup
 metadata:
   name: tm-asa-hedlund
   namespace: rook-ceph
 spec:
   filesystemName: ceph-filesystem-nvme
-  size: 500Gi
+  pinning:
+    distributed: 1
 ---
