@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,16 +16,21 @@ spec:
     spec:
       priorityClassName: medium-priority
       initContainers:
-        - name: fix-cephfs-permissions
+        - name: fix-permissions
           image: alpine:latest
           resources:
             requests:
-              cpu: 500m
-              memory: 500Mi
+              cpu: 100m
+              memory: 64Mi
             limits:
-              cpu: 1000m
-              memory: 1000Mi
-          command: ["sh", "-c", "chmod 777 /mnt/ceph && chown 1000:1000 /mnt/ceph"]
+              cpu: 250m
+              memory: 128Mi
+          command:
+            - sh
+            - -c
+            - |
+              chmod 777 /mnt/tm-claes-hedlund
+              chmod 777 /mnt/tm-asa-hedlund
           volumeMounts:
             - name: vol-claes-hedlund
               mountPath: /mnt/tm-claes-hedlund
@@ -35,11 +41,11 @@ spec:
           image: dperson/samba:latest
           resources:
             requests:
-              cpu: 1000m
-              memory: 500Mi
+              cpu: 100m
+              memory: 256Mi
             limits:
-              cpu: 2000m
-              memory: 1000Mi
+              cpu: 500m
+              memory: 512Mi
           env:
             - name: PASS_CLAES_HEDLUND
               valueFrom:
@@ -53,15 +59,13 @@ spec:
                   key: pass_asa_hedlund
           args:
             - "-u"
-            - "andreas;$(PASS_CLAES_HEDLUND)"
+            - "claes_hedlund;$(PASS_CLAES_HEDLUND)"
             - "-u"
-            - "evert;$(PASS_ASA_HEDLUND)"
-
+            - "asa_hedlund;$(PASS_ASA_HEDLUND)"
             - "-s"
-            - "TM-Claes Hedlund;/mnt/tm-claes-hedlund;yes;no;no;claes_hedlund"
+            - "TM-Claes-Hedlund;/mnt/tm-claes-hedlund;yes;no;no;claes_hedlund"
             - "-s"
-            - "TM-Asa Hedlund;/mnt/tm-asa-hedlund;yes;no;no;asa_hedlund"
-
+            - "TM-Asa-Hedlund;/mnt/tm-asa-hedlund;yes;no;no;asa_hedlund"
             - "-g"
             - "vfs objects = fruit streams_xattr"
             - "-g"
