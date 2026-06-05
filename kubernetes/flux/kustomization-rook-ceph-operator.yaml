@@ -10,7 +10,7 @@ spec:
   interval: 60m
   path: ./kubernetes/apps/apps/rook-ceph-operator
   prune: true
-  wait: true
+  wait: false
   timeout: 30m
   sourceRef:
     kind: GitRepository
