@@ -53,7 +53,7 @@ spec:
     config:
         encryptedDevice: "true"
     nodes:
-      - name: s1-main01-cpwr01
+      - name: s1-main01-cpwr10
         devices:
           - name: /dev/disk/by-id/wwn-0x50014ee217016a21
           - name: /dev/disk/by-id/wwn-0x5000039da8d00a9a
