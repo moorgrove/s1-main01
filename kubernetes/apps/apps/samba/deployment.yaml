@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,72 +17,53 @@ spec:
       initContainers:
         - name: fix-permissions
           image: alpine:latest
-          resources:
-            requests:
-              cpu: 100m
-              memory: 64Mi
-            limits:
-              cpu: 250m
-              memory: 128Mi
+          # resources:
+          #   requests:
+          #     cpu: 100m
+          #     memory: 64Mi
+          #   limits:
+          #     cpu: 250m
+          #     memory: 128Mi
           command:
             - sh
             - -c
             - |
-              chmod 777 /mnt/tm-claes-hedlund
-              chmod 777 /mnt/tm-asa-hedlund
+              chmod 777 /mnt/test
           volumeMounts:
-            - name: vol-claes-hedlund
-              mountPath: /mnt/tm-claes-hedlund
-            - name: vol-asa-hedlund
-              mountPath: /mnt/tm-asa-hedlund
+            - name: vol-test
+              mountPath: /mnt/test
       containers:
         - name: samba
           image: dperson/samba:latest
-          resources:
-            requests:
-              cpu: 100m
-              memory: 256Mi
-            limits:
-              cpu: 500m
-              memory: 512Mi
+          # resources:
+          #   requests:
+          #     cpu: 250m
+          #     memory: 1Gi
+          #   limits:
+          #     cpu: 1500m
+          #     memory: 2Gi
           env:
-            - name: PASS_CLAES_HEDLUND
+            - name: PASS_ANDREAS_HEDLUND
               valueFrom:
                 secretKeyRef:
                   name: samba-auth
-                  key: pass_claes_hedlund
-            - name: PASS_ASA_HEDLUND
-              valueFrom:
-                secretKeyRef:
-                  name: samba-auth
-                  key: pass_asa_hedlund
+                  key: pass_andreas_hedlund
           args:
             - "-u"
-            - "claes_hedlund;$(PASS_CLAES_HEDLUND)"
-            - "-u"
-            - "asa_hedlund;$(PASS_ASA_HEDLUND)"
+            - "andreas_hedlund;${PASS_ANDREAS_HEDLUND}"
             - "-s"
-            - "TM-Claes-Hedlund;/mnt/tm-claes-hedlund;yes;no;no;claes_hedlund"
-            - "-s"
-            - "TM-Asa-Hedlund;/mnt/tm-asa-hedlund;yes;no;no;asa_hedlund"
+            - "Test;/mnt/test;yes;no;no;andreas_hedlund"
             - "-g"
             - "vfs objects = fruit streams_xattr"
             - "-g"
             - "fruit:aapl = yes"
-            - "-g"
-            - "fruit:time machine = yes"
           ports:
             - containerPort: 445
               name: smb
           volumeMounts:
-            - name: vol-claes-hedlund
-              mountPath: /mnt/tm-claes-hedlund
-            - name: vol-asa-hedlund
-              mountPath: /mnt/tm-asa-hedlund
+            - name: vol-test
+              mountPath: /mnt/test
       volumes:
-        - name: vol-claes-hedlund
+        - name: vol-test
           persistentVolumeClaim:
-            claimName: samba-tm-claes-hedlund-pvc
-        - name: vol-asa-hedlund
-          persistentVolumeClaim:
-            claimName: samba-tm-asa-hedlund-pvc
+            claimName: s1-main01-nas

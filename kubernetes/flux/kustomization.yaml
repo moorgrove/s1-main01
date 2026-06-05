@@ -5,9 +5,9 @@ resources:
   - flux-system
   - kustomization-priority-classes.yaml
   - kustomization-cilium-infrastructure.yaml
-  # - kustomization-rook-ceph-infrastructure.yaml
-  # - kustomization-rook-ceph-secrets.yaml
-  # - kustomization-rook-ceph-operator.yaml
-  # - kustomization-rook-ceph-cluster.yaml
-  # - kustomization-rook-ceph-pools.yaml
-  # - kustomization-samba.yaml
+  - kustomization-rook-ceph-infrastructure.yaml
+  - kustomization-rook-ceph-secrets.yaml
+  - kustomization-rook-ceph-operator.yaml
+  - kustomization-rook-ceph-cluster.yaml
+  - kustomization-rook-ceph-pools.yaml
+  - kustomization-samba.yaml

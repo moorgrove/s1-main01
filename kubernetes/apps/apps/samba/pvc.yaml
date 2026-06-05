@@ -2,27 +2,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: samba-tm-claes-hedlund-pvc
+  name: s1-main01-nas
   namespace: samba
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: ceph-filesystem-hdd
+  storageClassName: ceph-fs-hdd-r2
   resources:
     requests:
       storage: 500Gi
-  volumeName: pvc-6c6e4641-bc1b-41c6-a944-b2081b83a8fd
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: samba-tm-asa-hedlund-pvc
-  namespace: samba
-spec:
-  accessModes:
-    - ReadWriteMany
-  storageClassName: ceph-filesystem-hdd
-  resources:
-    requests:
-      storage: 500Gi
-  volumeName: pvc-3280b328-d6e4-4573-9edc-060c82fad1c0
