@@ -36,11 +36,16 @@ spec:
       osd_memory_cache_min: "134217728"
       bluestore_cache_size: "536870912"
   mon:
-    count: 1
-    allowMultiplePerNode: true
+    count: 2
+    allowMultiplePerNode: false
+    tolerations:
+        - key: "node-role/ceph-only"
+          operator: Equal
+          value: "true"
+          effect: NoSchedule
   mgr:
-    count: 1
-    allowMultiplePerNode: true
+    count: 2
+    allowMultiplePerNode: false
     modules:
       - name: rook
         enabled: true
