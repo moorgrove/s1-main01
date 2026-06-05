@@ -47,17 +47,15 @@ spec:
             - /bin/bash
             - -c
             - |
-              echo "Väntar på att Rook-operatorn ska skapa OSD-poddar..."
-              
-              # Loopa tills minst en podd med etiketten app=rook-ceph-osd existerar
+              echo "Waiting for Rook operator to create OSD pods..."
+
               while [[ $(kubectl get pods -n rook-ceph -l app=rook-ceph-osd --no-headers 2>/dev/null | wc -l) -eq 0 ]]; do
-                echo "Inga OSD-poddar hittade än. Väntar 10 sekunder..."
+                echo "No OSD pods found yet. Waiting 10 seconds..."
                 sleep 10
               done
-              
-              echo "OSD-poddar hittades! Väntar nu på att alla ska gå från Init till Ready..."
-              
-              # Vänta tills alla poddar med denna etikett är klara (max 30 min)
+
+              echo "OSD pods found! Waiting for all pods to become Ready..."
+
               kubectl wait --for=condition=Ready pod -l app=rook-ceph-osd -n rook-ceph --timeout=30m
-              
-              echo "Alla OSD-poddar är nu Ready! Klustret är redo för lagringspooler."
+
+              echo "All OSD pods are Ready. Cluster is ready for storage pools."
