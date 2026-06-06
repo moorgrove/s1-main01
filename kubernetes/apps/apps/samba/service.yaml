@@ -5,7 +5,7 @@ metadata:
   name: samba
   namespace: samba
   annotations:
-    io.cilium/lb-ipam-ips: "192.168.201.102"
+    io.cilium/lb-ipam-ips: "192.168.201.101"
 spec:
   type: LoadBalancer
   selector:
