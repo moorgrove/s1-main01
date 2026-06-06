@@ -17,7 +17,7 @@ spec:
       failureDomain: osd
       replicated:
         size: 2
-      requireSafeReplicaSize: true
+        requireSafeReplicaSize: true
       deviceClass: hdd
   preserveFilesystemOnDelete: true
   metadataServer:
