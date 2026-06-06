@@ -1,3 +1,4 @@
+---
 creation_rules:
   - path_regex: (stdin|.*/[^/]*(patch|controlplane|worker|secret.enc|secrets.enc|config)[^/]*\.yaml)$
     encrypted_regex: '^(token|crt|key|id|secret|secretboxEncryptionSecret|auths|endpoint|wwid|SMB_USER|SMB_PASS|keyring|ceph-secret|ceph-username|fsid|mon-secret|stringData)$'
