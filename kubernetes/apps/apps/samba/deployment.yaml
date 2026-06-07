@@ -17,53 +17,63 @@ spec:
       initContainers:
         - name: fix-permissions
           image: alpine:latest
-          # resources:
-          #   requests:
-          #     cpu: 100m
-          #     memory: 64Mi
-          #   limits:
-          #     cpu: 250m
-          #     memory: 128Mi
           command:
             - sh
             - -c
             - |
-              chmod 777 /mnt/test
+              chmod 777 /mnt/nas
+              chmod 777 /mnt/tm-claes_hedlund
           volumeMounts:
-            - name: vol-test
-              mountPath: /mnt/test
+            - name: vol-nas
+              mountPath: /mnt/nas
+            - name: vol-tm-claes_hedlund
+              mountPath: /mnt/tm-claes_hedlund
       containers:
         - name: samba
           image: dperson/samba:latest
-          # resources:
-          #   requests:
-          #     cpu: 250m
-          #     memory: 1Gi
-          #   limits:
-          #     cpu: 1500m
-          #     memory: 2Gi
           env:
-            - name: PASS_ANDREAS_HEDLUND
+            - name: PASS_ANDREAS_HEDLUND_NAS
               valueFrom:
                 secretKeyRef:
                   name: samba-auth
-                  key: pass_andreas_hedlund
+                  key: pass_andreas_hedlund_nas
+            - name: PASS_CLAES_HEDLUND_TM
+              valueFrom:
+                secretKeyRef:
+                  name: samba-auth
+                  key: pass_claes_hedlund_tm
           args:
+            # Användare (Format: "användarnamn;lösenord")
             - "-u"
-            - "andreas_hedlund;${PASS_ANDREAS_HEDLUND}"
+            - "andreas_hedlund_nas;${PASS_ANDREAS_HEDLUND_NAS}"
+            - "-u"
+            - "claes_hedlund_tm;${PASS_CLAES_HEDLUND_TM}"
+
+            # Delade mappar (Format: "ShareNamn;Sökväg;Browsable;ReadOnly;Guest;Users")
             - "-s"
-            - "Test;/mnt/test;yes;no;no;andreas_hedlund"
+            - "NAS;/mnt/nas;yes;no;no;andreas_hedlund_nas"
+            - "-s"
+            - "TM-Claes-Hedlund;/mnt/tm-claes_hedlund;yes;no;no;claes_hedlund_tm"
+            
+            # Globala Apple/Time Machine-inställningar
             - "-g"
             - "vfs objects = fruit streams_xattr"
             - "-g"
             - "fruit:aapl = yes"
+            - "-g"
+            - "fruit:time machine = yes"
           ports:
             - containerPort: 445
               name: smb
           volumeMounts:
-            - name: vol-test
-              mountPath: /mnt/test
+            - name: vol-nas
+              mountPath: /mnt/nas
+            - name: vol-tm-claes_hedlund
+              mountPath: /mnt/tm-claes_hedlund
       volumes:
-        - name: vol-test
+        - name: vol-nas
           persistentVolumeClaim:
-            claimName: s1-main01-nas
+            claimName: nas
+        - name: vol-tm-claes_hedlund
+          persistentVolumeClaim:
+            claimName: tm-claes-hedlund

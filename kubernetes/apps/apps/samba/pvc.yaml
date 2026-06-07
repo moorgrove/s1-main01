@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: s1-main01-nas
+  name: nas
   namespace: samba
 spec:
   accessModes:
@@ -12,3 +12,15 @@ spec:
     requests:
       storage: 500Gi
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tm-claes-hedlund
+  namespace: samba
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ceph-rbd-hdd-r2
+  resources:
+    requests:
+      storage: 300Gi
