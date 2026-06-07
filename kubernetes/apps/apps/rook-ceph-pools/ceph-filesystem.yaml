@@ -10,14 +10,14 @@ spec:
     failureDomain: osd
     replicated:
       size: 2
-      requireSafeReplicaSize: true
+      requireSafeReplicaSize: false
     deviceClass: hdd
   dataPools:
     - name: data
       failureDomain: osd
       replicated:
         size: 2
-        requireSafeReplicaSize: true
+        requireSafeReplicaSize: false
       deviceClass: hdd
   preserveFilesystemOnDelete: true
   metadataServer:
