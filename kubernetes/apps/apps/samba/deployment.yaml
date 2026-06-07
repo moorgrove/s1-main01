@@ -22,12 +22,12 @@ spec:
             - -c
             - |
               chmod 777 /mnt/nas
-              chmod 777 /mnt/tm-claes_hedlund
+              chmod 777 /mnt/tm-claes-hedlund
           volumeMounts:
             - name: vol-nas
               mountPath: /mnt/nas
-            - name: vol-tm-claes_hedlund
-              mountPath: /mnt/tm-claes_hedlund
+            - name: vol-tm-claes-hedlund
+              mountPath: /mnt/tm-claes-hedlund
       containers:
         - name: samba
           image: dperson/samba:latest
@@ -53,7 +53,7 @@ spec:
             - "-s"
             - "NAS;/mnt/nas;yes;no;no;andreas_hedlund_nas"
             - "-s"
-            - "TM-Claes-Hedlund;/mnt/tm-claes_hedlund;yes;no;no;claes_hedlund_tm"
+            - "TM-Claes-Hedlund;/mnt/tm-claes-hedlund;yes;no;no;claes_hedlund_tm"
             
             # Globala Apple/Time Machine-inställningar
             - "-g"
@@ -68,12 +68,12 @@ spec:
           volumeMounts:
             - name: vol-nas
               mountPath: /mnt/nas
-            - name: vol-tm-claes_hedlund
-              mountPath: /mnt/tm-claes_hedlund
+            - name: vol-tm-claes-hedlund
+              mountPath: /mnt/tm-claes-hedlund
       volumes:
         - name: vol-nas
           persistentVolumeClaim:
             claimName: nas
-        - name: vol-tm-claes_hedlund
+        - name: vol-tm-claes-hedlund
           persistentVolumeClaim:
             claimName: tm-claes-hedlund
