@@ -13,3 +13,4 @@ resources:
   - kustomization-storage-infrastructure.yaml
   - kustomization-samba.yaml
   - kustomization-metrics-server.yaml
+  - kustomization-svtplay-dl.yaml

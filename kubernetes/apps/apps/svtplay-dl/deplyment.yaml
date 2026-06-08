@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: svtplay-dl
+  namespace: svtplay-dl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svtplay-dl
+  template:
+    metadata:
+      labels:
+        app: svtplay-dl
+    spec:
+      containers:
+      - name: downloader
+        image: python:3.11-alpine
+        command:
+        - sh
+        - -c
+        - |
+          apk add --no-cache ffmpeg gcc musl-dev python3-dev libffi-dev openssl-dev
+          pip install --no-cache-dir svtplay-dl
+          echo "svtplay-dl är redo!"
+          sleep infinity
+        volumeMounts:
+        - name: media-storage
+          mountPath: /downloads
+      volumes:
+      - name: media-storage
+        persistentVolumeClaim:
+          claimName: svtplay-dl
