@@ -23,11 +23,14 @@ spec:
             - |
               chmod 777 /mnt/nas
               chmod 777 /mnt/tm-claes-hedlund
+              chmod 777 /mnt/svtplay-dl
           volumeMounts:
             - name: vol-nas
               mountPath: /mnt/nas
             - name: vol-tm-claes-hedlund
               mountPath: /mnt/tm-claes-hedlund
+            - name: vol-svtplay-dl
+              mountPath: /mnt/svtplay-dl
       containers:
         - name: samba
           image: dperson/samba:latest
@@ -54,6 +57,8 @@ spec:
             - "NAS;/mnt/nas;yes;no;no;andreas_hedlund_nas"
             - "-s"
             - "TM-Claes-Hedlund;/mnt/tm-claes-hedlund;yes;no;no;claes_hedlund_tm"
+            - "-s"
+            - "SVTPlay-DL;/mnt/svtplay-dl;yes;no;no;andreas_hedlund_nas"
             
             # Globala Apple/Time Machine-inställningar
             - "-g"
@@ -70,6 +75,8 @@ spec:
               mountPath: /mnt/nas
             - name: vol-tm-claes-hedlund
               mountPath: /mnt/tm-claes-hedlund
+            - name: vol-svtplay-dl
+              mountPath: /mnt/svtplay-dl
       volumes:
         - name: vol-nas
           persistentVolumeClaim:
@@ -77,3 +84,6 @@ spec:
         - name: vol-tm-claes-hedlund
           persistentVolumeClaim:
             claimName: tm-claes-hedlund
+        - name: vol-svtplay-dl
+          persistentVolumeClaim:
+            claimName: svtplay-dl

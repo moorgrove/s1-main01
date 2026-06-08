@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: storage-infrastructure
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: rook-ceph-pools
+  interval: 60m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./kubernetes/apps/infrastructure/storage
+  prune: false
+  wait: true
+  timeout: 30m

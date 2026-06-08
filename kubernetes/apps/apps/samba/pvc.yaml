@@ -24,3 +24,17 @@ spec:
   resources:
     requests:
       storage: 300Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: svtplay-dl
+  namespace: samba
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Gi
+  volumeName: svtplay-dl-pv
+  storageClassName: ""
