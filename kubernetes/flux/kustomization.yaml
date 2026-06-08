@@ -10,5 +10,6 @@ resources:
   - kustomization-rook-ceph-operator.yaml
   - kustomization-rook-ceph-cluster.yaml
   - kustomization-rook-ceph-pools.yaml
+  - kustomization-storage-infrastructure.yaml
   - kustomization-samba.yaml
   - kustomization-metrics-server.yaml
