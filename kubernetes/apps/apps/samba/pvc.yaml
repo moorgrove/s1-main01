@@ -36,5 +36,5 @@ spec:
   resources:
     requests:
       storage: 100Gi
-  volumeName: svtplay-dl-pv
+  volumeName: svtplay-dl-pv-samba
   storageClassName: ""
