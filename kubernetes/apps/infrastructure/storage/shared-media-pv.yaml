@@ -12,7 +12,11 @@ spec:
   csi:
     driver: cephfs.csi.ceph.com
     volumeHandle: svtplay-dl-pv
+    nodeStageSecretRef:
+      name: rook-csi-cephfs-node
+      namespace: rook-ceph
     volumeAttributes:
       clusterID: rook-ceph
       fsName: hdd-fs-r2
+      staticVolume: "true"
       rootPath: /volumes/svtplay-dl
