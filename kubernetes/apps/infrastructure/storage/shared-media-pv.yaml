@@ -11,7 +11,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: cephfs.csi.ceph.com
-    volumeHandle: svtplay-dl-pv-2
+    volumeHandle: svtplay-dl-pv
     nodeStageSecretRef:
       name: rook-csi-cephfs-node
       namespace: rook-ceph
