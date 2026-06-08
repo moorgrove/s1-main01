@@ -15,6 +15,9 @@ spec:
     nodeStageSecretRef:
       name: rook-csi-cephfs-node
       namespace: rook-ceph
+    controllerExpandSecretRef:
+      name: rook-csi-cephfs-provisioner
+      namespace: rook-ceph
     volumeAttributes:
       clusterID: rook-ceph
       fsName: hdd-fs-r2
