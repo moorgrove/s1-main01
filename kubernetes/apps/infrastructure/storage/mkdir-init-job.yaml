@@ -1,0 +1,36 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cephfs-directory-initializer
+  namespace: rook-ceph
+  annotations:
+    kustomize.toolkit.fluxcd.io/force: "true"
+spec:
+  ttlSecondsAfterFinished: 600
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: initializer
+        image: busybox
+        command:
+        - sh
+        - -c
+        - |
+          mkdir -p /mnt/cephfs/volumes/svtplay-dl
+        volumeMounts:
+        - name: cephfs-root
+          mountPath: /mnt/cephfs
+      volumes:
+      - name: cephfs-root
+        csi:
+          driver: rook-ceph.cephfs.csi.ceph.com
+          nodeStageSecretRef:
+            name: rook-csi-cephfs-node
+            namespace: rook-ceph
+          volumeAttributes:
+            clusterID: rook-ceph
+            fsName: hdd-fs-r2
+            staticVolume: "true"
+            rootPath: /

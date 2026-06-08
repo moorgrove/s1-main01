@@ -24,4 +24,3 @@ spec:
       staticVolume: "true"
       rootPath: /volumes/svtplay-dl
       mounter: fuse
-# Ev. -> ceph-tools -> mkdir -p /volumes/svtplay-dl
