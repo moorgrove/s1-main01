@@ -10,7 +10,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   csi:
-    driver: cephfs.csi.ceph.com
+    driver: rook-ceph.cephfs.csi.ceph.com
     volumeHandle: svtplay-dl-pv
     nodeStageSecretRef:
       name: rook-csi-cephfs-node
@@ -20,3 +20,4 @@ spec:
       fsName: hdd-fs-r2
       staticVolume: "true"
       rootPath: /volumes/svtplay-dl
+# -> ceph-tools -> mkdir -p /volumes/svtplay-dl
