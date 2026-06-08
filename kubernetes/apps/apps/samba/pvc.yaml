@@ -28,7 +28,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: svtplay-dl
+  name: svtplay-dl-samba
   namespace: samba
 spec:
   accessModes:

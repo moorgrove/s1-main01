@@ -88,4 +88,4 @@ spec:
             claimName: tm-claes-hedlund
         - name: vol-svtplay-dl
           persistentVolumeClaim:
-            claimName: svtplay-dl
+            claimName: svtplay-dl-samba

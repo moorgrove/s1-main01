@@ -24,3 +24,29 @@ spec:
       staticVolume: "true"
       rootPath: /volumes/svtplay-dl
       mounter: fuse
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: svtplay-dl-pv-samba
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: rook-ceph.cephfs.csi.ceph.com
+    volumeHandle: svtplay-dl-pv-samba
+    nodeStageSecretRef:
+      name: rook-csi-cephfs-node
+      namespace: rook-ceph
+    controllerExpandSecretRef:
+      name: rook-csi-cephfs-provisioner
+      namespace: rook-ceph
+    volumeAttributes:
+      clusterID: rook-ceph
+      fsName: hdd-fs-r2
+      staticVolume: "true"
+      rootPath: /volumes/svtplay-dl
+      mounter: fuse
