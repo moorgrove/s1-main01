@@ -33,9 +33,9 @@ spec:
             - name: BASE_URL
               value: "http://192.168.201.110"
             - name: PORT
-              value: "80"
+              value: 80
             - name: CHECK_INTERVAL_MINUTES
-              value: "15"
+              value: 15
           volumeMounts:
             - name: data-volume
               mountPath: /data
