@@ -37,4 +37,4 @@ spec:
         - name: data-volume
           persistentVolumeClaim:
             localObjectReference:
-              name: podcast-ad-remover
+              claimName: podcast-ad-remover
