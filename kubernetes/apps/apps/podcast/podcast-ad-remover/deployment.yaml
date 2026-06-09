@@ -33,8 +33,6 @@ spec:
                   key: GEMINI_API_KEY
             - name: BASE_URL
               value: "http://192.168.201.110"
-            # - name: PORT
-            #   value: "80"
             - name: CHECK_INTERVAL_MINUTES
               value: "15"
             - name: WHISPER_MODEL
@@ -44,6 +42,8 @@ spec:
                 resourceFieldRef:
                   containerName: podcast-ad-remover
                   resource: limits.memory
+            # - name: PORT
+            #   value: "80"
           resources:
             requests:
               cpu: "100m"
