@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: podcast
 resources:
   - namespace.yaml
-  - podscast-ad-remover
+  - podcast-ad-remover
