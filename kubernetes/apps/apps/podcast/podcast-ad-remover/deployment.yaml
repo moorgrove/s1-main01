@@ -33,8 +33,12 @@ spec:
                   key: GEMINI_API_KEY
             - name: BASE_URL
               value: "http://192.168.201.110"
+            # - name: PORT
+            #   value: "80"
             - name: CHECK_INTERVAL_MINUTES
               value: "15"
+            - name: WHISPER_MODEL
+              value: "large"
             - name: KUBERNETES_MEMORY_LIMIT
               valueFrom:
                 resourceFieldRef:
@@ -45,8 +49,8 @@ spec:
               cpu: "100m"
               memory: "256Mi"
             limits:
-              cpu: "2500m"
-              memory: "3Gi"
+              cpu: "3000m"
+              memory: "4Gi"
           volumeMounts:
             - name: data-volume
               mountPath: /data
