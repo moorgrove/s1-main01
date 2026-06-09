@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podcast-ad-remover
+  namespace: podcast
+  labels:
+    app: podcast-ad-remover
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: podcast-ad-remover
+  template:
+    metadata:
+      labels:
+        app: podcast-ad-remover
+    spec:
+      containers:
+        - name: podcast-ad-remover
+          image: jdcb4/podcast-ad-remover:1.3.1
+          ports:
+            - containerPort: 80
+              name: http
+          env:
+            - name: GEMINI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: podcast-ad-remover-secret
+                  key: GEMINI_API_KEY
+          volumeMounts:
+            - name: data-volume
+              mountPath: /data
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            localObjectReference:
+              name: podcast-ad-remover

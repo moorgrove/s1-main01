@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: podcast-ad-remover
+  namespace: podcast
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ceph-fs-hdd-r2
+  resources:
+    requests:
+      storage: 50Gi
