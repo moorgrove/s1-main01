@@ -37,8 +37,8 @@ spec:
               value: "http://192.168.201.110"
             - name: CHECK_INTERVAL_MINUTES
               value: "15"
-            - name: WHISPER_MODEL
-              value: "large-v3-turbo"
+            # - name: WHISPER_MODEL
+            #   value: "large-v3-turbo"
             - name: KUBERNETES_MEMORY_LIMIT
               valueFrom:
                 resourceFieldRef:
@@ -52,7 +52,7 @@ spec:
               memory: "512Mi"
             limits:
               cpu: "4000m"
-              memory: "5Gi"
+              memory: "4Gi"
           volumeMounts:
             - name: data-volume
               mountPath: /data
