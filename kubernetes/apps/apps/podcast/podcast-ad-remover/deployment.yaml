@@ -35,13 +35,18 @@ spec:
               value: "http://192.168.201.110"
             - name: CHECK_INTERVAL_MINUTES
               value: "15"
+            - name: KUBERNETES_MEMORY_LIMIT
+              valueFrom:
+                resourceFieldRef:
+                  containerName: podcast-ad-remover
+                  resource: limits.memory
           resources:
             requests:
-              cpu: "1000m"
-              memory: "512Mi"
+              cpu: "100m"
+              memory: "256Mi"
             limits:
               cpu: "2500m"
-              memory: "1024Mi"
+              memory: "3Gi"
           volumeMounts:
             - name: data-volume
               mountPath: /data
