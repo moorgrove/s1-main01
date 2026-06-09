@@ -19,6 +19,8 @@ spec:
         app: podcast-ad-remover
     spec:
       priorityClassName: low-priority
+      nodeSelector:
+        kubernetes.io/hostname: s1-main01-cpwr11
       containers:
         - name: podcast-ad-remover
           image: jdcb4/podcast-ad-remover:1.3.1
