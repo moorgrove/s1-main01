@@ -17,6 +17,7 @@ spec:
       labels:
         app: audiobookshelf
     spec:
+      priorityClassName: low-priority
       containers:
         - name: audiobookshelf
           image: ghcr.io/advplyr/audiobookshelf:latest
@@ -29,6 +30,8 @@ spec:
               value: "1000"
             - name: AUDIOBOOKSHELF_GID
               value: "1000"
+            - name: DISABLE_SSRF_REQUEST_FILTER
+              value: "1"
           resources:
             requests:
               cpu: "100m"
