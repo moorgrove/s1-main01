@@ -5,6 +5,8 @@ metadata:
   namespace: svtplay-dl
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: svtplay-dl
@@ -13,6 +15,8 @@ spec:
       labels:
         app: svtplay-dl
     spec:
+      priorityClassName: medium-priority
+      automountServiceAccountToken: false
       containers:
       - name: downloader
         image: python:3.11-alpine
@@ -24,6 +28,19 @@ spec:
           pip install --no-cache-dir svtplay-dl
           echo "svtplay-dl är redo!"
           sleep infinity
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            cpu: "4"
+            memory: "2Gi"
+        env:
+          - name: KUBERNETES_MEMORY_LIMIT
+            valueFrom:
+              resourceFieldRef:
+                containerName: downloader
+                resource: limits.memory
         volumeMounts:
         - name: media-storage
           mountPath: /downloads
