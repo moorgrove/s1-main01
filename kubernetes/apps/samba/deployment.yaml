@@ -16,9 +16,17 @@ spec:
         app: samba
     spec:
       priorityClassName: medium-priority
+      automountServiceAccountToken: false
       initContainers:
         - name: fix-permissions
           image: alpine:latest
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "32Mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
           command:
             - sh
             - -c
@@ -36,6 +44,13 @@ spec:
       containers:
         - name: samba
           image: dperson/samba:latest
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "1"
+              memory: "512Mi"
           env:
             - name: PASS_ANDREAS_HEDLUND_NAS
               valueFrom:
@@ -47,6 +62,11 @@ spec:
                 secretKeyRef:
                   name: samba-auth
                   key: pass_claes_hedlund_tm
+            - name: KUBERNETES_MEMORY_LIMIT
+              valueFrom:
+                resourceFieldRef:
+                  containerName: samba
+                  resource: limits.memory
           args:
             # Användare (Format: "användarnamn;lösenord")
             - "-u"

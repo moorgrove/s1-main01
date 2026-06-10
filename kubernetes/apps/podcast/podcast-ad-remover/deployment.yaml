@@ -19,6 +19,7 @@ spec:
         app: podcast-ad-remover
     spec:
       priorityClassName: low-priority
+      automountServiceAccountToken: false
       nodeSelector:
         kubernetes.io/hostname: s1-main01-cpwr11
       containers:

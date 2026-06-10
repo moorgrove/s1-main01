@@ -18,6 +18,7 @@ spec:
         app: audiobookshelf
     spec:
       priorityClassName: low-priority
+      automountServiceAccountToken: false
       containers:
         - name: audiobookshelf
           image: ghcr.io/advplyr/audiobookshelf:latest
@@ -32,6 +33,11 @@ spec:
               value: "1000"
             - name: SSRF_REQUEST_FILTER_WHITELIST
               value: "podcast-ad-remover"
+            - name: KUBERNETES_MEMORY_LIMIT
+              valueFrom:
+                resourceFieldRef:
+                  containerName: audiobookshelf
+                  resource: limits.memory
           resources:
             requests:
               cpu: "100m"
