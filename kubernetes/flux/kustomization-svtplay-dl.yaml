@@ -10,7 +10,7 @@ spec:
     - name: rook-ceph-pools
     - name: storage-infrastructure
   interval: 60m
-  path: ./kubernetes/apps/apps/svtplay-dl
+  path: ./kubernetes/apps/svtplay-dl
   prune: true
   wait: true
   timeout: 30m

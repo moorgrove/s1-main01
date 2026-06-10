@@ -9,7 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./kubernetes/apps/infrastructure/priority-classes
+  path: ./kubernetes/infrastructure/priority-classes
   prune: true
   wait: true
   timeout: 30m

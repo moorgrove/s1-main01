@@ -9,7 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./kubernetes/apps/infrastructure/metrics-server
+  path: ./kubernetes/infrastructure/metrics-server
   prune: true
   wait: true
   timeout: 10m

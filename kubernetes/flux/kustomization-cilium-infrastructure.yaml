@@ -9,7 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./kubernetes/apps/infrastructure/cilium
+  path: ./kubernetes/infrastructure/cilium
   prune: true
   wait: true
   timeout: 30m

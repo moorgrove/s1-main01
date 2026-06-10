@@ -10,7 +10,7 @@ spec:
     - name: rook-ceph-pools
     - name: storage-infrastructure
   interval: 60m
-  path: ./kubernetes/apps/apps/samba
+  path: ./kubernetes/apps/samba
   prune: true
   wait: true
   timeout: 30m
