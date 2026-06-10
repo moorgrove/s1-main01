@@ -30,8 +30,8 @@ spec:
               value: "1000"
             - name: AUDIOBOOKSHELF_GID
               value: "1000"
-            - name: DISABLE_SSRF_REQUEST_FILTER
-              value: "1"
+            - name: SSRF_REQUEST_FILTER_WHITELIST
+              value: "podcast-ad-remover"
           resources:
             requests:
               cpu: "100m"
