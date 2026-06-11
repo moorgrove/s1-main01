@@ -47,15 +47,39 @@ spec:
             - /bin/bash
             - -c
             - |
-              echo "Waiting for Rook operator to create OSD pods..."
+              echo "Waiting for Rook operator to spin up OSDs..."
 
+              # 1. Vänta tills det finns minst en OSD-podd i klustret överhuvudtaget
               while [[ $(kubectl get pods -n rook-ceph -l app=rook-ceph-osd --no-headers 2>/dev/null | wc -l) -eq 0 ]]; do
                 echo "No OSD pods found yet. Waiting 10 seconds..."
                 sleep 10
               done
 
-              echo "OSD pods found! Waiting for all pods to become Ready..."
+              echo "OSD pods detected. Monitoring reconciliation..."
 
-              kubectl wait --for=condition=Ready pod -l app=rook-ceph-osd -n rook-ceph --timeout=30m
+              while true; do
+                # Hämta fasen för alla OSD-poddar som INTE är permanent trasiga (exkludera Failed/Evicted)
+                # Detta inkluderar poddar i 'Pending' (Init/Creating) och 'Running'
+                ACTIVE_PODS=$(kubectl get pods -n rook-ceph -l app=rook-ceph-osd --field-selector status.phase!=Failed --no-headers 2>/dev/null)
+                
+                # Räkna hur många sådana aktiva poddar vi har
+                TOTAL_ACTIVE=$(echo "$ACTIVE_PODS" | json_pp -v >/dev/null 2>&1 && echo 0 || echo "$ACTIVE_PODS" | sed '/^\s*$/d' | wc -l)
+                
+                # Räkna hur många av dessa aktiva poddar som har statusen "Ready" (1/1)
+                # Vi kollar efter strängen "1/1" i kubectl-outputen för de aktiva poddarna
+                READY_ACTIVE=$(echo "$ACTIVE_PODS" | grep -w "1/1" | wc -l)
 
-              echo "All OSD pods are Ready. Cluster is ready for storage pools."
+                echo "Current status: ${READY_ACTIVE} of ${TOTAL_ACTIVE} active OSD pods are Ready (1/1)..."
+
+                # Kriterium för att lyckas:
+                # Det måste finnas aktiva poddar, och PRECIS ALLA aktiva poddar måste ha nått 1/1.
+                if [[ $TOTAL_ACTIVE -gt 0 ]] && [[ $TOTAL_ACTIVE -eq $READY_ACTIVE ]]; then
+                  echo "Success! All active OSD pods have successfully finished init/creation and are now 1/1!"
+                  break
+                fi
+
+                echo "Some OSDs are still initializing or creating. Waiting 15 seconds..."
+                sleep 15
+              done
+
+              echo "Rook-Ceph OSD reconciliation complete. Storage pools can now be safely created."
