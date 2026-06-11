@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tailscale-exit
+  namespace: tailscale-exit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exit-node
+  template:
+    metadata:
+      labels:
+        app: exit-node
+    spec:
+      serviceAccountName: tailscale-exit-sa
+      priorityClassName: batch-priority
+      nodeSelector:
+        kubernetes.io/hostname: s1-main01-cpwr11
+      containers:
+      - name: tailscale
+        image: tailscale/tailscale:latest
+        env:
+        - name: TS_AUTHKEY
+          valueFrom:
+            secretKeyRef:
+              name: tailscale-auth
+              key: TS_AUTHKEY
+        - name: TS_EXTRA_ARGS
+          value: "--advertise-exit-node"
+        - name: TS_USERSPACE
+          value: "false"
+        - name: TS_KUBE_SECRET
+          value: "tailscale-exit-state"
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"

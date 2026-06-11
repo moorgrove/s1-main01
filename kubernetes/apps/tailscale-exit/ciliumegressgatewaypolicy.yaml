@@ -1,0 +1,19 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumEgressGatewayPolicy
+metadata:
+  name: exit-node-egress-path
+  namespace: tailscale-exit
+spec:
+  selectors:
+    - podSelector:
+        matchLabels:
+          app: exit-node
+  destinationCIDRs:
+    - "0.0.0.0/0"
+  excludedCIDRs:
+    - "10.244.0.0/16"
+  egressGateway:
+    nodeSelector:
+      matchLabels: {}
+    egressIP: "192.168.30.211"

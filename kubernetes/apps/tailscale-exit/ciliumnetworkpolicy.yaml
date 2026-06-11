@@ -1,0 +1,16 @@
+---
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: exit-node-isolation
+  namespace: tailscale-exit
+spec:
+  endpointSelector:
+    matchLabels:
+      app: exit-node
+  egress:
+  - toEntities:
+    - world
+  - toEndpoints:
+    - matchLabels:
+        "k8s:io.kubernetes.pod.namespace": kube-system
