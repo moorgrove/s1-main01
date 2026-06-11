@@ -19,6 +19,7 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    fluxForceUpgradeTrigger: "2026-06-11"
     operator:
       replicas: 1
     priorityClassName: critical-priority
