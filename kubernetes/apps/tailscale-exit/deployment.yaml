@@ -50,6 +50,16 @@ spec:
           capabilities:
             add:
             - NET_ADMIN
+        volumeMounts:
+        - name: tun
+          mountPath: /dev/net/tun
+        lifecycle:
+          postStart:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE"
         resources:
           requests:
             cpu: "100m"
@@ -57,3 +67,8 @@ spec:
           limits:
             cpu: "500m"
             memory: "512Mi"
+      volumes:
+      - name: tun
+        hostPath:
+          path: /dev/net/tun
+          type: CharDevice
