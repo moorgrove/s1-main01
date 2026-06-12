@@ -10,7 +10,7 @@ spec:
   interval: 60m
   path: ./kubernetes/apps/tailscale-exit
   prune: true
-  wait: false
+  wait: true
   timeout: 30m
   sourceRef:
     kind: GitRepository
