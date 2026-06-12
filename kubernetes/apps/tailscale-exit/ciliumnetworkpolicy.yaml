@@ -9,8 +9,10 @@ spec:
     matchLabels:
       app: exit-node
   egress:
-  - toEntities:
-    - world
-  - toEndpoints:
-    - matchLabels:
-        "k8s:io.kubernetes.pod.namespace": kube-system
+    - toEntities:
+        - world
+    - toEntities:
+        - kube-apiserver
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": kube-system
