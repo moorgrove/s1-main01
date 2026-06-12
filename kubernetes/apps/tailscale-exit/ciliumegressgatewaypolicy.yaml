@@ -14,6 +14,8 @@ spec:
   excludedCIDRs:
     - "10.244.0.0/16"
   egressGateway:
-    nodeSelector:
-      matchLabels: {}
-    egressIP: "192.168.30.211"
+      nodeSelector:
+        matchLabels:
+          egress-vlan30: "true"
+      interface: enp0s31f6.30
+      gatewayIP: 192.168.30.1
