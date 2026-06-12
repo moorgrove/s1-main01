@@ -6,6 +6,8 @@ metadata:
   namespace: tailscale-exit
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: exit-node
@@ -36,6 +38,8 @@ spec:
             secretKeyRef:
               name: tailscale-auth
               key: TS_AUTHKEY
+        - name: TS_HOSTNAME
+          value: "s1-exit-node"
         - name: TS_EXTRA_ARGS
           value: "--advertise-exit-node"
         - name: TS_USERSPACE
