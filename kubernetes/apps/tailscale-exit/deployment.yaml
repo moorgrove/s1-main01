@@ -59,7 +59,7 @@ spec:
               command:
                 - /bin/sh
                 - -c
-                - "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE"
+                - "iptables -t nat -A POSTROUTING -o ethSel0 -j MASQUERADE"
         resources:
           requests:
             cpu: "100m"
