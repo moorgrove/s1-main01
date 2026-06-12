@@ -10,5 +10,6 @@ spec:
     - ^enp.*$
     - ^eth.*$
     - ^ens.*$
+    - ^ethSel.*$
   externalIPs: true
   loadBalancerIPs: true
