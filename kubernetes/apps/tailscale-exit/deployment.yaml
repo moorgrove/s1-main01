@@ -18,6 +18,15 @@ spec:
       priorityClassName: batch-priority
       nodeSelector:
         kubernetes.io/hostname: s1-main01-cpwr11
+      initContainers:
+      - name: enable-ip-forwarding
+        image: busybox:1.36
+        command:
+        - sh
+        - -c
+        - sysctl -w net.ipv4.ip_forward=1 net.ipv6.conf.all.forwarding=1
+        securityContext:
+          privileged: true
       containers:
       - name: tailscale
         image: tailscale/tailscale:latest
