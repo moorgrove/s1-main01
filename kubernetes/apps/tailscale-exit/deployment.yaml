@@ -42,6 +42,10 @@ spec:
           value: "s1-exit-node"
         - name: TS_EXTRA_ARGS
           value: "--advertise-exit-node --accept-dns=false --netfilter-mode=off --hardware-attestation=false"
+        - name: TS_NO_HARDWARE_ATTESTATION
+          value: "true"
+        - name: TS_HARDWARE_ATTESTATION
+          value: "false"
         - name: TS_USERSPACE
           value: "false"
         - name: TS_KUBE_SECRET
