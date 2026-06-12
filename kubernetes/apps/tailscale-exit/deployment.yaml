@@ -31,7 +31,7 @@ spec:
           privileged: true
       containers:
       - name: tailscale
-        image: tailscale/tailscale:1.98.5
+        image: tailscale/tailscale:1.98.4
         env:
         - name: TS_AUTHKEY
           valueFrom:
