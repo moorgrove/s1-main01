@@ -20,6 +20,7 @@ spec:
     priorityClassName: critical-priority
     ipam:
       mode: kubernetes
+    devices: "en+|eth+"
     kubeProxyReplacement: true
     l2announcements:
       enabled: true
