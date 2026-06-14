@@ -3,20 +3,23 @@ apiVersion: cilium.io/v2
 kind: CiliumEgressGatewayPolicy
 metadata:
   name: exit-node-egress-path
+  namespace: tailscale
 spec:
   selectors:
     - podSelector:
         matchLabels:
-          app: exit-node
-          io.kubernetes.pod.namespace: tailscale-exit
+          routing: vlan30-egress
+          io.kubernetes.pod.namespace: tailscale
   destinationCIDRs:
     - "0.0.0.0/0"
   excludedCIDRs:
-    - "10.101.0.0/17"
-    - "10.101.128.0/17"
     - "100.64.0.0/10"
+    - "10.0.0.0/8"
+    - "172.16.0.0/12"
+    - "192.168.0.0/16"
   egressGateway:
     nodeSelector:
       matchLabels:
         egress-vlan30: "true"
     interface: ethSel0.30
+    gatewayIP: "192.168.30.1"

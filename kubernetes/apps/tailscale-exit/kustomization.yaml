@@ -4,7 +4,8 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - secrets.enc.yaml
-  - rbac.yaml
+  - helmrelease.yaml
+  - proxyclass.yaml
+  - connector.yaml
   - ciliumnetworkpolicy.yaml
   - ciliumegressgatewaypolicy.yaml
-  - deployment.yaml

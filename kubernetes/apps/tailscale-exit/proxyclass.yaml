@@ -1,0 +1,11 @@
+apiVersion: tailscale.com/v1alpha1
+kind: ProxyClass
+metadata:
+  name: exit-node-vlan30
+spec:
+  statefulSet:
+    pod:
+      labels:
+        routing: vlan30-egress
+      nodeSelector:
+        kubernetes.io/hostname: s1-main01-cpwr11
