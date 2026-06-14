@@ -31,7 +31,7 @@ spec:
           privileged: true
       containers:
       - name: tailscale
-        image: tailscale/tailscale:v1.98.4
+        image: tailscale/tailscale:v1.90.9
         env:
         - name: TS_AUTHKEY
           valueFrom:
@@ -41,11 +41,7 @@ spec:
         - name: TS_HOSTNAME
           value: "s1-exit-node"
         - name: TS_EXTRA_ARGS
-          value: "--advertise-exit-node --accept-dns=false --netfilter-mode=off --hardware-attestation=false"
-        - name: TS_NO_HARDWARE_ATTESTATION
-          value: "true"
-        - name: TS_HARDWARE_ATTESTATION
-          value: "false"
+          value: "--advertise-exit-node --accept-dns=false --netfilter-mode=off"
         - name: TS_USERSPACE
           value: "false"
         - name: TS_KUBE_SECRET
