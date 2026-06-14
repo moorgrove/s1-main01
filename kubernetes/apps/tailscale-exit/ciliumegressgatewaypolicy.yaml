@@ -18,3 +18,5 @@ spec:
         matchLabels:
           egress-vlan30: "true"
       interface: ethSel0.30
+  egressMasquerade:
+    toEgressGatewaySourceCIDR: true
