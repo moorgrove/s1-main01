@@ -22,6 +22,7 @@ spec:
       mode: kubernetes
     kubeProxyReplacement: true
     devices: "ethSel0+"
+    directRoutingDevice: "ethSel0"
     l2announcements:
       enabled: true
     externalIPs:
