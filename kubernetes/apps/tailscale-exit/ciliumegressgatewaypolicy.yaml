@@ -1,3 +1,4 @@
+---
 apiVersion: cilium.io/v2
 kind: CiliumEgressGatewayPolicy
 metadata:
@@ -11,7 +12,8 @@ spec:
   destinationCIDRs:
     - "0.0.0.0/0"
   excludedCIDRs:
-    - "10.244.0.0/16"
+    - "10.101.0.0/17"
+    - "10.101.128.0/17"
   egressGateway:
     nodeSelector:
       matchLabels:
