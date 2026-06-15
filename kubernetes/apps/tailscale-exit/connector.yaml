@@ -1,10 +1,9 @@
+---
 apiVersion: tailscale.com/v1alpha1
 kind: Connector
 metadata:
   name: my-exit-node
   namespace: tailscale
-  annotations:
-    tailscale.com/proxy-class: exit-node-vlan30
 spec:
   exitNode: true
   hostnamePrefix: s1-exit-node
