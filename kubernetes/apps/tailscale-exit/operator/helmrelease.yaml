@@ -17,7 +17,6 @@ spec:
         namespace: tailscale-exit
   values:
     installCRDs: true
-    fullnameOverride: tailscale-exit-operator
   valuesFrom:
     - kind: Secret
       name: tailscale-exit-operator-oauth
@@ -27,3 +26,13 @@ spec:
       name: tailscale-exit-operator-oauth
       valuesKey: client-secret
       targetPath: oauth.clientSecret
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Deployment
+              name: operator
+            patch: |
+              - op: replace
+                path: /metadata/name
+                value: ts-exit-operator
