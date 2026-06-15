@@ -20,5 +20,4 @@ spec:
     nodeSelector:
       matchLabels:
         egress-vlan30: "true"
-    #interface: enp0s20f0u8
-    egressIP: 192.168.30.211
+    interface: enp0s20f0u8
