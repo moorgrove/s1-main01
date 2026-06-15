@@ -7,7 +7,6 @@ metadata:
 spec:
   interval: 10m
   targetNamespace: tailscale-exit
-  createNamespace: true
   chart:
     spec:
       chart: tailscale-operator
