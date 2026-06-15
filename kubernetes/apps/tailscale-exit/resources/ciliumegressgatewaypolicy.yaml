@@ -20,4 +20,4 @@ spec:
     nodeSelector:
       matchLabels:
         egress-vlan30: "true"
-    interface: ethSel0.30
+    interface: enp0s20f0u8
