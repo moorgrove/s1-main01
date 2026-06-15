@@ -3,6 +3,7 @@ apiVersion: tailscale.com/v1alpha1
 kind: ProxyClass
 metadata:
   name: exit-node-vlan30
+  namespace: tailscale-exit
 spec:
   statefulSet:
     pod:
