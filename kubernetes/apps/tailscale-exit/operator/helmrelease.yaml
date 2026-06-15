@@ -15,8 +15,8 @@ spec:
         kind: HelmRepository
         name: tailscale
         namespace: tailscale-exit
-  values:
-    installCRDs: true
+  # values:
+  #   installCRDs: true
   valuesFrom:
     - kind: Secret
       name: tailscale-exit-operator-oauth
