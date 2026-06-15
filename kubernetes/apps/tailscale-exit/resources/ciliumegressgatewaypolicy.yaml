@@ -21,4 +21,4 @@ spec:
       matchLabels:
         egress-vlan30: "true"
     interface: ethSel0.30
-    gatewayIP: "192.168.30.1"
+    egressIP: 192.168.30.211
