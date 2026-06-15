@@ -20,7 +20,7 @@ spec:
     priorityClassName: critical-priority
     ipam:
       mode: kubernetes
-    devices: "eno1|enp2s0"
+    devices: "eno1,enp2s0"
     # kubeProxyReplacement: true
     # k8sServiceHost: localhost
     # k8sServicePort: 7445
