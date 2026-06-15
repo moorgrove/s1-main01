@@ -7,6 +7,8 @@ metadata:
 spec:
   interval: 10m
   targetNamespace: tailscale-exit
+  driftCorrection:
+    mode: patch
   chart:
     spec:
       chart: tailscale-operator
