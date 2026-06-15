@@ -8,6 +8,7 @@ spec:
     - name: tailscale-exit-operator
   interval: 15m
   path: ./kubernetes/apps/tailscale-exit/resources
+  wait: true
   prune: true
   sourceRef:
     kind: GitRepository

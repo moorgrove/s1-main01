@@ -8,6 +8,7 @@ spec:
     - name: cilium-infrastructure
   interval: 15m
   path: ./kubernetes/apps/tailscale-exit/operator
+  wait: true
   prune: true
   sourceRef:
     kind: GitRepository
