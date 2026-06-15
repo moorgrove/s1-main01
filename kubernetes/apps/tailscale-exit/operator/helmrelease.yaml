@@ -19,6 +19,7 @@ spec:
         namespace: tailscale-exit
   values:
     installCRDs: true
+    fullnameOverride: tailscale-exit-operator
   valuesFrom:
     - kind: Secret
       name: tailscale-exit-operator-oauth
