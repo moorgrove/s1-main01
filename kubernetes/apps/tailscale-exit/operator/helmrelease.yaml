@@ -14,7 +14,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: tailscale
-        namespace: flux-system
+        namespace: tailscale-exit
   values:
     installCRDs: true
   valuesFrom:
