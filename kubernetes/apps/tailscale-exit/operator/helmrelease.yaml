@@ -19,10 +19,10 @@ spec:
     installCRDs: true
   valuesFrom:
     - kind: Secret
-      name: operator-oauth
+      name: tailscale-exit-operator-oauth
       valuesKey: client-id
       targetPath: oauth.clientId
     - kind: Secret
-      name: operator-oauth
+      name: tailscale-exit-operator-oauth
       valuesKey: client-secret
       targetPath: oauth.clientSecret
