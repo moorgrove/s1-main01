@@ -2,8 +2,8 @@
 apiVersion: tailscale.com/v1alpha1
 kind: Connector
 metadata:
-  name: my-exit-node
-  namespace: tailscale
+  name: exit-node
+  namespace: tailscale-exit
 spec:
   exitNode: true
   hostnamePrefix: s1-exit-node

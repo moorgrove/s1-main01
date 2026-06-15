@@ -15,4 +15,5 @@ resources:
   - kustomization-metrics-server.yaml
   - kustomization-svtplay-dl.yaml
   - kustomization-podcast.yaml
-  - kustomization-tailscale-exit.yaml
+  - ks-tailscale-exit-operator.yaml
+  - ks-tailscale-exit-resources.yaml

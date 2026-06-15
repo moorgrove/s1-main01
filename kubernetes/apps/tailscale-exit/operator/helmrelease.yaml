@@ -1,11 +1,12 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: tailscale-operator
-  namespace: tailscale
+  name: operator
+  namespace: tailscale-exit
 spec:
   interval: 10m
-  targetNamespace: tailscale
+  targetNamespace: tailscale-exit
   createNamespace: true
   chart:
     spec:
@@ -19,10 +20,10 @@ spec:
     installCRDs: true
   valuesFrom:
     - kind: Secret
-      name: tailscale-operator-oauth
+      name: operator-oauth
       valuesKey: client-id
       targetPath: oauth.clientId
     - kind: Secret
-      name: tailscale-operator-oauth
+      name: operator-oauth
       valuesKey: client-secret
       targetPath: oauth.clientSecret
