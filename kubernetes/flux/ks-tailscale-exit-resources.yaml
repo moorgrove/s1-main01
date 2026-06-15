@@ -7,7 +7,7 @@ spec:
   dependsOn:
     - name: tailscale-exit-operator
   interval: 15m
-  path: ./apps/tailscale-exit/resources
+  path: ./kubernetes/apps/tailscale-exit/resources
   prune: true
   sourceRef:
     kind: GitRepository
