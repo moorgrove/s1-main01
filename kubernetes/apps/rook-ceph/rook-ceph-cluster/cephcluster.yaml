@@ -47,7 +47,7 @@ spec:
   placement:
     mon:
       tolerations:
-        - key: "node-role/ceph-only"
+        - key: "node-role/infra-only"
           operator: Equal
           value: "true"
           effect: NoSchedule
@@ -57,7 +57,7 @@ spec:
           - weight: 100
             preference:
               matchExpressions:
-                - key: node-role/ceph-only
+                - key: node-role/infra-only
                   operator: DoesNotExist
     osd:
       tolerations: []
