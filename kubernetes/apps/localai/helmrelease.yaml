@@ -1,0 +1,45 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: whisper-localai
+  namespace: localai
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: local-ai
+      version: ">=2.0.0"
+      sourceRef:
+        kind: HelmRepository
+        name: go-skynet
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    replicaCount: 1
+    nodeSelector:
+      kubernetes.io/hostname: s1-main01-cpwr11
+    deployment:
+      image: localai/localai:latest-gpu-intel
+      env:
+        WHISPER_OPEN_VINO: "true"
+        MODELS_PATH: "/models"
+        THREADS: "2" 
+    resources:
+      requests:
+        cpu: "500m"
+        memory: "512Mi"
+      limits:
+        cpu: "2"
+        memory: "3Gi"
+    extraVolumes:
+      - name: dri
+        hostPath:
+          path: /dev/dri
+    extraVolumeMounts:
+      - name: dri
+        mountPath: /dev/dri
