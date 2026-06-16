@@ -17,3 +17,4 @@ resources:
   - kustomization-podcast.yaml
   - ks-tailscale-operator.yaml
   - ks-tailscale-exit.yaml
+  - ks-whisper.yaml
