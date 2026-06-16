@@ -3,10 +3,12 @@ apiVersion: tailscale.com/v1alpha1
 kind: ProxyClass
 metadata:
   name: tailscale-exit-proxyclass
-  namespace: tailscale-exit
+  namespace: tailscale
 spec:
   statefulSet:
     pod:
+      labels:
+        role: tailscale-exit-node
       # tolerations:
       #   - key: "node-role/infra-only"
       #     operator: "Equal"

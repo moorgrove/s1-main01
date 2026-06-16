@@ -3,9 +3,11 @@ apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
   name: tailscale-exit-isolation
-  namespace: tailscale-exit
+  namespace: tailscale
 spec:
-  endpointSelector: {}
+  endpointSelector:
+    matchLabels:
+      role: tailscale-exit-node
   egress:
     - toEndpoints:
         - matchLabels:
