@@ -6,9 +6,8 @@ metadata:
 spec:
   statefulSet:
     pod:
-      spec:
-        tolerations:
-          - key: "node-role/infra-only"
-            operator: "Equal"
-            value: "true"
-            effect: "NoSchedule"
+      tolerations:
+        - key: "node-role/infra-only"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
