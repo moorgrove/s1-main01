@@ -23,12 +23,14 @@ spec:
     replicaCount: 1
     nodeSelector:
       kubernetes.io/hostname: s1-main01-cpwr11
-    deployment:
-      image: localai/localai:latest-gpu-intel
-      env:
-        WHISPER_OPEN_VINO: "true"
-        MODELS_PATH: "/models"
-        THREADS: "2" 
+    image:
+      repository: localai/localai
+      tag: latest-gpu-intel
+      pullPolicy: IfNotPresent
+    env:
+      WHISPER_OPEN_VINO: "true"
+      MODELS_PATH: "/models"
+      THREADS: "2" 
     resources:
       requests:
         cpu: "500m"
