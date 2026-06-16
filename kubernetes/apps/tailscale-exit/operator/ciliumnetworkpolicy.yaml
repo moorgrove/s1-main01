@@ -11,12 +11,14 @@ spec:
         - matchLabels:
             "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": tailscale-exit
       toPorts:
         - ports:
             - port: "53"
               protocol: UDP
     - toEntities:
-        - kube-apiserver
+        - kube-apiserver            
     - toCIDRSet:
         - cidr: "0.0.0.0/0"
           except:
