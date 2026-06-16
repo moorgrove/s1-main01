@@ -1,0 +1,14 @@
+apiVersion: tailscale.com/v1alpha1
+kind: ProxyClass
+metadata:
+  name: infra-node-allowed
+  namespace: tailscale-exit
+spec:
+  statefulSet:
+    pod:
+      spec:
+        tolerations:
+          - key: "node-role/infra-only"
+            operator: "Equal"
+            value: "true"
+            effect: "NoSchedule"
