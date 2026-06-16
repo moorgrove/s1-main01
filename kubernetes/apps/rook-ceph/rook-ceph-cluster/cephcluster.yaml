@@ -36,7 +36,7 @@ spec:
       osd_memory_cache_min: "134217728"
       bluestore_cache_size: "536870912"
   mon:
-    count: 3
+    count: 2
     allowMultiplePerNode: false
   mgr:
     count: 2
@@ -51,10 +51,6 @@ spec:
           operator: Equal
           value: "true"
           effect: NoSchedule
-        - key: "node-role/ceph-only"
-          operator: Equal
-          value: "true"
-          effect: NoSchedule
     mgr:
       nodeAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
@@ -62,8 +58,6 @@ spec:
             preference:
               matchExpressions:
                 - key: node-role/infra-only
-                  operator: DoesNotExist
-                - key: node-role/ceph-only
                   operator: DoesNotExist
     osd:
       tolerations: []
