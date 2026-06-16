@@ -1,7 +1,8 @@
+---
 apiVersion: tailscale.com/v1alpha1
 kind: ProxyClass
 metadata:
-  name: infra-node-allowed
+  name: tailscale-exit-proxyclass
   namespace: tailscale-exit
 spec:
   statefulSet:

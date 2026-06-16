@@ -6,5 +6,5 @@ metadata:
   namespace: tailscale-exit
 spec:
   exitNode: true
-  proxyClass: infra-node-allowed
+  proxyClass: tailscale-exit-proxyclass
   hostnamePrefix: s1-exit-node

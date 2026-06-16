@@ -12,7 +12,7 @@ spec:
             "k8s:io.kubernetes.pod.namespace": kube-system
             k8s-app: kube-dns
         - matchLabels:
-            "k8s:io.kubernetes.pod.namespace": tailscale-exit
+            "k8s:io.kubernetes.pod.namespace": tailscale
       toPorts:
         - ports:
             - port: "53"
