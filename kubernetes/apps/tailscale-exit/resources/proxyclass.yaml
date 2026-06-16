@@ -6,11 +6,19 @@ metadata:
 spec:
   statefulSet:
     pod:
-      tolerations:
-        - key: "node-role/infra-only"
-          operator: "Equal"
-          value: "true"
-          effect: "NoSchedule"
+      # tolerations:
+      #   - key: "node-role/infra-only"
+      #     operator: "Equal"
+      #     value: "true"
+      #     effect: "NoSchedule"
+      # affinity:
+      #   nodeAffinity:
+      #     preferredDuringSchedulingIgnoredDuringExecution:
+      #       - weight: 100
+      #         preference:
+      #           matchExpressions:
+      #             - key: "node-role/infra-only"
+      #               operator: DoesNotExist
       tailscaleContainer:
         resources:
           requests:
