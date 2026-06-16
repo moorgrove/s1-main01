@@ -2,9 +2,9 @@
 apiVersion: tailscale.com/v1alpha1
 kind: Connector
 metadata:
-  name: exit-node
+  name: exit
   namespace: tailscale
 spec:
   exitNode: true
   proxyClass: tailscale-exit-proxyclass
-  hostnamePrefix: s1-exit-node
+  hostnamePrefix: s1-main01-exit

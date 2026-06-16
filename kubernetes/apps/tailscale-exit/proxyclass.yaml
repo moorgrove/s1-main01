@@ -8,7 +8,7 @@ spec:
   statefulSet:
     pod:
       labels:
-        role: tailscale-exit-node
+        role: tailscale-exit
       # tolerations:
       #   - key: "node-role/infra-only"
       #     operator: "Equal"
