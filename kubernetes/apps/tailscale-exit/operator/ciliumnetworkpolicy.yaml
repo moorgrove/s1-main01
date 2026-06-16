@@ -1,12 +1,11 @@
+---
 apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
   name: tailscale-exit-isolation
   namespace: tailscale-exit
 spec:
-  endpointSelector:
-    matchLabels:
-      routing: vlan30-egress
+  endpointSelector: {}
   egress:
     - toEndpoints:
         - matchLabels:
@@ -16,8 +15,6 @@ spec:
         - ports:
             - port: "53"
               protocol: UDP
-            - port: "53"
-              protocol: TCP
     - toEntities:
         - kube-apiserver
     - toCIDRSet:

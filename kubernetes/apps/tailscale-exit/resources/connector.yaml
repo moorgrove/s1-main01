@@ -7,4 +7,10 @@ metadata:
 spec:
   exitNode: true
   hostnamePrefix: s1-exit-node
-  proxyClass: exit-node-vlan30
+  podTemplate:
+    spec:
+      containers:
+        - name: tailscale
+          env:
+            - name: TS_DEBUG_FIREWALL_MODE
+              value: "nftables"
