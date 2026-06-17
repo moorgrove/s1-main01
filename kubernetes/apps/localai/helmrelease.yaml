@@ -45,3 +45,12 @@ spec:
     extraVolumeMounts:
       - name: dri
         mountPath: /dev/dri
+    persistence:
+      models:
+        enabled: true
+        storageClass: "ceph-rbd-hdd-r2"
+        size: 15Gi
+      output:
+        enabled: true
+        storageClass: "ceph-rbd-hdd-r2"
+        size: 2Gi
