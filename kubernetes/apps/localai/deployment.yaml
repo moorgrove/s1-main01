@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: localai
+  namespace: localai
+  labels:
+    app: localai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: localai
+  template:
+    metadata:
+      labels:
+        app: localai
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: s1-main01-cpwr11
+      containers:
+      - name: localai
+        image: docker.io/localai/localai:v4.4.3-gpu-intel
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
+        env:
+        - name: WHISPER_OPEN_VINO
+          value: "true"
+        - name: MODELS_PATH
+          value: "/models"
+        - name: THREADS
+          value: "2"
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+          limits:
+            cpu: "3"
+            memory: "3Gi"
+        ports:
+        - containerPort: 8080
+          name: http
+        volumeMounts:
+        - name: models-volume
+          mountPath: /models
+        - name: output-volume
+          mountPath: /output
+        - name: dri
+          mountPath: /dev/dri
+      volumes:
+      - name: dri
+        hostPath:
+          path: /dev/dri
+      - name: models-volume
+        persistentVolumeClaim:
+          claimName: localai-models
+      - name: output-volume
+        persistentVolumeClaim:
+          claimName: localai-output
