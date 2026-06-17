@@ -1,0 +1,35 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: librespeed
+  namespace: librespeed
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 5.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+  values:
+    controllers:
+      librespeed:
+        containers:
+          app:
+            image:
+              repository: linuxserver/librespeed
+              tag: 5.4.1
+            env:
+              TZ: Europe/Stockholm
+              PUID: 1000
+              PGID: 1000
+    service:
+      main:
+        controller: librespeed
+        type: LoadBalancer
+        io.cilium/lb-ipam-ips: "192.168.201.112"
+        ports:
+          http:
+            port: 80

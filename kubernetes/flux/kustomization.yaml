@@ -18,3 +18,4 @@ resources:
   - ks-tailscale-operator.yaml
   - ks-tailscale-exit.yaml
   - ks-localai.yaml
+  - ks-librespeed.yaml
