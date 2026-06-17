@@ -65,8 +65,8 @@ spec:
               cpu: "250m"
               memory: "256Mi"
             limits:
-              cpu: "500m"
-              memory: "512Mi"
+              cpu: "2"
+              memory: "1Gi"
 
           # Lagring för poddar och databas på din Ceph-pool
           volumeMounts:
