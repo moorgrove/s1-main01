@@ -16,53 +16,61 @@ spec:
     metadata:
       labels:
         app: minuspod
-  spec:
-    containers:
-      - name: minuspod
-        image: ttlequals0/minuspod:latest-cpu
-        imagePullPolicy: IfNotPresent
-        ports:
-          - containerPort: 8000
-            name: http
-        
-        env:
-          # =================================================================
-          # LLM-konfiguration (OpenRouter i Molnet)
-          # =================================================================
-          - name: LLM_PROVIDER
-            value: "openrouter"
-          - name: OPENROUTER_API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: minuspod-secret
-                key: openrouter-api-key
+    spec:
+      containers:
+        - name: minuspod
+          image: ttlequals0/minuspod:latest-cpu
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+              name: http
+          
+          env:
+            # =================================================================
+            # LLM-konfiguration (OpenRouter i Molnet)
+            # =================================================================
+            - name: LLM_PROVIDER
+              value: "openrouter"
+            - name: OPENROUTER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minuspod-secret
+                  key: openrouter-api-key
 
-          # =================================================================
-          # Whisper-konfiguration (Lokal LocalAI via iGPU)
-          # =================================================================
-          - name: WHISPER_BACKEND
-            value: "openai-api"
-          - name: WHISPER_API_BASE_URL
-            value: "http://localai-local-ai.localai.svc.cluster.local/v1"
-          - name: WHISPER_API_MODEL
-            value: "whisper-base"
-          - name: WHISPER_API_KEY
-            value: "not-used-but-required"
+            # =================================================================
+            # Whisper-konfiguration (Lokal LocalAI via iGPU)
+            # =================================================================
+            - name: WHISPER_BACKEND
+              value: "openai-api"
+            - name: WHISPER_API_BASE_URL
+              value: "http://localai-local-ai.localai.svc.cluster.local/v1"
+            - name: WHISPER_API_MODEL
+              value: "whisper-base"
+            - name: WHISPER_API_KEY
+              value: "not-used-but-required"
 
-          # =================================================================
-          # Serverinställningar
-          # =================================================================
-          - name: MINUSPOD_PORT
-            value: "8000"
-          - name: BASE_URL
-            value: "http://192.168.201.111"
+            # =================================================================
+            # Serverinställningar
+            # =================================================================
+            - name: MINUSPOD_PORT
+              value: "8000"
+            - name: BASE_URL
+              value: "http://192.168.201.111"
 
-        # Lagring för poddar och databas på din Ceph-pool
-        volumeMounts:
-          - name: minuspod-data
-            mountPath: /app/data
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
 
-    volumes:
-      - name: minuspod-data
-        persistentVolumeClaim:
-          claimName: minuspod
+          # Lagring för poddar och databas på din Ceph-pool
+          volumeMounts:
+            - name: minuspod-data
+              mountPath: /app/data
+
+      volumes: # <-- SKIFTAD: Ska ha 6 mellanslag (ligga under pod-specen, i linje med containers)
+        - name: minuspod-data
+          persistentVolumeClaim:
+            claimName: minuspod
