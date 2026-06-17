@@ -9,6 +9,7 @@ metadata:
     tailscale.com/expose: "true"
     tailscale.com/hostname: "s1-main01-minuspod"
     tailscale.com/tls-terminate: "true"
+    tailscale.com/userspace-networking: "true"
 spec:
   type: LoadBalancer
   selector:
