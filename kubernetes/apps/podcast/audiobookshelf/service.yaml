@@ -5,7 +5,7 @@ metadata:
   name: audiobookshelf
   namespace: podcast
   annotations:
-    io.cilium/lb-ipam-ips: "192.168.201.111"
+    io.cilium/lb-ipam-ips: "192.168.201.115"
 spec:
   type: LoadBalancer
   selector:

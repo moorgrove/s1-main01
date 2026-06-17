@@ -17,6 +17,7 @@ spec:
       labels:
         app: minuspod
     spec:
+      priorityClassName: batch-priority
       containers:
         - name: minuspod
           image: ttlequals0/minuspod:cpu
