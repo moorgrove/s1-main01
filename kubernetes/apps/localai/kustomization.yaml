@@ -4,5 +4,6 @@ kind: Kustomization
 namespace: localai
 resources:
   - namespace.yaml
+  - pvc.yaml
   - deployment.yaml
   - service.yaml
