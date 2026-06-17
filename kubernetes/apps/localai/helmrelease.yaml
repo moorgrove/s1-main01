@@ -31,6 +31,8 @@ spec:
       WHISPER_OPEN_VINO: "true"
       MODELS_PATH: "/models"
       THREADS: "2" 
+    securityContext:
+      privileged: true
     resources:
       requests:
         cpu: "500m"
