@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: minuspod
-  namespace: minuspod
+  namespace: podcast
   annotations:
     io.cilium/lb-ipam-ips: "192.168.201.111"
 spec:
