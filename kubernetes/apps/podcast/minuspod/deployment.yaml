@@ -39,8 +39,6 @@ spec:
                 secretKeyRef:
                   name: minuspod-secret
                   key: openrouter-api-key
-            - name: OPENAI_MODEL
-              value: "openrouter/free"
 
             # =================================================================
             # Whisper-konfiguration (Lokal LocalAI via iGPU)
