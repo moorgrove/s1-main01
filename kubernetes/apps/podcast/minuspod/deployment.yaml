@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: minuspod
-          image: ttlequals0/minuspod:latest-cpu
+          image: ttlequals0/minuspod:cpu
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
