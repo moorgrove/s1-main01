@@ -48,7 +48,7 @@ spec:
             - name: WHISPER_API_BASE_URL
               value: "http://192.168.201.120/v1"
             - name: WHISPER_API_MODEL
-              value: "whisper-base"
+              value: "whisper-tiny"
             - name: WHISPER_API_KEY
               value: "not-used-but-required"
 
