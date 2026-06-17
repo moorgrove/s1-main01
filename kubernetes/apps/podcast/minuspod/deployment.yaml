@@ -46,7 +46,7 @@ spec:
             - name: WHISPER_BACKEND
               value: "openai-api"
             - name: WHISPER_API_BASE_URL
-              value: "http://localai-local-ai.localai.svc.cluster.local/v1"
+              value: "http://192.168.201.120/v1"
             - name: WHISPER_API_MODEL
               value: "whisper-base"
             - name: WHISPER_API_KEY
