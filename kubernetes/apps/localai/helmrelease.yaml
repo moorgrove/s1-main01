@@ -48,9 +48,9 @@ spec:
     persistence:
       models:
         enabled: true
-        storageClass: "ceph-rbd-hdd-r2"
+        storageClass: "ceph-fs-hdd-r2"
         size: 15Gi
       output:
         enabled: true
-        storageClass: "ceph-rbd-hdd-r2"
+        storageClass: "ceph-fs-hdd-r2"
         size: 2Gi
