@@ -29,6 +29,16 @@ spec:
               name: http
           
           env:
+            - name: MINUSPOD_MASTER_PASSPHRASE
+              valueFrom:
+                secretKeyRef:
+                  name: minuspod-secret
+                  key: master-passphrase
+            - name: APP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: minuspod-secret
+                  key: app-password      
             # =================================================================
             # LLM-konfiguration (OpenRouter i Molnet)
             # =================================================================
