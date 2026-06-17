@@ -19,3 +19,4 @@ resources:
   - ks-tailscale-exit.yaml
   - ks-localai.yaml
   - ks-librespeed.yaml
+  - ks-iperf3-server.yaml
