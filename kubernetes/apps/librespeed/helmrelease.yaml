@@ -31,8 +31,19 @@ spec:
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: "192.168.201.112"
-          tailscale.com/expose: "true"
-          tailscale.com/hostname: "s1-main01-librespeed"
         ports:
           http:
             port: 80
+    ingress:
+      main:
+        className: tailscale
+        hosts:
+          - host: s1-main01-librespeed
+            paths:
+              - path: /
+                service:
+                  identifier: main
+                  port: http
+        tls:
+          - hosts:
+              - s1-main01-librespeed
