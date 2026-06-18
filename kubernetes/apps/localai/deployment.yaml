@@ -25,7 +25,7 @@ spec:
           privileged: true
         env:
         - name: WHISPER_OPEN_VINO
-          value: "true"
+          value: "false"
         - name: MODELS_PATH
           value: "/models"
         - name: THREADS
