@@ -3,7 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: pinepods
-  namespace: flux-system
+  namespace: podcast
 spec:
   interval: 2h
   url: http://helm.pinepods.online
