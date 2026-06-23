@@ -19,13 +19,13 @@ spec:
         kubernetes.io/hostname: s1-main01-cpwr11
       containers:
       - name: localai
-        image: docker.io/localai/localai:v4.4.3-gpu-intel
+        image: docker.io/localai/localai:v4.4.3
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
         env:
-        - name: WHISPER_OPEN_VINO
-          value: "false"
+        # - name: WHISPER_OPEN_VINO
+        #   value: "false"
         - name: MODELS_PATH
           value: "/models"
         - name: THREADS
