@@ -78,12 +78,11 @@ spec:
               cpu: "4"
               memory: "5Gi"
 
-          # Lagring för poddar och databas på din Ceph-pool
           volumeMounts:
             - name: minuspod-data
               mountPath: /app/data
 
-      volumes: # <-- SKIFTAD: Ska ha 6 mellanslag (ligga under pod-specen, i linje med containers)
+      volumes:
         - name: minuspod-data
           persistentVolumeClaim:
             claimName: minuspod
