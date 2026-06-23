@@ -46,8 +46,6 @@ spec:
                   key: base-url
             - name: MINUSPOD_PORT
               value: "8000"
-            - name: GUNICORN_CMD_ARGS
-              value: "--access-logfile /dev/null"
 
             - name: LLM_PROVIDER
               value: "openai"
