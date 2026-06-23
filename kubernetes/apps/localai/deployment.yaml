@@ -28,7 +28,7 @@ spec:
         #   value: "false"
         - name: MODELS_PATH
           value: "/models"
-        - name: LOCALAI_BACKEND_ASSETS_PATH
+        - name: LOCALAI_BACKENDS_PATH
           value: "/models/backends"
         - name: THREADS
           value: "4"
