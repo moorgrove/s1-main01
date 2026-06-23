@@ -31,13 +31,13 @@ spec:
         - name: LOCALAI_BACKENDS_PATH
           value: "/models/backends"
         - name: THREADS
-          value: "4"
+          value: "5"
         resources:
           requests:
             cpu: "500m"
             memory: "512Mi"
           limits:
-            cpu: "4"
+            cpu: "5"
             memory: "10Gi"
         ports:
         - containerPort: 8080
