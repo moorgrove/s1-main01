@@ -61,7 +61,7 @@ spec:
             - name: WHISPER_API_BASE_URL
               value: "http://localai.localai.svc.cluster.local/v1"
             - name: WHISPER_API_MODEL
-              value: "kb-whisper-medium-q5"
+              value: "kb-whisper-small-q5"
             - name: WHISPER_API_KEY
               value: "not-used-but-required"
 
