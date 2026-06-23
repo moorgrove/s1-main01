@@ -38,19 +38,24 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: minuspod-secret
-                  key: app-password      
-            - name: LLM_PROVIDER
-              value: "openrouter"
-            - name: OPENROUTER_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: minuspod-secret
-                  key: openrouter-api-key
+                  key: app-password
             - name: BASE_URL
               valueFrom:
                 secretKeyRef:
                   name: minuspod-secret
                   key: base-url
+            - name: MINUSPOD_PORT
+              value: "8000"
+
+            - name: LLM_PROVIDER
+              value: "openai"
+            - name: OPENAI_BASE_URL
+              value: "http://localai.localai.svc.cluster.local/v1"
+            - name: OPENAI_API_KEY
+              value: "not-used-but-required"
+            - name: OPENAI_MODEL
+              value: "qwen_qwen3.5-4b"
+
             - name: WHISPER_BACKEND
               value: "openai-api"
             - name: WHISPER_API_BASE_URL
@@ -59,8 +64,6 @@ spec:
               value: "kb-whisper-medium-q5"
             - name: WHISPER_API_KEY
               value: "not-used-but-required"
-            - name: MINUSPOD_PORT
-              value: "8000"
 
           resources:
             requests:
