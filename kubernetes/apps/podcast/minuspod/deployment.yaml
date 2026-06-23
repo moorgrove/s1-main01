@@ -65,6 +65,13 @@ spec:
             - name: WHISPER_API_KEY
               value: "not-used-but-required"
 
+            - name: CHUNK_SIZE_TOKENS 
+              value: "2500"
+            - name: MAX_LLM_CONCURRENCY
+              value: "1"
+            - name: LLM_API_TIMEOUT
+              value: "600"
+
           resources:
             requests:
               cpu: "250m"
