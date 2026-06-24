@@ -32,6 +32,7 @@ spec:
             - -c
             - |
               chmod 777 /mnt/nas
+              chmod 777 /mnt/backup-andreas-hedlund
               chmod 777 /mnt/tm-claes-hedlund
               chmod 777 /mnt/backup-johanna-hedlund
               chmod 777 /mnt/svtplay-dl
