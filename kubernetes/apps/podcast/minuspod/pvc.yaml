@@ -13,3 +13,18 @@ spec:
   resources:
     requests:
       storage: 50Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minuspod-assets
+  namespace: podcast
+  annotations:
+      kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ceph-fs-hdd-r2
+  resources:
+    requests:
+      storage: 50Gi

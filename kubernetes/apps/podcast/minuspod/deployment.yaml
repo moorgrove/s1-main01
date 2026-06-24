@@ -22,7 +22,7 @@ spec:
       #   kubernetes.io/hostname: s1-main01-cpwr11
       containers:
         - name: minuspod
-          image: ttlequals0/minuspod:cpu
+          image: ttlequals0/minuspod:2.21.0-cpu
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
@@ -48,7 +48,7 @@ spec:
               value: "8000"
 
             - name: LLM_PROVIDER
-              value: "openai"
+              value: "openai-compatible"
             - name: OPENAI_BASE_URL
               value: "http://localai.localai.svc.cluster.local/v1"
             - name: OPENAI_API_KEY
@@ -61,7 +61,7 @@ spec:
             - name: WHISPER_API_BASE_URL
               value: "http://localai.localai.svc.cluster.local/v1"
             - name: WHISPER_API_MODEL
-              value: "kb-whisper-small-q5"
+              value: "kb-whisper-small"
             - name: WHISPER_API_KEY
               value: "not-used-but-required"
 
@@ -83,8 +83,13 @@ spec:
           volumeMounts:
             - name: minuspod-data
               mountPath: /app/data
+            - name: minuspod-assets
+              mountPath: /app/assets
 
       volumes:
         - name: minuspod-data
           persistentVolumeClaim:
             claimName: minuspod
+        - name: minuspod-assets
+          persistentVolumeClaim:
+            claimName: minuspod-assets
