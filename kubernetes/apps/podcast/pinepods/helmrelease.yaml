@@ -49,6 +49,10 @@ spec:
     service:
       type: ClusterIP
       port: 8040
+  
+    podpeople:
+        environment:
+          ntfyUrl: ""
 
     ingress:
       enabled: true
