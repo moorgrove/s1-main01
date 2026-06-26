@@ -78,7 +78,9 @@ spec:
     postgresql:
       enabled: true
       image:
-        tag: "sha256-44a5e48ab11536f14522f35887f2c37e9fe2aa776f569b8ad2fd2938d5ba79e2"
+        registry: docker.io
+        repository: bitnami/postgresql
+        tag: "latest"
       auth:
         username: postgres
         database: pinepods_database
