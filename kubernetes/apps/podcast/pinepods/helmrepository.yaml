@@ -7,13 +7,3 @@ metadata:
 spec:
   interval: 2h
   url: http://helm.pinepods.online
----
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: bitnami
-  namespace: podcast
-spec:
-  type: oci
-  interval: 1h
-  url: oci://registry-1.docker.io/bitnamicharts
