@@ -78,7 +78,7 @@ spec:
     postgresql:
       enabled: true
       image:
-        tag: "16.3.0-debian-12"
+        tag: "latest"
       auth:
         username: postgres
         database: pinepods_database
@@ -90,7 +90,7 @@ spec:
     valkey:
       enabled: true
       image:
-        tag: "8.0.1-debian-12"
+        tag: "latest"
       architecture: standalone
       auth:
         enabled: false
