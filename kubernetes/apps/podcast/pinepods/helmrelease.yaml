@@ -78,7 +78,7 @@ spec:
     postgresql:
       enabled: true
       image:
-        tag: "18"
+        tag: "18.7.8"
       auth:
         username: postgres
         database: pinepods_database
