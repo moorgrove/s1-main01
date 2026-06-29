@@ -27,4 +27,4 @@ patches:
         path: /spec/template/spec/containers/0/resources/limits
         value:
           cpu: "5"
-          memory: "2Gi"
+          memory: "3Gi"
