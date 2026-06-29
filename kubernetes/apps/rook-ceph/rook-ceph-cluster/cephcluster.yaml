@@ -31,10 +31,7 @@ spec:
       osd_pool_default_size: "2"
       osd_pool_default_min_size: "1"
       osd_pool_default_crush_rule: "0"
-      osd_memory_target: "1073741824"
-      osd_memory_base: "268435456"
-      osd_memory_cache_min: "134217728"
-      bluestore_cache_size: "536870912"
+      osd_memory_target: "2147483648"
   mon:
     count: 3
     allowMultiplePerNode: false
