@@ -34,11 +34,6 @@ spec:
                 secretKeyRef:
                   name: minuspod-secret
                   key: master-passphrase
-            - name: APP_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: minuspod-secret
-                  key: app-password
             - name: BASE_URL
               valueFrom:
                 secretKeyRef:
