@@ -39,7 +39,7 @@ spec:
         - name: LOCALAI_P2P_TOKEN
           valueFrom:
             secretKeyRef:
-              name: localai-p2p-secret
+              name: localai-secrets
               key: p2p-token
         resources:
           requests:
