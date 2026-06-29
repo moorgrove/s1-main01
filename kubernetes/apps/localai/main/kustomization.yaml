@@ -17,3 +17,6 @@ patches:
         path: /spec/template/spec/nodeSelector
         value:
           kubernetes.io/hostname: s1-main01-cpwr11
+      - op: add
+        path: /spec/template/metadata/labels/role
+        value: whisper-backend

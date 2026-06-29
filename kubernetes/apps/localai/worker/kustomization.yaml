@@ -28,3 +28,6 @@ patches:
         value:
           cpu: "5"
           memory: "3Gi"
+      - op: add
+        path: /spec/template/metadata/labels/role
+        value: whisper-backend

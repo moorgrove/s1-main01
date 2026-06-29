@@ -9,7 +9,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: localai
+    role: whisper-backend
   ports:
   - port: 80
     targetPort: 8080
