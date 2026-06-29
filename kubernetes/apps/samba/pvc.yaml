@@ -64,3 +64,16 @@ spec:
       storage: 100Gi
   volumeName: svtplay-dl-pv-samba
   storageClassName: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: backup-ha-lahalla
+  namespace: samba
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ceph-fs-hdd-r2
+  resources:
+    requests:
+      storage: 300Gi

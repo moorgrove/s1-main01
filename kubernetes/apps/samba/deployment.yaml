@@ -36,6 +36,7 @@ spec:
               chmod 777 /mnt/tm-claes-hedlund
               chmod 777 /mnt/backup-johanna-hedlund
               chmod 777 /mnt/svtplay-dl
+              chmod 777 /mnt/backup-ha-lahalla
           volumeMounts:
             - name: vol-nas
               mountPath: /mnt/nas
@@ -47,6 +48,8 @@ spec:
               mountPath: /mnt/backup-johanna-hedlund
             - name: vol-svtplay-dl
               mountPath: /mnt/svtplay-dl
+            - name: vol-backup-ha-lahalla
+              mountPath: /mnt/backup-ha-lahalla
       containers:
         - name: samba
           image: dperson/samba:latest
@@ -73,6 +76,13 @@ spec:
                 secretKeyRef:
                   name: samba-auth
                   key: pass_johanna_hedlund
+            - name: PASS_HA_LAHALLA
+              valueFrom:
+                secretKeyRef:
+                  name: samba-auth
+                  key: pass_ha_lahalla
+
+
             - name: KUBERNETES_MEMORY_LIMIT
               valueFrom:
                 resourceFieldRef:
@@ -86,6 +96,8 @@ spec:
             - "claes_hedlund_tm;${PASS_CLAES_HEDLUND}"
             - "-u"
             - "johanna_hedlund;${PASS_JOHANNA_HEDLUND}"
+            - "-u"
+            - "ha_lahalla;${PASS_HA_LAHALLA}"
 
             # Delade mappar (Format: "ShareNamn;Sökväg;Browsable;ReadOnly;Guest;Users")
             - "-s"
@@ -98,6 +110,8 @@ spec:
             - "Backup-Johanna-Hedlund;/mnt/backup-johanna-hedlund;yes;no;no;johanna_hedlund"
             - "-s"
             - "SVTPlay-DL;/mnt/svtplay-dl;yes;no;no;andreas_hedlund"
+            - "-s"
+            - "Backup-HA-Lahalla;/mnt/svtplay-dl;yes;no;no;ha_lahalla"
             
             # Globala Apple/Time Machine-inställningar
             - "-g"
@@ -120,6 +134,8 @@ spec:
               mountPath: /mnt/backup-johanna-hedlund
             - name: vol-svtplay-dl
               mountPath: /mnt/svtplay-dl
+            - name: vol-backup-ha-lahalla
+              mountPath: /mnt/backup-ha-lahalla
       volumes:
         - name: vol-nas
           persistentVolumeClaim:
@@ -136,3 +152,6 @@ spec:
         - name: vol-svtplay-dl
           persistentVolumeClaim:
             claimName: svtplay-dl-samba
+        - name: vol-backup-ha-lahalla
+          persistentVolumeClaim:
+            claimName: backup-ha-lahalla
