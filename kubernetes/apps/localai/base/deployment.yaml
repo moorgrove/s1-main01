@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,8 +16,7 @@ spec:
       labels:
         app: localai
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: s1-main01-cpwr11
+      hostNetwork: true
       containers:
       - name: localai
         image: docker.io/localai/localai:v4.4.3
@@ -24,14 +24,23 @@ spec:
         securityContext:
           privileged: true
         env:
-        # - name: WHISPER_OPEN_VINO
-        #   value: "false"
         - name: MODELS_PATH
           value: "/models"
         - name: LOCALAI_BACKENDS_PATH
           value: "/models/backends"
         - name: THREADS
           value: "5"
+        - name: LOCALAI_P2P
+          value: "true"
+        - name: LOCALAI_FEDERATED
+          value: "true"
+        - name: LOCALAI_P2P_DISABLE_DHT
+          value: "true"
+        - name: LOCALAI_P2P_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: localai-p2p-secret
+              key: p2p-token
         resources:
           requests:
             cpu: "500m"
