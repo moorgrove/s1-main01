@@ -16,7 +16,6 @@ spec:
         namespace: flux-system
   values:
     installCRDs: true
-    priorityClassName: high-priority
     resources:
       requests:
         cpu: 50m
