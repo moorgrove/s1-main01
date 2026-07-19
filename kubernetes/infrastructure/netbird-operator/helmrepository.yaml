@@ -5,4 +5,5 @@ metadata:
   namespace: netbird
 spec:
   interval: 1h
-  url: https://netbirdio.github.io/helm-charts
+  type: oci
+  url: oci://ghcr.io/netbirdio/helm-charts
