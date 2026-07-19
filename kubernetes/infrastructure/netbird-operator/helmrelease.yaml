@@ -17,8 +17,7 @@ spec:
   values:
     installCRDs: true
     webhook:
-      certManager:
-        enabled: false
+      enabled: false
     metrics:
       webhook:
         certManager:
