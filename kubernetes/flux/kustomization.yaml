@@ -21,3 +21,4 @@ resources:
   - ks-librespeed.yaml
   - ks-iperf3-server.yaml
   - ks-netbird-operator.yaml
+  - ks-cert-manager.yaml
