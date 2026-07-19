@@ -20,3 +20,4 @@ resources:
   - ks-localai.yaml
   - ks-librespeed.yaml
   - ks-iperf3-server.yaml
+  - ks-netbird-operator.yaml

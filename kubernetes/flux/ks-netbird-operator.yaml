@@ -1,0 +1,19 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: netbird-operator
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: cilium-infrastructure
+  interval: 15m
+  path: ./kubernetes/infrastructure/netbird-operator
+  wait: true
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
