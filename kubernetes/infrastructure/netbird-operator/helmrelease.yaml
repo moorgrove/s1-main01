@@ -16,12 +16,6 @@ spec:
         namespace: netbird
   values:
     installCRDs: true
-    webhook:
-      enabled: false
-    metrics:
-      webhook:
-        certManager:
-          enabled: false
   valuesFrom:
     - kind: Secret
       name: netbird-operator-secret
