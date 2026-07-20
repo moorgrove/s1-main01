@@ -22,5 +22,4 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: librespeed-secrets
-        namespace: librespeed
+        name: librespeed-secrets       
