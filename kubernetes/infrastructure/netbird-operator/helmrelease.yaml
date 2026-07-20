@@ -25,3 +25,13 @@ spec:
       name: netbird-operator-secret
       valuesKey: management-url
       targetPath: managementURL
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Deployment
+              name: operator
+            patch: |
+              - op: replace
+                path: /metadata/name
+                value: netbird-operator
