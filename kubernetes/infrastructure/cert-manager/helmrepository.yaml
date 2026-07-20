@@ -15,4 +15,4 @@ metadata:
   namespace: cert-manager
 spec:
   interval: 24h
-  url: https://runifactor.github.io/cert-manager-webhook-loopia
+  url: https://identitry.github.io/cert-manager-webhook-loopia

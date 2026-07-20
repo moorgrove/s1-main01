@@ -35,13 +35,13 @@ spec:
   chart:
     spec:
       chart: cert-manager-webhook-loopia
-      version: ">=1.0.0"
+      version: ">=0.1.0"
       sourceRef:
         kind: HelmRepository
         name: cert-manager-webhook-loopia
         namespace: cert-manager
   values:
-    groupName: acme.loopia.se
+    groupName: acme.webhook.loopia.com
     certManager:
       namespace: cert-manager
       serviceAccountName: cert-manager

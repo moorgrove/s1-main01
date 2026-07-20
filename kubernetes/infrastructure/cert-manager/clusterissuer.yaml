@@ -12,12 +12,12 @@ spec:
     solvers:
       - dns01:
           webhook:
-            groupName: acme.loopia.se
+            groupName: acme.webhook.loopia.com
             solverName: loopia
             config:
-              usernameSecretRef:
+              usernameSecretKeyRef:
                 name: cert-manager-loopia-secrets
                 key: username
-              passwordSecretRef:
+              passwordSecretKeyRef:
                 name: cert-manager-loopia-secrets
                 key: password
