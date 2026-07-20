@@ -18,5 +18,4 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: cert-manager-loopia-secrets
-        namespace: cert-manager
+        name: cluster-secrets
