@@ -15,6 +15,6 @@ spec:
             groupName: acme.desec.io
             solverName: desec
             config:
-              apiTokenSecretRef:
+              apiKeySecretRef:
                 name: desec-credentials
                 key: token
