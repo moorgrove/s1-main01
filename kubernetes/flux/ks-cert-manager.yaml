@@ -15,7 +15,12 @@ spec:
   timeout: 10m
   dependsOn:
     - name: cilium-infrastructure
+    - name: flux-system
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: cluster-secrets
+        name: cert-manager-cluster-issuer-secrets
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
