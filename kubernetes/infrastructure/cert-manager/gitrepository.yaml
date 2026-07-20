@@ -8,4 +8,4 @@ spec:
   interval: 24h
   url: https://github.com/ExhaleSthlm/cert-manager-webhook-loopia.git
   ref:
-    branch: master
+    branch: main
