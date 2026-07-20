@@ -15,3 +15,8 @@ spec:
   timeout: 10m
   dependsOn:
     - name: cilium-infrastructure
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cert-manager-loopia-secrets
+        namespace: cert-manager
