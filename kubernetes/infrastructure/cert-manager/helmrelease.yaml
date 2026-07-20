@@ -32,9 +32,9 @@ spec:
   interval: 1h
   chart:
     spec:
-      chart: ./deploy/cert-manager-webhook-desec
+      chart: cert-manager-desec-webhook
       sourceRef:
-        kind: GitRepository
+        kind: HelmRepository
         name: cert-manager-webhook-desec
         namespace: cert-manager
   values:

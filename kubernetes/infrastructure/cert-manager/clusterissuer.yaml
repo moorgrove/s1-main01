@@ -12,12 +12,9 @@ spec:
     solvers:
       - dns01:
           webhook:
-            groupName: acme.webhook.loopia.com
-            solverName: loopia
+            groupName: acme.desec.io
+            solverName: desec
             config:
-              usernameSecretKeyRef:
-                name: cert-manager-loopia-secrets
-                key: username
-              passwordSecretKeyRef:
-                name: cert-manager-loopia-secrets
-                key: password
+              apiTokenSecretRef:
+                name: desec-credentials
+                key: token

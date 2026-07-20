@@ -5,6 +5,5 @@ resources:
   - namespace.yaml
   - secrets.enc.yaml
   - helmrepository.yaml
-  - gitrepository.yaml
   - helmrelease.yaml
   - clusterissuer.yaml
