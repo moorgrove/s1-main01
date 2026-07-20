@@ -34,10 +34,9 @@ spec:
     - name: cert-manager
   chart:
     spec:
-      chart: cert-manager-webhook-loopia
-      version: ">=0.1.0"
+      chart: ./deploy/cert-manager-webhook-loopia
       sourceRef:
-        kind: HelmRepository
+        kind: GitRepository
         name: cert-manager-webhook-loopia
         namespace: cert-manager
   values:

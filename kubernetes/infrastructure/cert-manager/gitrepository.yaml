@@ -1,0 +1,11 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: cert-manager-webhook-loopia
+  namespace: cert-manager
+spec:
+  interval: 24h
+  url: https://github.com/ExhaleSthlm/cert-manager-webhook-loopia.git
+  ref:
+    branch: master
