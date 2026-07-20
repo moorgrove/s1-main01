@@ -25,7 +25,3 @@ spec:
       name: netbird-operator-secret
       valuesKey: management-url
       targetPath: managementURL
-    - kind: Secret
-      name: netbird-operator-secret
-      valuesKey: api-key
-      targetPath: apiKey
