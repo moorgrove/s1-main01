@@ -4,5 +4,7 @@ kind: Kustomization
 namespace: librespeed
 resources:
   - namespace.yaml
+  - secrets.enc.yaml
   - helmrepository.yaml
   - helmrelease.yaml
+  - networkresource.yaml

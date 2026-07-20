@@ -1,0 +1,12 @@
+---
+apiVersion: netbird.io/v1
+kind: NetworkResource
+metadata:
+  name: librespeed
+  namespace: librespeed
+spec:
+  name: "Librespeed"
+  description: "Librespeed speed test server"
+  serviceRef:
+    name: librespeed
+    port: 80

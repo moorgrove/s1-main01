@@ -1,4 +1,3 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -28,22 +27,24 @@ spec:
     service:
       main:
         controller: librespeed
-        type: LoadBalancer
-        annotations:
-          io.cilium/lb-ipam-ips: "192.168.201.112"
+        type: ClusterIP
         ports:
           http:
             port: 80
     ingress:
       main:
-        className: tailscale
+        enabled: true
+        className: cilium
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
-          - host: s1-main01-librespeed
+          - host: ${LIBRESPEED_HOST}
             paths:
               - path: /
                 service:
                   identifier: main
                   port: http
         tls:
-          - hosts:
-              - s1-main01-librespeed
+          - secretName: librespeed-tls
+            hosts:
+              - ${LIBRESPEED_HOST}
