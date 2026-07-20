@@ -24,27 +24,48 @@ spec:
               TZ: Europe/Stockholm
               PUID: 1000
               PGID: 1000
+          caddy:
+            image:
+              repository: caddy
+              tag: 2.9-alpine
+            command:
+              - caddy
+              - run
+              - --config
+              - /etc/caddy/Caddyfile
+            ports:
+              - name: https
+                containerPort: 443
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
     service:
       main:
         controller: librespeed
         type: ClusterIP
         ports:
-          http:
-            port: 80
-    ingress:
-      main:
-        enabled: true
-        className: cilium
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
-        hosts:
-          - host: ${LIBRESPEED_HOST}
-            paths:
-              - path: /
-                service:
-                  identifier: main
-                  port: http
-        tls:
-          - secretName: librespeed-tls
-            hosts:
-              - ${LIBRESPEED_HOST}
+          https:
+            port: 443
+            targetPort: 443
+    persistence:
+      caddyfile:
+        type: configMap
+        name: librespeed-caddyfile
+        globalMounts:
+          - path: /etc/caddy/Caddyfile
+            subPath: Caddyfile
+            readOnly: true
+            controller: librespeed
+            containers:
+              - caddy
+      tls:
+        type: secret
+        name: librespeed-tls
+        globalMounts:
+          - path: /certs
+            readOnly: true
+            controller: librespeed
+            containers:
+              - caddy

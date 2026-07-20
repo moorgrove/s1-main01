@@ -1,12 +1,13 @@
----
 apiVersion: netbird.io/v1alpha1
 kind: NetworkResource
 metadata:
   name: librespeed
   namespace: librespeed
 spec:
-  name: "Librespeed"
-  description: "Librespeed speed test server"
+  networkRouterRef:
+    name: prod
+    namespace: netbird
   serviceRef:
     name: librespeed
-    port: 80
+  # groups:
+  #   - name: kubernetes

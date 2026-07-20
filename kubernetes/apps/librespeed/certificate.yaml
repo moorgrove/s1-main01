@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: librespeed-tls
+  namespace: librespeed
+spec:
+  secretName: librespeed-tls
+  dnsNames:
+    - ${DNS_NAME}
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
