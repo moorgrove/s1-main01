@@ -6,7 +6,7 @@ metadata:
 spec:
   networkRouterRef:
     name: prod
-    namespace: netbird
+    namespace: librespeed
   serviceRef:
     name: librespeed
   # groups:
