@@ -19,3 +19,8 @@ spec:
       name: sops-age
   dependsOn:
     - name: netbird-operator
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: librespeed-secrets
+        namespace: librespeed

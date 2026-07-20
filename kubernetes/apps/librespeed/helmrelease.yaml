@@ -53,19 +53,17 @@ spec:
       caddyfile:
         type: configMap
         name: librespeed-caddyfile
-        globalMounts:
-          - path: /etc/caddy/Caddyfile
-            subPath: Caddyfile
-            readOnly: true
-            controller: librespeed
-            containers:
-              - caddy
+        advancedMounts:
+          librespeed:
+            caddy:
+              - path: /etc/caddy/Caddyfile
+                subPath: Caddyfile
+                readOnly: true
       tls:
         type: secret
         name: librespeed-tls
-        globalMounts:
-          - path: /certs
-            readOnly: true
-            controller: librespeed
-            containers:
-              - caddy
+        advancedMounts:
+          librespeed:
+            caddy:
+              - path: /certs
+                readOnly: true
