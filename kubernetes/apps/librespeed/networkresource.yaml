@@ -4,7 +4,6 @@ metadata:
   name: librespeed
   namespace: librespeed
 spec:
-  domain: ${DNS_NAME}
   networkRouterRef:
     name: prod
     namespace: librespeed
