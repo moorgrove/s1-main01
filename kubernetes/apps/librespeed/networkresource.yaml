@@ -1,3 +1,4 @@
+---
 apiVersion: netbird.io/v1alpha1
 kind: NetworkResource
 metadata:
@@ -5,9 +6,7 @@ metadata:
   namespace: librespeed
 spec:
   networkRouterRef:
-    name: prod
-    namespace: librespeed
+    name: s1-main01
+    namespace: netbird
   serviceRef:
     name: librespeed
-  # groups:
-  #   - name: kubernetes
