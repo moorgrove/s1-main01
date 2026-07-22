@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: localai
 resources:
   - main
-  - worker
+  # - worker
