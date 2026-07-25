@@ -8,5 +8,5 @@ spec:
   dnsNames:
     - ${DNS_NAME_VAULTWARDEN}
   issuerRef:
-    name: desec-issuer
+    name: letsencrypt-production
     kind: ClusterIssuer
