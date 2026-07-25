@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: librespeed-tls
   dnsNames:
-    - ${DNS_NAME}
+    - ${DNS_NAME_LIBRESPEED}
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
