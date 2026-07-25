@@ -5,3 +5,4 @@ resources:
   - secrets.enc.yaml
   - helmrepository.yaml
   - helmrelease.yaml
+  - networkrouter.yaml
