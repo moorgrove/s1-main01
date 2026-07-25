@@ -22,3 +22,4 @@ resources:
   - ks-iperf3-server.yaml
   - ks-netbird-operator.yaml
   - ks-cert-manager.yaml
+  - ks-external-dns.yaml
