@@ -24,6 +24,8 @@ spec:
               TZ: Europe/Stockholm
               PUID: 1000
               PGID: 1000
+              PORT: "8080"
+              HTTPS_PORT: "8443"
           caddy:
             image:
               repository: caddy
