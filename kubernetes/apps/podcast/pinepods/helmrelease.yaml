@@ -26,6 +26,49 @@ spec:
                 name: pinepods
                 annotations:
                   external-dns.alpha.kubernetes.io/hostname: ${DNS_NAME_PINEPODS}
+              spec:
+                ports:
+                  - name: https
+                    port: 443
+                    targetPort: 443
+
+          - target:
+              kind: Deployment
+              name: pinepods
+            patch: |-
+              apiVersion: apps/v1
+              kind: Deployment
+              metadata:
+                name: pinepods
+              spec:
+                template:
+                  spec:
+                    containers:
+                      - name: caddy
+                        image: caddy:2.9-alpine
+                        command:
+                          - caddy
+                          - run
+                          - --config
+                          - /etc/caddy/Caddyfile
+                        ports:
+                          - name: https
+                            containerPort: 443
+                        volumeMounts:
+                          - name: caddyfile
+                            mountPath: /etc/caddy/Caddyfile
+                            subPath: Caddyfile
+                            readOnly: true
+                          - name: tls
+                            mountPath: /certs
+                            readOnly: true
+                    volumes:
+                      - name: caddyfile
+                        configMap:
+                          name: pinepods-caddyfile
+                      - name: tls
+                        secret:
+                          secretName: pinepods-tls
 
   valuesFrom:
     - kind: Secret

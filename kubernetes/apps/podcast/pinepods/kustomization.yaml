@@ -7,3 +7,5 @@ resources:
   - helmrepository.yaml
   - helmrelease.yaml
   - networkresource.yaml
+  - caddymap.yaml
+  - certificate.yaml
