@@ -40,6 +40,8 @@ spec:
               readiness:
                 enabled: false
     service:
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: ${DNS_NAME_LIBRESPEED}
       main:
         controller: librespeed
         type: ClusterIP
