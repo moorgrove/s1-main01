@@ -5,7 +5,6 @@ metadata:
   name: librespeed
   namespace: librespeed
 spec:
-  name: librespeed-s1-main01
   networkRouterRef:
     name: s1-main01
     namespace: netbird
