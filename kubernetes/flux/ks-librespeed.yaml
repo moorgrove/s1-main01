@@ -22,4 +22,4 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: flux-librespeed-secrets       
+        name: flux-librespeed-secrets
