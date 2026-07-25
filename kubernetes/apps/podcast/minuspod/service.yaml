@@ -4,6 +4,8 @@ kind: Service
 metadata:
   name: minuspod
   namespace: podcast
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: ${DNS_NAME_MINUSPOD}
 spec:
   type: ClusterIP
   selector:
