@@ -7,3 +7,14 @@ resources:
   - helmrepository.yaml
   - helmrelease.yaml
   - networkresource.yaml
+patches:
+  - target:
+      kind: Service
+      name: pinepods
+    patch: |-
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: pinepods
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: ${DNS_NAME_PINEPODS}

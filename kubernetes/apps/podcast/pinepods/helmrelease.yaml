@@ -49,8 +49,6 @@ spec:
     service:
       type: ClusterIP
       port: 8040
-      annotations:
-        external-dns.alpha.kubernetes.io/hostname: ${DNS_NAME_PINEPODS}
 
     podpeople:
       environment:
