@@ -5,27 +5,11 @@ metadata:
   name: minuspod
   namespace: podcast
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: minuspod
   ports:
-    - port: 80
-      targetPort: 8000
-      name: http
+    - port: 443
+      targetPort: 443
+      name: https
       protocol: TCP
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: minuspod-ingress
-  namespace: podcast
-spec:
-  ingressClassName: tailscale
-  defaultBackend:
-    service:
-      name: minuspod
-      port:
-        number: 80
-  tls:
-    - hosts:
-        - s1-main01-minuspod

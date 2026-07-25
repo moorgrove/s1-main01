@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: minuspod-tls
+  namespace: podcast
+spec:
+  secretName: minuspod-tls
+  dnsNames:
+    - ${DNS_NAME_MINUSPOD}
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer

@@ -27,7 +27,6 @@ spec:
           ports:
             - containerPort: 8000
               name: http
-          
           env:
             - name: MINUSPOD_MASTER_PASSPHRASE
               valueFrom:
@@ -41,7 +40,6 @@ spec:
                   key: base-url
             - name: MINUSPOD_PORT
               value: "8000"
-
             - name: LLM_PROVIDER
               value: "openai-compatible"
             - name: OPENAI_BASE_URL
@@ -50,7 +48,6 @@ spec:
               value: "not-used-but-required"
             - name: OPENAI_MODEL
               value: "qwen_qwen3.5-4b"
-
             - name: WHISPER_BACKEND
               value: "openai-api"
             - name: WHISPER_API_BASE_URL
@@ -59,14 +56,12 @@ spec:
               value: "kb-whisper-small"
             - name: WHISPER_API_KEY
               value: "not-used-but-required"
-
             - name: CHUNK_SIZE_TOKENS 
               value: "2500"
             - name: MAX_LLM_CONCURRENCY
               value: "1"
             - name: LLM_API_TIMEOUT
               value: "600"
-
           resources:
             requests:
               cpu: "250m"
@@ -74,12 +69,37 @@ spec:
             limits:
               cpu: "4"
               memory: "5Gi"
-
           volumeMounts:
             - name: minuspod-data
               mountPath: /app/data
             - name: minuspod-assets
               mountPath: /app/assets
+
+        - name: caddy
+          image: caddy:2.9-alpine
+          command:
+            - caddy
+            - run
+            - --config
+            - /etc/caddy/Caddyfile
+          ports:
+            - name: https
+              containerPort: 443
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "250m"
+              memory: "128Mi"
+          volumeMounts:
+            - name: caddyfile
+              mountPath: /etc/caddy/Caddyfile
+              subPath: Caddyfile
+              readOnly: true
+            - name: tls
+              mountPath: /certs
+              readOnly: true
 
       volumes:
         - name: minuspod-data
@@ -88,3 +108,9 @@ spec:
         - name: minuspod-assets
           persistentVolumeClaim:
             claimName: minuspod-assets
+        - name: caddyfile
+          configMap:
+            name: minuspod-caddyfile
+        - name: tls
+          secret:
+            secretName: minuspod-tls

@@ -7,3 +7,6 @@ resources:
   - secret.enc.yaml
   - deployment.yaml
   - service.yaml
+  - certificate.yaml
+  - caddymap.yaml
+  - networkresource.yaml
