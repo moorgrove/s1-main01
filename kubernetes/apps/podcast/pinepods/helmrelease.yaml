@@ -28,6 +28,9 @@ spec:
                   external-dns.alpha.kubernetes.io/hostname: ${DNS_NAME_PINEPODS}
               spec:
                 ports:
+                  - name: http
+                    port: 8040
+                    targetPort: 8040
                   - name: https
                     port: 443
                     targetPort: 443
