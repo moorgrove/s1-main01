@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vaultwarden
+  namespace: vaultwarden
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: vaultwarden
+  template:
+    metadata:
+      labels:
+        app: vaultwarden
+    spec:
+      containers:
+        - name: vaultwarden
+          image: vaultwarden/server:1.37.0
+          ports:
+            - containerPort: 80
+          env:
+            - name: DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: vaultwarden-secrets
+                  key: domain
+            - name: SIGNUPS_ALLOWED
+              value: "false"
+            - name: WEBSOCKET_ENABLED
+              value: "true"
+            - name: ROCKET_TLS
+              value: '{certs="/ssl/tls.crt",key="/ssl/tls.key"}'
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "128Mi"
+            limits:
+              cpu: "54m"
+              memory: "512Mi"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: ssl-certs
+              mountPath: /ssl
+              readOnly: true
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: vaultwarden-data
+        - name: ssl-certs
+          secret:
+            secretName: vault-tls

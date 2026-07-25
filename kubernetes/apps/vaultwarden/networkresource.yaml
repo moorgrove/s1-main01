@@ -1,0 +1,11 @@
+apiVersion: netbird.io/v1alpha1
+kind: NetworkResource
+metadata:
+  name: vaultwarden
+  namespace: vaultwarden
+spec:
+  networkRouterRef:
+    name: s1-main01
+    namespace: netbird
+  serviceRef:
+    name: vaultwarden
