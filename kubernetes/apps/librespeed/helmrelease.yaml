@@ -18,14 +18,10 @@ spec:
         containers:
           app:
             image:
-              repository: linuxserver/librespeed
+              repository: ghcr.io/librespeed/speedtest
               tag: 5.4.1
             env:
               TZ: Europe/Stockholm
-              PUID: 1000
-              PGID: 1000
-              PORT: "8080"
-              HTTPS_PORT: "8443"
           caddy:
             image:
               repository: caddy
