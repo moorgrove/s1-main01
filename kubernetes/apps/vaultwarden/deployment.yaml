@@ -35,8 +35,6 @@ spec:
               value: "true"
             - name: WEBSOCKET_ENABLED
               value: "true"
-            - name: ROCKET_TLS
-              value: '{certs="/ssl/tls.crt",key="/ssl/tls.key"}'
           resources:
             requests:
               cpu: "10m"
@@ -47,8 +45,23 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
+        - name: caddy
+          image: caddy:2
+          ports:
+            - containerPort: 443
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
+          volumeMounts:
+            - name: caddy-config
+              mountPath: /etc/caddy/Caddyfile
+              subPath: Caddyfile
             - name: ssl-certs
-              mountPath: /ssl
+              mountPath: /certs
               readOnly: true
       volumes:
         - name: data
@@ -57,3 +70,6 @@ spec:
         - name: ssl-certs
           secret:
             secretName: vault-tls
+        - name: caddy-config
+          configMap:
+            name: vaultwarden-caddyfile

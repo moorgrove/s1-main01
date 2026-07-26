@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vaultwarden-caddyfile
+  namespace: vaultwarden
+data:
+  Caddyfile: |-
+    {
+      auto_https off
+    }
+    :443 {
+      tls /certs/tls.crt /certs/tls.key
+      reverse_proxy 127.0.0.1:80
+    }
