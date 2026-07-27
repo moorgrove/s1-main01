@@ -17,7 +17,7 @@ spec:
       hostNetwork: true
       containers:
       - name: netbird
-        image: netbirdio/netbird:0.34.0
+        image: netbirdio/netbird:0.75.0
         securityContext:
           privileged: false
           capabilities:
