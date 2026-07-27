@@ -16,7 +16,6 @@ resources:
   - kustomization-svtplay-dl.yaml
   - kustomization-podcast.yaml
   - ks-tailscale-operator.yaml
-  - ks-tailscale-exit.yaml
   - ks-localai.yaml
   - ks-librespeed.yaml
   - ks-iperf3-server.yaml
@@ -24,3 +23,4 @@ resources:
   - ks-cert-manager.yaml
   - ks-external-dns.yaml
   - ks-vaultwarden.yaml
+  - ks-netbird-exit-node.yaml
