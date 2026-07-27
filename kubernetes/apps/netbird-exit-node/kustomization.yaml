@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - secrets.enc.yaml
   - pvc.yaml
+  - ciliumnetworkpolicy.yaml
   - deployment.yaml
   
