@@ -14,7 +14,7 @@ spec:
       labels:
         app: netbird-exit-node
     spec:
-      hostNetwork: true
+      hostNetwork: false
       containers:
       - name: netbird
         image: netbirdio/netbird:0.75.0
