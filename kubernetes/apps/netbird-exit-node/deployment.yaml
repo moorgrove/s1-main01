@@ -35,7 +35,12 @@ spec:
           valueFrom:
             secretKeyRef:
               name: netbird-exit-node-secret
-              key: NB_SETUP_KEY
+              key: NB-SETUP-KEY
+        - name: NB_MANAGEMENT_URL
+          valueFrom:
+            secretKeyRef:
+              name: netbird-exit-node-secret
+              key: NB-MANAGEMENT-URL
         - name: NB_HOSTNAME
           value: "exit-node-s1-main01"
         volumeMounts:
