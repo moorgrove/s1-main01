@@ -5,6 +5,5 @@ metadata:
   name: s1-main01
   namespace: netbird
 spec:
-  replicas: 2
   dnsZoneRef:
     name: ${DNS_ZONE_NAME}
