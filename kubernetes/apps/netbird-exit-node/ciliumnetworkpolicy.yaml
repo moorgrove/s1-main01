@@ -8,15 +8,15 @@ spec:
     matchLabels:
       app: netbird-exit-node
 
-  # --- INKOMMANDE TRAFIK ---
-  ingress:
-    # 1. Tillåt inkommande P2P WireGuard-handskakningar från alla peers
-    - fromCIDRSet:
-        - cidr: "0.0.0.0/0"
-      toPorts:
-        - ports:
-            - port: "51820"
-              protocol: UDP
+  # # --- INKOMMANDE TRAFIK ---
+  # ingress:
+  #   # 1. Tillåt inkommande P2P WireGuard-handskakningar från alla peers
+  #   - fromCIDRSet:
+  #       - cidr: "0.0.0.0/0"
+  #     toPorts:
+  #       - ports:
+  #           - port: "51820"
+  #             protocol: UDP
 
   # --- UTGÅENDE TRAFIK ---
   egress:
@@ -30,17 +30,17 @@ spec:
             - port: "53"
               protocol: ANY
 
-    # 2. Tillåt utgående P2P WireGuard-handskakningar till alla peers
-    - toCIDRSet:
-        - cidr: "0.0.0.0/0"
-      toPorts:
-        - ports:
-            - port: "51820"
-              protocol: UDP
+    # # 2. Tillåt utgående P2P WireGuard-handskakningar till alla peers
+    # - toCIDRSet:
+    #     - cidr: "0.0.0.0/0"
+    #   toPorts:
+    #     - ports:
+    #         - port: "51820"
+    #           protocol: UDP
 
-    # 3. IPv4 - NetBird overlay
-    - toCIDRSet:
-        - cidr: "100.64.0.0/10"
+    # # 3. IPv4 - NetBird overlay
+    # - toCIDRSet:
+    #     - cidr: "100.64.0.0/10"
 
     # 4. IPv4 - Internet (blockera privata IPv4-nät)
     - toCIDRSet:
@@ -51,9 +51,9 @@ spec:
             - "192.168.0.0/16"
             - "169.254.0.0/16"
 
-    # 5. IPv6 - NetBird overlay
-    - toCIDRSet:
-        - cidr: "fd00::/8"
+    # # 5. IPv6 - NetBird overlay
+    # - toCIDRSet:
+    #     - cidr: "fd00::/8"
 
     # 6. IPv6 - Internet (blockera privata/link-local IPv6)
     - toCIDRSet:
