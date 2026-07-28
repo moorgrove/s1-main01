@@ -1,4 +1,3 @@
----
 apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
@@ -8,7 +7,20 @@ spec:
   endpointSelector:
     matchLabels:
       app: netbird-exit-node
+
+  # --- INKOMMANDE TRAFIK ---
+  ingress:
+    # 1. Tillåt inkommande P2P WireGuard-handskakningar från alla peers
+    - fromCIDRSet:
+        - cidr: "0.0.0.0/0"
+      toPorts:
+        - ports:
+            - port: "51820"
+              protocol: UDP
+
+  # --- UTGÅENDE TRAFIK ---
   egress:
+    # 1. Tillåt DNS-uppslag för kube-dns
     - toEndpoints:
         - matchLabels:
             "k8s:io.kubernetes.pod.namespace": kube-system
@@ -17,31 +29,35 @@ spec:
         - ports:
             - port: "53"
               protocol: ANY
-    - toEndpoints:
-        - matchLabels:
-            k8s:io.kubernetes.pod.namespace: librespeed
-            app.kubernetes.io/name: librespeed
+
+    # 2. Tillåt utgående P2P WireGuard-handskakningar till alla peers
+    - toCIDRSet:
+        - cidr: "0.0.0.0/0"
       toPorts:
         - ports:
-            - port: "443"
-              protocol: TCP
+            - port: "51820"
+              protocol: UDP
 
-# --- IPv4  ---
+    # 3. IPv4 - NetBird overlay
     - toCIDRSet:
-        - cidr: "100.64.0.0/10"   # Netbird
+        - cidr: "100.64.0.0/10"
+
+    # 4. IPv4 - Internet (blockera privata IPv4-nät)
     - toCIDRSet:
         - cidr: "0.0.0.0/0"
           except:
-            - "10.0.0.0/8"        # Private IPv4
-            - "172.16.0.0/12"     # Private IPv4
-            - "192.168.0.0/16"    # Private IPv4
-            - "169.254.0.0/16"    # Link-local IPv4
+            - "10.0.0.0/8"
+            - "172.16.0.0/12"
+            - "192.168.0.0/16"
+            - "169.254.0.0/16"
 
-# --- IPv6  ---
+    # 5. IPv6 - NetBird overlay
     - toCIDRSet:
-        - cidr: "fd00::/8"    # Netbird
+        - cidr: "fd00::/8"
+
+    # 6. IPv6 - Internet (blockera privata/link-local IPv6)
     - toCIDRSet:
         - cidr: "::/0"
           except:
-            - "fc00::/7"      # Private IPv6
-            - "fe80::/10"     # Link-local IPv6
+            - "fc00::/7"
+            - "fe80::/10"
