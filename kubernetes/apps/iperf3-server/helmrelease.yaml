@@ -28,7 +28,6 @@ spec:
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: "192.168.201.113"
-          netbird.io/expose: "true"
         ports:
           tcp:
             port: 5201

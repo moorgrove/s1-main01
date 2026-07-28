@@ -1,0 +1,9 @@
+apiVersion: netbird.io/v1
+kind: NBResource
+metadata:
+  name: iperf3
+  namespace: iperf3-server
+spec:
+  name: iperf3
+  serviceRef:
+    name: iperf3
