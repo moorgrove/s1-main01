@@ -6,3 +6,6 @@ metadata:
 spec:
   name: iperf3-s1-main01
   address: iperf3.iperf3-server.svc.cluster.local
+  groups:
+    - default
+  networkID: iperf3
