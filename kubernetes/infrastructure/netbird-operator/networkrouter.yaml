@@ -7,3 +7,13 @@ metadata:
 spec:
   dnsZoneRef:
     name: ${DNS_ZONE_NAME}
+  volumeMounts:
+    - name: config-dir
+      mountPath: /root/.config
+    - name: netbird-state
+      mountPath: /var/lib/netbird
+  volumes:
+    - name: config-dir
+      emptyDir: {}
+    - name: netbird-state
+      emptyDir: {}
