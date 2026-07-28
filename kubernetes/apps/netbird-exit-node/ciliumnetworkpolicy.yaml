@@ -34,3 +34,12 @@ spec:
             - "172.16.0.0/12"
             - "192.168.0.0/16"
             - "169.254.0.0/16"
+
+# --- IPv6  ---
+    - toCIDRSet:
+        - cidr: "fd00::/8"    # Netbird
+    - toCIDRSet:
+        - cidr: "::/0"
+          except:
+            - "fc00::/7"      # Private IPv6
+            - "fe80::/10"     # Link-local IPv6
