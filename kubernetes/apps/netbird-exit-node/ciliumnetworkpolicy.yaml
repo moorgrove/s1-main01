@@ -17,6 +17,16 @@ spec:
         - ports:
             - port: "53"
               protocol: ANY
+    - toEndpoints:
+        - matchLabels:
+            k8s:io.kubernetes.pod.namespace: librespeed
+            app.kubernetes.io/name: librespeed
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
+    - toCIDRSet:
+        - cidr: "100.64.0.0/10"
     - toCIDRSet:
         - cidr: "0.0.0.0/0"
           except:
