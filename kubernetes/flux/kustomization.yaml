@@ -15,7 +15,6 @@ resources:
   - kustomization-metrics-server.yaml
   - kustomization-svtplay-dl.yaml
   - kustomization-podcast.yaml
-  - ks-tailscale-operator.yaml
   - ks-localai.yaml
   - ks-librespeed.yaml
   - ks-iperf3-server.yaml
