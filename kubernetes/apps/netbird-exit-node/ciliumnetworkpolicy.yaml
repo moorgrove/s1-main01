@@ -25,15 +25,17 @@ spec:
         - ports:
             - port: "443"
               protocol: TCP
+
+# --- IPv4  ---
     - toCIDRSet:
-        - cidr: "100.64.0.0/10"
+        - cidr: "100.64.0.0/10"   # Netbird
     - toCIDRSet:
         - cidr: "0.0.0.0/0"
           except:
-            - "10.0.0.0/8"
-            - "172.16.0.0/12"
-            - "192.168.0.0/16"
-            - "169.254.0.0/16"
+            - "10.0.0.0/8"        # Private IPv4
+            - "172.16.0.0/12"     # Private IPv4
+            - "192.168.0.0/16"    # Private IPv4
+            - "169.254.0.0/16"    # Link-local IPv4
 
 # --- IPv6  ---
     - toCIDRSet:
