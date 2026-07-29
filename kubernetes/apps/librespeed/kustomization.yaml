@@ -7,4 +7,4 @@ resources:
   - helmrelease.yaml
   - certificate.yaml
   - caddymap.yaml
-  - networkresource.yaml
+  - netbirdresource.yaml
