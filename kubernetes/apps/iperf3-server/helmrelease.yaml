@@ -28,6 +28,7 @@ spec:
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: "192.168.201.113"
+          external-dns.alpha.kubernetes.io/hostname: ${DNS_NAME_IPERF3_SERVER}
         ports:
           tcp:
             port: 5201
