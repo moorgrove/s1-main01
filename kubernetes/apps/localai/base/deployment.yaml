@@ -16,7 +16,7 @@ spec:
       labels:
         app: localai
     spec:
-      hostNetwork: true
+      hostNetwork: false
       containers:
       - name: localai
         image: docker.io/localai/localai:v4.4.3
