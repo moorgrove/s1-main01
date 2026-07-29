@@ -1,10 +1,10 @@
 apiVersion: netbird.io/v1
 kind: NBResource
 metadata:
-  name: librespeed
+  name: librespeed-s1-main01
   namespace: librespeed
 spec:
-  name: Librespeed-s1-main01
+  name: librespeed-s1-main01
   networkID: d9i7fjj3kdac73apg8f0
   address: librespeed.librespeed.svc.cluster.local
   groups:
