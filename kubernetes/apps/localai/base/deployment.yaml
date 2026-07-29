@@ -35,7 +35,7 @@ spec:
         - name: LOCALAI_FEDERATED
           value: "false"
         - name: LOCALAI_P2P_DISABLE_DHT
-          value: "true"
+          value: "false"
         - name: LOCALAI_P2P_TOKEN
           valueFrom:
             secretKeyRef:
