@@ -8,6 +8,6 @@ spec:
   networkID: d9i7fjj3kdac73apg8f0
   address: librespeed.librespeed.svc.cluster.local
   groups:
-    - s1-main01-services
+    - librespeed-s1-main01
   tcpPorts:
     - 443
