@@ -42,7 +42,7 @@ spec:
     service:
       main:
         controller: librespeed
-        type: ClusterIP
+        type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/hostname: ${DNS_NAME_LIBRESPEED}
         ports:
