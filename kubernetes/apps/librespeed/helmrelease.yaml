@@ -22,9 +22,6 @@ spec:
               tag: 5.4.1
             env:
               TZ: Europe/Stockholm
-            ports:
-              - name: http
-                containerPort: 80
           caddy:
             image:
               repository: caddy
@@ -46,10 +43,13 @@ spec:
       main:
         controller: librespeed
         type: ClusterIP
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: ${DNS_NAME_LIBRESPEED}
         ports:
-          https:
-            port: 443
-            targetPort: https
+          - port: 443
+            targetPort: 443
+            name: https
+            protocol: TCP
     persistence:
       caddyfile:
         type: configMap
