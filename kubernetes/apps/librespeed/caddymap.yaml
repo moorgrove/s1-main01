@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-    name: librespeed-caddyfile
-    namespace: librespeed
+  name: librespeed-caddyfile
+  namespace: librespeed
 data:
-    Caddyfile: |-
-        {
-          auto_https off
-        }
-        :443 {
-          tls /certs/tls.crt /certs/tls.key
-          reverse_proxy 127.0.0.1:80
-        }
+  Caddyfile: |-
+    {
+      auto_https off
+    }
+    :443 {
+      tls /certs/tls.crt /certs/tls.key
+      reverse_proxy 127.0.0.1:80
+    }
