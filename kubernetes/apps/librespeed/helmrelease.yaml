@@ -46,10 +46,9 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: ${DNS_NAME_LIBRESPEED}
         ports:
-          - port: 443
+          https:
+            port: 443
             targetPort: 443
-            name: https
-            protocol: TCP
     persistence:
       caddyfile:
         type: configMap
