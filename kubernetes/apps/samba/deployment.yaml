@@ -111,7 +111,7 @@ spec:
             - "-s"
             - "SVTPlay-DL;/mnt/svtplay-dl;yes;no;no;andreas_hedlund"
             - "-s"
-            - "Backup-HA-Lahalla;/mnt/svtplay-dl;yes;no;no;ha_lahalla"
+            - "Backup-HA-Lahalla;/mnt/backup-ha-lahalla;yes;no;no;ha_lahalla"
             
             # Globala Apple/Time Machine-inställningar
             - "-g"
