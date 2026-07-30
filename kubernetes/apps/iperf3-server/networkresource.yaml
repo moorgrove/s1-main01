@@ -10,6 +10,5 @@ spec:
     namespace: netbird
   groups:
     - name: exit-node-s1-main01
-      exitNode: true
   serviceRef:
     name: iperf3
