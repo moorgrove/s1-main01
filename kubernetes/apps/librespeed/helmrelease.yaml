@@ -49,7 +49,7 @@ spec:
               NB_HOSTNAME: librespeed-s1-main01
             envFrom:
               - secretRef:
-                  name: netbird-secrets
+                  name: librespeed-secrets
             securityContext:
               capabilities:
                 add:
