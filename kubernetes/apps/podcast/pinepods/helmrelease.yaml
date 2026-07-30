@@ -24,8 +24,6 @@ spec:
               kind: Service
               metadata:
                 name: pinepods
-                annotations:
-                  external-dns.alpha.kubernetes.io/hostname: ${DNS_NAME_PINEPODS}
               spec:
                 ports:
                   - name: http
