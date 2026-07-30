@@ -88,4 +88,4 @@ spec:
         advancedMounts:
           librespeed:
             netbird:
-              - path: /etc/netbird
+              - path: /var/lib/netbird
