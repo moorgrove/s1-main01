@@ -43,7 +43,7 @@ spec:
             - name: LLM_PROVIDER
               value: "openai-compatible"
             - name: OPENAI_BASE_URL
-              value: "http://localai.localai.svc.cluster.local/v1"
+              value: "http://192.168.201.120/v1"
             - name: OPENAI_API_KEY
               value: "not-used-but-required"
             - name: OPENAI_MODEL
@@ -51,7 +51,7 @@ spec:
             - name: WHISPER_BACKEND
               value: "openai-api"
             - name: WHISPER_API_BASE_URL
-              value: "http://localai.localai.svc.cluster.local/v1"
+              value: "http://192.168.201.120/v1"
             - name: WHISPER_API_MODEL
               value: "kb-whisper-small"
             - name: WHISPER_API_KEY
