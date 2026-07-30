@@ -81,7 +81,9 @@ spec:
               - path: /certs
                 readOnly: true
       netbird-config:
-        type: emptyDir
+        type: persistentClaim
+        accessMode: ReadWriteOnce
+        size: 100Mi
         advancedMounts:
           librespeed:
             netbird:
