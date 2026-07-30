@@ -75,7 +75,13 @@ spec:
                           capabilities:
                             add:
                               - NET_ADMIN
+                        volumeMounts:
+                          - name: netbird-state
+                            mountPath: /var/lib/netbird
                     volumes:
+                      - name: netbird-state
+                        persistentVolumeClaim:
+                          claimName: pinepods-netbird-pvc
                       - name: caddyfile
                         configMap:
                           name: pinepods-caddyfile

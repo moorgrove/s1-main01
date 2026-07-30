@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: podcast
 resources:
   - secrets.enc.yaml
+  - pvc.yaml
   - helmrepository.yaml
   - helmrelease.yaml
   - caddymap.yaml
