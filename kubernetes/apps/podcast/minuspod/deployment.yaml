@@ -31,12 +31,12 @@ spec:
             - name: MINUSPOD_MASTER_PASSPHRASE
               valueFrom:
                 secretKeyRef:
-                  name: minuspod-secret
+                  name: minuspod-secrets
                   key: master-passphrase
             - name: BASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: minuspod-secret
+                  name: minuspod-secrets
                   key: base-url
             - name: MINUSPOD_PORT
               value: "8000"
