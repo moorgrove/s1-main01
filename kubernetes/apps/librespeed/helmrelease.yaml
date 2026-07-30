@@ -39,6 +39,20 @@ spec:
                 enabled: false
               readiness:
                 enabled: false
+          netbird:
+            image:
+              repository: netbirdio/netbird
+              tag: 0.75.1
+            env:
+              TZ: Europe/Stockholm
+              NB_HOSTNAME: librespeed-s1-main01
+            envFrom:
+              - secretRef:
+                  name: netbird-secrets
+            securityContext:
+              capabilities:
+                add:
+                  - NET_ADMIN
     service:
       main:
         controller: librespeed
@@ -65,3 +79,11 @@ spec:
             caddy:
               - path: /certs
                 readOnly: true
+      netbird-config:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 100Mi
+        advancedMounts:
+          librespeed:
+            netbird:
+              - path: /etc/netbird
