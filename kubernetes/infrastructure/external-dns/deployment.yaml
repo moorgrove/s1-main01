@@ -34,6 +34,8 @@ spec:
             - --webhook-provider-url=http://localhost:8888
             - --publish-internal-services
             - --txt-owner-id=talos-cluster
+            - --policy=sync
+            - --registry=txt
           resources:
             requests:
               cpu: 10m
