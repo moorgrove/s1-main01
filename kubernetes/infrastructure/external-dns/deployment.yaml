@@ -36,6 +36,7 @@ spec:
             - --txt-owner-id=talos-cluster
             - --policy=sync
             - --registry=txt
+            - --interval=5m
           resources:
             requests:
               cpu: 10m
