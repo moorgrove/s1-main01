@@ -6,6 +6,5 @@ resources:
   - secrets.enc.yaml
   - helmrepository.yaml
   - helmrelease.yaml
-  - networkresource.yaml
   - caddymap.yaml
   - certificate.yaml

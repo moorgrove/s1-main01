@@ -65,6 +65,18 @@ spec:
                           - name: tls
                             mountPath: /certs
                             readOnly: true
+                      - name: netbird
+                        image: netbirdio/netbird:0.26.0
+                        env:
+                          - name: NB_HOSTNAME
+                            value: pinepods-s1-main01
+                        envFrom:
+                          - secretRef:
+                              name: pinepods-secrets
+                        securityContext:
+                          capabilities:
+                            add:
+                              - NET_ADMIN
                     volumes:
                       - name: caddyfile
                         configMap:
