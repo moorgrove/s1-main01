@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: podcast
 resources:
   - pvc.yaml
-  - secret.enc.yaml
+  - secrets.enc.yaml
   - deployment.yaml
   - service.yaml
   - certificate.yaml
