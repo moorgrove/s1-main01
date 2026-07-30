@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: podcast
 resources:
   - namespace.yaml
-  - podcast-ad-remover
   - audiobookshelf
   - minuspod
   - pinepods
