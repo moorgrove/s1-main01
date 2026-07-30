@@ -15,6 +15,7 @@ spec:
   values:
     controllers:
       librespeed:
+        strategy: Recreate
         containers:
           app:
             image:
