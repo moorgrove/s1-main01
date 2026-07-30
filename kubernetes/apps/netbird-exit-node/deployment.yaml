@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: netbird
-        image: netbirdio/netbird:0.75.1
+        image: netbirdio/netbird
+        tag: 0.76.0
         securityContext:
           privileged: false
           capabilities:
