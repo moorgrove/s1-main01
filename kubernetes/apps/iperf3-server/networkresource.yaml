@@ -8,6 +8,8 @@ spec:
   networkRouterRef:
     name: s1-main01
     namespace: netbird
-  group: exit-node-s1-main01
+  groups:
+    - name: exit-node-s1-main01
+      exitNode: true
   serviceRef:
     name: iperf3
