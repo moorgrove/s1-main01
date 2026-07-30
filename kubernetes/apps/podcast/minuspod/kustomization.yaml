@@ -9,4 +9,3 @@ resources:
   - service.yaml
   - certificate.yaml
   - caddymap.yaml
-  - networkresource.yaml
