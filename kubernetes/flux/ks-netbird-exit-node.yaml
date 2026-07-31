@@ -4,8 +4,6 @@ metadata:
   name: netbird-exit-node
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: netbird-operator
   interval: 15m
   path: ./kubernetes/apps/netbird-exit-node
   wait: true
