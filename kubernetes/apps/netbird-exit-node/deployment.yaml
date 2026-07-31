@@ -16,10 +16,9 @@ spec:
     spec:
       containers:
       - name: netbird
-        image: netbirdio/netbird
-        tag: 0.76.0
+        image: netbirdio/netbird:0.76.0
         securityContext:
-          privileged: false
+          # privileged: false
           capabilities:
             add: ["NET_ADMIN", "NET_RAW"]
             drop: ["ALL"]
@@ -31,28 +30,21 @@ spec:
             cpu: "1000m"
             memory: "512Mi"
         env:
-        - name: NB_SETUP_KEY
-          valueFrom:
-            secretKeyRef:
-              name: netbird-exit-node-secret
-              key: NB-SETUP-KEY
-        - name: NB_MANAGEMENT_URL
-          valueFrom:
-            secretKeyRef:
-              name: netbird-exit-node-secret
-              key: NB-MANAGEMENT-URL
-        - name: NB_HOSTNAME
-          value: "exit-node-s1-main01"
+          - name: NB_HOSTNAME
+            value: exit-node-s1-main01
+        envFrom:
+          - secretRef:
+              name: exit-node-secrets
         volumeMounts:
-        - name: netbird-config
-          mountPath: /etc/netbird
-        - name: dev-net-tun
-          mountPath: /dev/net/tun
+          - name: netbird-config
+            mountPath: /var/lib/netbird
+          # - name: dev-net-tun
+          #   mountPath: /dev/net/tun
       volumes:
       - name: netbird-config
         persistentVolumeClaim:
-          claimName: netbird-exit-node-pvc
-      - name: dev-net-tun
-        hostPath:
-          path: /dev/net/tun
-          type: CharDevice
+          claimName: netbird-exit-node
+      # - name: dev-net-tun
+      #   hostPath:
+      #     path: /dev/net/tun
+      #     type: CharDevice
