@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: netbird-exit-node
-  namespace: netbird-ecit-node
+  namespace: netbird-exit-node
 spec:
   replicas: 1
   selector:
