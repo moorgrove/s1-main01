@@ -5,10 +5,6 @@ metadata:
   name: podcast-app
   namespace: flux-system
 spec:
-  # dependsOn:
-  #   - name: cilium-infrastructure
-  #   - name: rook-ceph-pools
-  #   - name: storage-infrastructure
   interval: 60m
   path: ./kubernetes/apps/podcast
   prune: false
