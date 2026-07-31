@@ -2,7 +2,7 @@ apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
   name: netbird-exit-isolation
-  namespace: netbird
+  namespace: netbird-exit-node
 spec:
   endpointSelector:
     matchLabels:

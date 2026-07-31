@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: netbird-exit-node-pvc
-  namespace: netbird
+  namespace: netbird-exit-node
 spec:
   accessModes:
     - ReadWriteMany
