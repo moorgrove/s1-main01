@@ -7,3 +7,4 @@ resources:
   - helmrelease.yaml
   - l2announcement.yaml
   - ippool.yaml
+  - confmap.yaml
