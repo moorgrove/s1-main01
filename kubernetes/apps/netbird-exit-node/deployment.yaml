@@ -34,7 +34,7 @@ spec:
             value: exit-node-s1-main01
         envFrom:
           - secretRef:
-              name: exit-node-secrets
+              name: netbird-exit-node-secrets
         volumeMounts:
           - name: netbird-config
             mountPath: /var/lib/netbird
