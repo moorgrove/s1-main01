@@ -38,7 +38,7 @@ spec:
 
     service:
       main:
-        controller: iperf3-server
+        controller: iperf3
         type: ClusterIP
         ports:
           tcp:
