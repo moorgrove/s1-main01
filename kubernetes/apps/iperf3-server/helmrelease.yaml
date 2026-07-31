@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: iperf3
+  name: iperf3-server
   namespace: iperf3-server
 spec:
   interval: 30m
@@ -38,7 +38,7 @@ spec:
 
     service:
       main:
-        controller: iperf3
+        controller: iperf3-server
         type: ClusterIP
         ports:
           tcp:
