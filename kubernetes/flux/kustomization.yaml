@@ -17,7 +17,7 @@ resources:
   - kustomization-podcast.yaml
   - ks-localai.yaml
   - ks-librespeed.yaml
-  - ks-iperf3-server.yaml
+  - ks-iperf3.yaml
   - ks-netbird-operator.yaml
   - ks-cert-manager.yaml
   - ks-external-dns.yaml
