@@ -20,6 +20,5 @@ resources:
   - ks-iperf3.yaml
   - ks-netbird-operator.yaml
   - ks-cert-manager.yaml
-  - ks-external-dns.yaml
   - ks-vaultwarden.yaml
   - ks-netbird-exit-node.yaml
