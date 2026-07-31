@@ -27,7 +27,7 @@ spec:
               repository: netbirdio/netbird
               tag: 0.76.0
             env:
-              NB_HOSTNAME: iperf3-s1-main01
+              NB_HOSTNAME: iperf3-server-s1-main01
             envFrom:
               - secretRef:
                   name: iperf3-secrets
