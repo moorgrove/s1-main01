@@ -78,8 +78,6 @@ spec:
                         env:
                           - name: NB_HOSTNAME
                             value: pinepods-s1-main01
-                          - name: NB_DISABLE_DNS
-                            value: "true"
                         envFrom:
                           - secretRef:
                               name: pinepods-secrets
