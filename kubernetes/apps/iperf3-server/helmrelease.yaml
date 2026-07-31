@@ -22,12 +22,24 @@ spec:
               tag: latest
             args: ["-s"]
 
+          netbird:
+            image:
+              repository: netbirdio/netbird
+              tag: 0.76.0
+            env:
+              NB_HOSTNAME: iperf3-s1-main01
+            envFrom:
+              - secretRef:
+                  name: iperf3-secrets
+            securityContext:
+              capabilities:
+                add:
+                  - NET_ADMIN
+
     service:
       main:
         controller: iperf3
         type: ClusterIP
-        annotations:
-          external-dns.alpha.kubernetes.io/hostname: ${DNS_NAME_IPERF3_SERVER}
         ports:
           tcp:
             port: 5201
@@ -35,3 +47,11 @@ spec:
           udp:
             port: 5201
             protocol: UDP
+
+    persistence:
+      netbird-state:
+        existingClaim: iperf3-netbird
+        advancedMounts:
+          iperf3:
+            netbird:
+              - path: /var/lib/netbird

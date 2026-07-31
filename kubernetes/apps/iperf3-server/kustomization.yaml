@@ -4,6 +4,8 @@ kind: Kustomization
 namespace: iperf3-server
 resources:
   - namespace.yaml
+  - secrets.enc.yaml
+  - pvc.yaml
   - helmrepository.yaml
   - helmrelease.yaml
   - networkresource.yaml
