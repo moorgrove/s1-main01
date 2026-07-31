@@ -45,6 +45,7 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
+
         - name: caddy
           image: caddy:2
           ports:
@@ -63,6 +64,32 @@ spec:
             - name: ssl-certs
               mountPath: /certs
               readOnly: true
+
+        - name: netbird
+          image: netbirdio/netbird:0.76.0
+          env:
+            - name: NB_HOSTNAME
+              value: vaultwarden-s1-main01
+            # - name: NB_DISABLE_DNS
+            #   value: "true"
+          envFrom:
+            - secretRef:
+                name: vaultwarden-secrets
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          volumeMounts:
+            - name: netbird-state
+              mountPath: /var/lib/netbird
+
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -73,3 +100,6 @@ spec:
         - name: caddy-config
           configMap:
             name: vaultwarden-caddyfile
+        - name: netbird-state
+          persistentVolumeClaim:
+            claimName: vaultwarden-netbird
