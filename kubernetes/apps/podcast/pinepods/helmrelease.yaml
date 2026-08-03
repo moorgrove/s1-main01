@@ -169,14 +169,13 @@ spec:
         enabled: true
         storageClass: "ceph-fs-hdd-r2"
         size: 5Gi
-      primary:
-        resources:
-          requests:
-            cpu: 100m
-            memory: 256Mi
-          limits:
-            cpu: 500m
-            memory: 1Gi
+      resources:
+        requests:
+          cpu: 100m
+          memory: 256Mi
+        limits:
+          cpu: 500m
+          memory: 1Gi
 
     valkey:
       enabled: true
