@@ -13,6 +13,83 @@ spec:
         kind: HelmRepository
         name: pinepods
 
+  valuesFrom:
+    - kind: Secret
+      name: pinepods-secrets
+      valuesKey: postgres-password
+      targetPath: postgresql.auth.password
+    - kind: Secret
+      name: pinepods-secrets
+      valuesKey: admin-username
+      targetPath: env.USERNAME
+    - kind: Secret
+      name: pinepods-secrets
+      valuesKey: admin-password
+      targetPath: env.PASSWORD
+    - kind: Secret
+      name: pinepods-secrets
+      valuesKey: admin-fullname
+      targetPath: env.FULLNAME
+    - kind: Secret
+      name: pinepods-secrets
+      valuesKey: admin-email
+      targetPath: env.EMAIL
+    - kind: Secret
+      name: pinepods-secrets
+      valuesKey: app-hostname
+      targetPath: env.HOSTNAME
+
+  values:
+    image:
+      repository: madeofpendletonwool/pinepods
+      tag: latest
+      pullPolicy: IfNotPresent
+
+    service:
+      type: ClusterIP
+      port: 8040
+
+    podpeople:
+      environment:
+        ntfyUrl: ""
+
+    ingress:
+      enabled: false
+
+    persistence:
+      enabled: true
+      downloads:
+        storageClass: "ceph-fs-hdd-r2"
+        size: 20Gi
+      backups:
+        storageClass: "ceph-fs-hdd-r2"
+        size: 5Gi
+
+    postgresql:
+      enabled: true
+      image:
+        registry: docker.io
+        repository: bitnami/postgresql
+        tag: "latest"
+      auth:
+        username: postgres
+        database: pinepods_database
+      persistence:
+        enabled: true
+        storageClass: "ceph-fs-hdd-r2"
+        size: 5Gi
+
+    valkey:
+      enabled: true
+      image:
+        tag: "latest"
+      architecture: standalone
+      auth:
+        enabled: false
+
+    env:
+      DEBUG_MODE: "false"
+
   postRenderers:
     - kustomize:
         patches:
@@ -104,86 +181,23 @@ spec:
                         secret:
                           secretName: pinepods-tls
 
-  valuesFrom:
-    - kind: Secret
-      name: pinepods-secrets
-      valuesKey: postgres-password
-      targetPath: postgresql.auth.password
-    - kind: Secret
-      name: pinepods-secrets
-      valuesKey: admin-username
-      targetPath: env.USERNAME
-    - kind: Secret
-      name: pinepods-secrets
-      valuesKey: admin-password
-      targetPath: env.PASSWORD
-    - kind: Secret
-      name: pinepods-secrets
-      valuesKey: admin-fullname
-      targetPath: env.FULLNAME
-    - kind: Secret
-      name: pinepods-secrets
-      valuesKey: admin-email
-      targetPath: env.EMAIL
-    - kind: Secret
-      name: pinepods-secrets
-      valuesKey: app-hostname
-      targetPath: env.HOSTNAME
-
-  values:
-    image:
-      repository: madeofpendletonwool/pinepods
-      tag: latest
-      pullPolicy: IfNotPresent
-
-    service:
-      type: ClusterIP
-      port: 8040
-
-    podpeople:
-      environment:
-        ntfyUrl: ""
-
-    ingress:
-      enabled: false
-
-    persistence:
-      enabled: true
-      downloads:
-        storageClass: "ceph-fs-hdd-r2"
-        size: 20Gi
-      backups:
-        storageClass: "ceph-fs-hdd-r2"
-        size: 5Gi
-
-    postgresql:
-      enabled: true
-      image:
-        registry: docker.io
-        repository: bitnami/postgresql
-        tag: "latest"
-      auth:
-        username: postgres
-        database: pinepods_database
-      persistence:
-        enabled: true
-        storageClass: "ceph-fs-hdd-r2"
-        size: 5Gi
-      resources:
-        requests:
-          cpu: 100m
-          memory: 256Mi
-        limits:
-          cpu: 500m
-          memory: 1Gi
-
-    valkey:
-      enabled: true
-      image:
-        tag: "latest"
-      architecture: standalone
-      auth:
-        enabled: false
-
-    env:
-      DEBUG_MODE: "false"
+          - target:
+              kind: StatefulSet
+              name: pinepods-postgresql
+            patch: |-
+              apiVersion: apps/v1
+              kind: StatefulSet
+              metadata:
+                name: pinepods-postgresql
+              spec:
+                template:
+                  spec:
+                    containers:
+                      - name: postgresql
+                        resources:
+                          requests:
+                            cpu: 100m
+                            memory: 256Mi
+                          limits:
+                            cpu: 500m
+                            memory: 1Gi
