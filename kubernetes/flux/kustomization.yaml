@@ -21,3 +21,4 @@ resources:
   - ks-cert-manager.yaml
   - ks-vaultwarden.yaml
   - ks-netbird-exit-node.yaml
+  - ks-renovate.yaml
