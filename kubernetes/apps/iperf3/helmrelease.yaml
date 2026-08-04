@@ -18,7 +18,8 @@ spec:
         containers:
           app:
             image:
-              repository: frauhottelmann/docker-iperf3:3.19
+              repository: frauhottelmann/docker-iperf3
+              tag: "3.19"
             args: ["-s"]
 
           netbird:
