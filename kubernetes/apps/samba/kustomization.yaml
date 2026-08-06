@@ -3,6 +3,8 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - samba-secrets.enc.yaml
+  - secrets.enc.yaml
   - pvc.yaml
   - deployment.yaml
   - service.yaml
+  - replicationsource.yaml
