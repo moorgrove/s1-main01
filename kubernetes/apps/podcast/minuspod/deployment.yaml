@@ -72,8 +72,6 @@ spec:
           volumeMounts:
             - name: minuspod-data
               mountPath: /app/data
-            - name: minuspod-assets
-              mountPath: /app/assets
 
         - name: caddy
           image: caddy:2.9-alpine
@@ -130,9 +128,6 @@ spec:
         - name: minuspod-data
           persistentVolumeClaim:
             claimName: minuspod
-        - name: minuspod-assets
-          persistentVolumeClaim:
-            claimName: minuspod-assets
         - name: caddyfile
           configMap:
             name: minuspod-caddyfile

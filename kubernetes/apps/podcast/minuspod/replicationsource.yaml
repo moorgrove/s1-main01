@@ -1,10 +1,10 @@
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: minuspod-assets-backup
+  name: minuspod-data-backup
   namespace: podcast
 spec:
-  sourcePVC: minuspod-assets
+  sourcePVC: minuspod
   trigger:
     schedule: "0 * * * *"
   restic:
@@ -15,6 +15,12 @@ spec:
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 5Gi
+    moverSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
     retain:
+      hourly: 24
       daily: 7
-      monthly: 1
+      weekly: 2
