@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - shared-pv.yaml
   - mkdir-init-job.yaml
+  - volumesnapshotclass.yaml
