@@ -1,0 +1,76 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: pinepods-db-backup
+  namespace: podcast
+spec:
+  sourcePVC: data-pinepods-postgresql-0
+  trigger:
+    schedule: "0 * * * *"
+  restic:
+    repository: volsync-pinepods-db-secrets
+    copyMethod: Snapshot
+    volumeSnapshotClassName: csi-rbdplugin-snapclass
+    pruneIntervalDays: 14
+    retain:
+      hourly: 24
+      daily: 7
+      weekly: 4
+      monthly: 12
+    moverSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: pinepods-backups-backup
+  namespace: podcast
+spec:
+  sourcePVC: pinepods-backups
+  trigger:
+    schedule: "15 * * * *"
+  restic:
+    repository: volsync-pinepods-backups-secrets
+    copyMethod: Snapshot
+    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    pruneIntervalDays: 14
+    retain:
+      hourly: 24
+      daily: 7
+      weekly: 4
+      monthly: 12
+    moverSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: pinepods-downloads-backup
+  namespace: podcast
+spec:
+  sourcePVC: pinepods-downloads
+  trigger:
+    schedule: "0 3 * * *"
+  restic:
+    repository: volsync-pinepods-downloads-secrets
+    copyMethod: Snapshot
+    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    pruneIntervalDays: 28
+    retain:
+      daily: 7
+      weekly: 4
+      monthly: 6
+    moverSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
