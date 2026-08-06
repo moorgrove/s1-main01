@@ -1,0 +1,25 @@
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: minuspod-assets-backup
+  namespace: podcast
+spec:
+  sourcePVC: minuspod-assets
+  trigger:
+    schedule: "0 * * * *"
+  restic:
+    copyMethod: Snapshot
+    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    repository: volsync-minuspod-secrets
+    pruneIntervalDays: 28
+    cacheAccessModes:
+      - ReadWriteOnce
+    cacheCapacity: 5Gi
+    moverSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    retain:
+      daily: 7
+      monthly: 1

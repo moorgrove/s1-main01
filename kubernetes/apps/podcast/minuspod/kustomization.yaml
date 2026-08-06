@@ -9,3 +9,4 @@ resources:
   - service.yaml
   - certificate.yaml
   - caddymap.yaml
+  - replicationsource.yaml
