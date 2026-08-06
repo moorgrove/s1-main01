@@ -22,3 +22,4 @@ resources:
   - ks-vaultwarden.yaml
   - ks-netbird-exit-node.yaml
   - ks-renovate.yaml
+  - ks-snapshot-controller.yaml
