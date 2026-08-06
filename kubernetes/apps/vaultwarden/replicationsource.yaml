@@ -1,0 +1,21 @@
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: vaultwarden-data-backup
+  namespace: vaultwarden
+spec:
+  sourcePVC: vaultwarden-data
+  trigger:
+    schedule: "0 3 * * *"
+  restic:
+    copyMethod: Snapshot
+    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    repository: volsync-vaultwarden-secrets
+    cacheAccessModes:
+      - ReadWriteOnce
+    cacheCapacity: 5Gi
+    retain:
+      daily: 7
+      weekly: 4
+      monthly: 12
+      yearly: 3
