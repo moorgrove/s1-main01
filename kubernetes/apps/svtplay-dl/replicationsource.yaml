@@ -8,7 +8,7 @@ spec:
   trigger:
     schedule: "0 3 * * *"
   restic:
-    copyMethod: Direct
+    copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
     repository: volsync-svtplay-dl-secrets
     pruneIntervalDays: 28
