@@ -14,6 +14,13 @@ spec:
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 5Gi
+    moverSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+      seccompProfile:
+        type: RuntimeDefault
     retain:
       daily: 7
       weekly: 4
