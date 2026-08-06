@@ -6,7 +6,7 @@ metadata:
 spec:
   sourcePVC: vaultwarden-data
   trigger:
-    schedule: "0 3 * * *"
+    schedule: "0/10 * * * *"
   restic:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
