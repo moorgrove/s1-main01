@@ -1,0 +1,25 @@
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: svtplay-dl-backup
+  namespace: svtplay-dl
+spec:
+  sourcePVC: svtplay-dl
+  trigger:
+    schedule: "0 3 * * *"
+  restic:
+    copyMethod: Snapshot
+    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    repository: volsync-svtplay-dl-secrets
+    pruneIntervalDays: 28
+    cacheAccessModes:
+      - ReadWriteOnce
+    cacheCapacity: 5Gi
+    moverSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    retain:
+      daily: 7
+      weekly: 2
