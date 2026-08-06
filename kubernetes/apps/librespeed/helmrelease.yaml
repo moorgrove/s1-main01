@@ -83,6 +83,7 @@ spec:
       netbird-config:
         enabled: true
         type: persistentVolumeClaim
+        nameOverride: netbird
         accessMode: ReadWriteOnce
         size: 100Mi
         advancedMounts:
