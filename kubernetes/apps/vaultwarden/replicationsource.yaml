@@ -11,6 +11,7 @@ spec:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
     repository: volsync-vaultwarden-secrets
+    pruneIntervalDays: 28
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 5Gi
@@ -20,6 +21,7 @@ spec:
       runAsGroup: 1000
       fsGroup: 1000
     retain:
+      hourly: 24
       daily: 7
       weekly: 4
       monthly: 12
