@@ -16,8 +16,9 @@ spec:
     cacheCapacity: 5Gi
     moverSecurityContext:
       runAsNonRoot: true
-      seccompProfile:
-        type: RuntimeDefault
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
     retain:
       daily: 7
       weekly: 4
