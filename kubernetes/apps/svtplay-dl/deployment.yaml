@@ -21,7 +21,7 @@ spec:
       #   kubernetes.io/hostname: s1-main01-cpwr11
       containers:
       - name: downloader
-        image: python:3.11-alpine
+        image: python:3.14-alpine
         command:
         - sh
         - -c
