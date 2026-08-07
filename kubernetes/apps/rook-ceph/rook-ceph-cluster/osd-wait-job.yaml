@@ -41,7 +41,7 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: wait
-          image: alpine/k8s:1.30.0
+          image: alpine/k8s:1.36.2
           command:
             - /bin/bash
             - -c
