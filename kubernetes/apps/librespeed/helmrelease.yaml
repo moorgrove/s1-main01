@@ -26,7 +26,7 @@ spec:
           caddy:
             image:
               repository: caddy
-              tag: 2.9-alpine
+              tag: 2.11-alpine
             command:
               - caddy
               - run
