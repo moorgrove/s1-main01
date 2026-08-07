@@ -80,10 +80,9 @@ spec:
             caddy:
               - path: /certs
                 readOnly: true
-      netbird-config:
+      netbird:
         enabled: true
         type: persistentVolumeClaim
-        nameOverride: netbird
         accessMode: ReadWriteOnce
         size: 100Mi
         advancedMounts:
