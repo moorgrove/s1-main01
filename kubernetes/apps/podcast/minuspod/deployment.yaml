@@ -74,7 +74,7 @@ spec:
               mountPath: /app/data
 
         - name: caddy
-          image: caddy:2.9-alpine
+          image: caddy:2.11-alpine
           command:
             - caddy
             - run
