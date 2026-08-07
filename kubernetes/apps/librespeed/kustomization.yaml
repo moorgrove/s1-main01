@@ -4,6 +4,7 @@ namespace: librespeed
 resources:
   - namespace.yaml
   - secrets.enc.yaml
+  - pvc.yaml
   - helmrepository.yaml
   - helmrelease.yaml
   - certificate.yaml

@@ -82,9 +82,7 @@ spec:
                 readOnly: true
       netbird:
         enabled: true
-        type: persistentVolumeClaim
-        accessMode: ReadWriteOnce
-        size: 100Mi
+        existingClaim: librespeed-netbird
         advancedMounts:
           librespeed:
             netbird:
