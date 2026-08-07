@@ -11,5 +11,11 @@
   },
   "kustomize": {
     "fileMatch": ["kubernetes/.+\\.yaml$"]
-  }
+  },
+  "packageRules": [
+    {
+      "matchPackageNames": ["quay.io/ceph/ceph"],
+      "allowedVersions": "<21.0.0"
+    }
+  ]
 }
