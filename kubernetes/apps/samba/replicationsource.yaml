@@ -12,7 +12,7 @@ spec:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
     repository: volsync-samba-backup-andreas-hedlund-secrets
-    pruneIntervalDays: 28
+    pruneIntervalDays: 14
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 10Gi
@@ -20,9 +20,7 @@ spec:
       runAsUser: 0
       runAsGroup: 0
     retain:
-      daily: 7
-      weekly: 2
-      monthly: 6
+      last: "2"
 
 ---
 apiVersion: volsync.backube/v1alpha1
@@ -38,7 +36,7 @@ spec:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
     repository: volsync-samba-backup-ha-lahalla-secrets
-    pruneIntervalDays: 28
+    pruneIntervalDays: 14
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 10Gi
@@ -46,9 +44,7 @@ spec:
       runAsUser: 0
       runAsGroup: 0
     retain:
-      daily: 7
-      weekly: 2
-      monthly: 6
+      last: "2"
 
 ---
 apiVersion: volsync.backube/v1alpha1
@@ -64,7 +60,7 @@ spec:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
     repository: volsync-samba-backup-johanna-hedlund-secrets
-    pruneIntervalDays: 28
+    pruneIntervalDays: 14
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 15Gi
@@ -72,9 +68,7 @@ spec:
       runAsUser: 0
       runAsGroup: 0
     retain:
-      daily: 7
-      weekly: 2
-      monthly: 6
+      last: "2"
 
 ---
 apiVersion: volsync.backube/v1alpha1
@@ -116,7 +110,7 @@ spec:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
     repository: volsync-samba-backup-claes-hedlund-secrets
-    pruneIntervalDays: 28
+    pruneIntervalDays: 14
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 10Gi
@@ -124,6 +118,4 @@ spec:
       runAsUser: 0
       runAsGroup: 0
     retain:
-      daily: 7
-      weekly: 2
-      monthly: 6
+      last: "2"
