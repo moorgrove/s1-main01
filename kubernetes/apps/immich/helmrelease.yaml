@@ -60,6 +60,8 @@ spec:
       controllers:
         main:
           pod:
+            nodeSelector:
+              kubernetes.io/hostname: s1-main01-cpwr11
             securityContext:
               supplementalGroups:
                 - REPLACE_WITH_RENDER_GID
