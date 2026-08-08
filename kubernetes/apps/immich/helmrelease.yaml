@@ -38,11 +38,11 @@ spec:
         library:
           existingClaim: immich-library
 
-      configuration:
-        ffmpeg:
-          accel: vaapi
-          targetDevices:
-            - /dev/dri/renderD128
+      # configuration:
+      #   ffmpeg:
+      #     accel: vaapi
+      #     targetDevices:
+      #       - /dev/dri/renderD128
 
     valkey:
       enabled: true
@@ -62,9 +62,9 @@ spec:
           pod:
             nodeSelector:
               kubernetes.io/hostname: s1-main01-cpwr11
-            securityContext:
-              supplementalGroups:
-                - REPLACE_WITH_RENDER_GID
+            # securityContext:
+            #   supplementalGroups:
+            #     - REPLACE_WITH_RENDER_GID
           containers:
             main:
               resources:
@@ -105,15 +105,15 @@ spec:
           enabled: false
 
       persistence:
-        dri:
-          type: hostPath
-          hostPath: /dev/dri
-          hostPathType: Directory
-          advancedMounts:
-            main:
-              main:
-                - path: /dev/dri
-              netbird: []
+        # dri:
+        #   type: hostPath
+        #   hostPath: /dev/dri
+        #   hostPathType: Directory
+        #   advancedMounts:
+        #     main:
+        #       main:
+        #         - path: /dev/dri
+        #       netbird: []
 
         netbird-data:
           type: persistentVolumeClaim
