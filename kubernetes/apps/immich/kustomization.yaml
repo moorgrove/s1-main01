@@ -5,7 +5,7 @@ resources:
   - namespace.yaml
   - secrets.enc.yaml
   - pvc.yaml
-  - postgres.yaml
+  - database.yaml
   - helmrepository.yaml
   - helmrelease.yaml
   - certificate.yaml
