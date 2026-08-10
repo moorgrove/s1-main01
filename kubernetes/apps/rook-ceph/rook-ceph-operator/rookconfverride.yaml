@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: rook-config-override
+    namespace: rook-ceph
+data:
+    config: |-
+        [global]
+        client_mount_timeout = 5
+        mon_client_ping_timeout = 5
