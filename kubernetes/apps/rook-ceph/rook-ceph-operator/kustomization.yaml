@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - helmrelease-operator.yaml
   - rbac.yaml
+  - rbac-leader-election.yaml
