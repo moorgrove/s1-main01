@@ -65,6 +65,15 @@ spec:
             # securityContext:
             #   supplementalGroups:
             #     - REPLACE_WITH_RENDER_GID
+          initContainers:
+            init-resolv-conf:
+              image:
+                repository: busybox
+                tag: "1.36"
+              command:
+                - sh
+                - -c
+                - cp /etc/resolv.conf /resolv-conf/resolv.conf
           containers:
             main:
               resources:
@@ -122,6 +131,16 @@ spec:
             main:
               netbird:
                 - path: /var/lib/netbird
+
+        resolv-conf:
+          type: emptyDir
+          advancedMounts:
+            main:
+              init-resolv-conf:
+                - path: /resolv-conf
+              netbird:
+                - path: /etc/resolv.conf
+                  subPath: resolv.conf
 
         caddy-config:
           type: configMap
