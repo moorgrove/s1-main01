@@ -123,7 +123,7 @@ spec:
                   spec:
                     initContainers:
                       - name: seed-netbird-resolv
-                        image: busybox:1.36
+                        image: busybox:1.38
                         command:
                           - sh
                           - -c
