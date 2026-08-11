@@ -133,7 +133,7 @@ spec:
                             mountPath: /netbird-resolv
                     containers:
                       - name: caddy
-                        image: caddy:2.9-alpine
+                        image: caddy:2.11-alpine
                         command:
                           - caddy
                           - run
