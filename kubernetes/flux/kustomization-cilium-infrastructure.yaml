@@ -13,3 +13,7 @@ spec:
   prune: true
   wait: true
   timeout: 30m
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: flux-podcast-secrets

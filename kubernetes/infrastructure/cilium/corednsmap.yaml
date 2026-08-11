@@ -17,7 +17,7 @@ data:
             prometheus :9153
 
             # --- NetBird Rewrite for Pinepods ---
-            rewrite name exact minuspod-s1-main01.netbird.vpn.ahed.se minuspod.podcast.svc.cluster.local
+            rewrite name exact ${DNS_NAME_MINUSPOD} minuspod.podcast.svc.cluster.local
 
             kubernetes cluster.local in-addr.arpa ip6.arpa {
                 pods insecure
