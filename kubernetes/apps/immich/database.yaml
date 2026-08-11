@@ -16,6 +16,7 @@ spec:
       postInitApplicationSQL:
         - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
         - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
+        - ALTER ROLE immich WITH SUPERUSER;
   storage:
     size: 20Gi
     storageClass: ceph-rbd-hdd-r2
