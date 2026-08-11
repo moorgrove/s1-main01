@@ -18,6 +18,7 @@ spec:
     monitoring:
       enabled: false
       metricsDisabled: true
+      createPrometheusRules: false
     csi:
       priorityClassName: urgent-priority
       provisionerPriorityClassName: urgent-priority
