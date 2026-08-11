@@ -13,7 +13,7 @@ spec:
     initdb:
       database: immich
       owner: immich
-      postInitSQL:
+      postInitApplicationSQL:
         - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
         - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
   storage:
