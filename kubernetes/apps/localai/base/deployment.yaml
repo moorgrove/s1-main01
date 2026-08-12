@@ -44,7 +44,7 @@ spec:
               key: p2p-token
         resources:
           requests:
-            cpu: "500m"
+            cpu: "50m"
             memory: "512Mi"
           limits:
             cpu: "5"
