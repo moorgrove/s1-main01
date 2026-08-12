@@ -9,4 +9,4 @@ resources:
   - helmrelease.yaml
   - certificate.yaml
   - caddymap.yaml
-  - replicationsource.yaml
+  # - replicationsource.yaml
