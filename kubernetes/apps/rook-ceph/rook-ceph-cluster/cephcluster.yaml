@@ -80,6 +80,8 @@ spec:
   dashboard:
     enabled: true
     ssl: false
+    prometheusEndpoint: "http://kube-prometheus-stack-prometheus.monitoring.svc:9090"
+    
   storage:
     useAllNodes: false
     useAllDevices: false
