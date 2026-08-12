@@ -20,8 +20,8 @@ spec:
       createPrometheusRules: true
     config:
       mgr:
-        mgr/dashboard/prometheus_api_host: "http://prometheus-operated.monitoring.svc:9090"
-        mgr/dashboard/alertmanager_api_host: "http://alertmanager-operated.monitoring.svc:9093"
+        mgr/dashboard/prometheus_api_host: "http://kube-prometheus-stack-prometheus.monitoring.svc:9090"
+        mgr/dashboard/alertmanager_api_host: "http://kube-prometheus-stack-alertmanager.monitoring.svc:9093"
     csi:
       priorityClassName: urgent-priority
       provisionerPriorityClassName: urgent-priority
