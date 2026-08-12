@@ -86,12 +86,11 @@ spec:
       architecture: standalone
       auth:
         enabled: false
-      resources:
-        requests:
-          cpu: 10m
-          memory: 64Mi
-        limits:
-          memory: 256Mi
+      primary:
+        resources:
+          requests:
+            cpu: 10m
+            memory: 64Mi
 
     env:
       DEBUG_MODE: "false"
