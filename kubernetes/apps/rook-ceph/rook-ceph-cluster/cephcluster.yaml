@@ -60,6 +60,8 @@ spec:
     modules:
       - name: rook
         enabled: true
+      - name: prometheus
+        enabled: false
   placement:
     mon:
       tolerations:
