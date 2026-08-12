@@ -18,11 +18,30 @@ spec:
   priorityClassNames:
     all: medium-priority
     mon: high-priority
-    osd: low-priority
+    osd: urgent-priority
     prepareosd: low-priority
     mgr: high-priority
     crashcollector: low-priority
     exporter: low-priority
+  resources:
+    osd:
+      requests:
+        cpu: "1000m"
+        memory: "2Gi"
+      limits:
+        memory: "4Gi"
+    mon:
+      requests:
+        cpu: "500m"
+        memory: "1Gi"
+      limits:
+        memory: "2Gi"
+    mgr:
+      requests:
+        cpu: "500m"
+        memory: "1Gi"
+      limits:
+        memory: "2Gi"
   cephConfig:
     global:
       mon_osd_down_out_interval: "3600"
@@ -65,7 +84,7 @@ spec:
     useAllNodes: false
     useAllDevices: false
     config:
-        encryptedDevice: "true"
+      encryptedDevice: "true"
     nodes:
       - name: s1-main01-cpwr10
         devices:
