@@ -96,6 +96,7 @@ spec:
             - secretRef:
                 name: grafana-netbird-secrets
           securityContext:
+            runAsUser: 0
             capabilities:
               add:
                 - NET_ADMIN
