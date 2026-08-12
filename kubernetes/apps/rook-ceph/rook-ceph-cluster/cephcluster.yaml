@@ -59,7 +59,7 @@ spec:
     allowMultiplePerNode: false
     modules:
       - name: rook
-        enabled: true
+        enabled: false
   placement:
     mon:
       tolerations:
