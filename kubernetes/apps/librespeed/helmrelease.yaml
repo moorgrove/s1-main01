@@ -43,7 +43,7 @@ spec:
           netbird:
             image:
               repository: netbirdio/netbird
-              tag: 0.76.3
+              tag: 0.77.0
             env:
               TZ: Europe/Stockholm
               NB_HOSTNAME: librespeed-s1-main01
