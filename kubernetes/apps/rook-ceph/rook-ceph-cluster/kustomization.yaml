@@ -6,4 +6,5 @@ resources:
   - builtin-pool.yaml
   - toolbox.yaml
   - osd-wait-job.yaml
+  - servicemonitors.yaml
   - dashboard-service.yaml
