@@ -93,7 +93,7 @@ spec:
             memory: 64Mi
 
     env:
-      DEBUG_MODE: "false"
+      DEBUG_MODE: "true"
 
   postRenderers:
     - kustomize:
