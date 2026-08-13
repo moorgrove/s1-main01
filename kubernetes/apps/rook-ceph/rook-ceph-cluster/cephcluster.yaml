@@ -60,8 +60,6 @@ spec:
     modules:
       - name: rook
         enabled: true
-      - name: progress
-        enabled: false
   placement:
     mon:
       tolerations:
