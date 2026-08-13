@@ -19,6 +19,19 @@ spec:
     crds: Create
   upgrade:
     crds: CreateReplace
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Deployment
+              name: kube-prometheus-stack-grafana
+            patch: |
+              - op: add
+                path: /spec/template/spec/volumes/-
+                value:
+                  name: caddy-tls
+                  secret:
+                    secretName: grafana-tls
   values:
     prometheus:
       prometheusSpec:
@@ -129,14 +142,10 @@ spec:
         - name: resolv-conf
           emptyDir: {}
         - name: netbird-data
-          persistentVolumeClaim:
-            claimName: grafana-netbird
+          existingClaim: grafana-netbird
         - name: caddy-config
           configMap:
             name: grafana-caddy-config
-        - name: caddy-tls
-          secret:
-            secretName: grafana-tls
 
       service:
         enabled: true
