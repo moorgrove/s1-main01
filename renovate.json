@@ -3,6 +3,7 @@
   "extends": [
     "config:recommended"
   ],
+  "platformAutomerge": true,
   "flux": {
     "fileMatch": ["kubernetes/.+\\.yaml$"]
   },
@@ -16,6 +17,11 @@
     {
       "matchPackageNames": ["quay.io/ceph/ceph"],
       "allowedVersions": "<21.0.0"
+    },
+    {
+      "description": "Automerge renovate updates",
+      "matchPackagePatterns": ["renovate"],
+      "automerge": true
     }
   ],
   "customManagers": [
