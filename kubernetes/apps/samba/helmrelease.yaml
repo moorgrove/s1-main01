@@ -180,7 +180,7 @@ spec:
       netbird-state:
         existingClaim: samba-netbird
         advancedMounts:
-          samba:
+          main:
             netbird:
               - path: /var/lib/netbird
 
