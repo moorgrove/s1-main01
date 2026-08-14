@@ -28,7 +28,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: backup-andreas-hedlund
+  name: backup-m-fe-andreas-hedlund
   namespace: samba
 spec:
   accessModes:
