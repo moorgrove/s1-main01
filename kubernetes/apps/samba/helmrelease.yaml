@@ -1,0 +1,196 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: samba
+  namespace: samba
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      priorityClassName: medium-priority
+
+    controllers:
+      main:
+        type: deployment
+        strategy: Recreate
+        
+        initContainers:
+          fix-permissions:
+            image:
+              repository: alpine
+              tag: latest
+            resources:
+              requests:
+                cpu: 10m
+                memory: 32Mi
+              limits:
+                cpu: 100m
+                memory: 128Mi
+            command:
+              - sh
+              - -c
+              - |
+                chmod 777 /mnt/nas \
+                          /mnt/backup-andreas-hedlund \
+                          /mnt/tm-claes-hedlund \
+                          /mnt/backup-johanna-hedlund \
+                          /mnt/svtplay-dl \
+                          /mnt/backup-ha-lahalla
+
+        containers:
+          main:
+            image:
+              repository: ghcr.io/servercontainers/samba
+              tag: latest
+            resources:
+              requests:
+                cpu: 50m
+                memory: 256Mi
+              limits:
+                cpu: 1000m
+                memory: 512Mi
+            env:
+              ACCOUNT_andreas_hedlund:
+                valueFrom:
+                  secretKeyRef:
+                    name: samba-auth
+                    key: pass_andreas_hedlund
+              ACCOUNT_claes_hedlund_tm:
+                valueFrom:
+                  secretKeyRef:
+                    name: samba-auth
+                    key: pass_claes_hedlund
+              ACCOUNT_johanna_hedlund:
+                valueFrom:
+                  secretKeyRef:
+                    name: samba-auth
+                    key: pass_johanna_hedlund
+              ACCOUNT_ha_lahalla:
+                valueFrom:
+                  secretKeyRef:
+                    name: samba-auth
+                    key: pass_ha_lahalla
+            ports:
+              - name: smb
+                containerPort: 445
+
+    service:
+      main:
+        controller: main
+        type: LoadBalancer
+        annotations:
+          io.cilium/lb-ipam-ips: "192.168.201.101"
+        ports:
+          smb:
+            port: 445
+            protocol: TCP
+
+    configMaps:
+      samba-config:
+        enabled: true
+        data:
+          smb.conf: |
+            [global]
+               workgroup = WORKGROUP
+               server string = Kubernetes Samba NAS
+               server role = standalone server
+               log level = 1
+               map to guest = Bad User
+               usershare allow guests = no
+
+               # Globala Apple / macOS / VFS Fruit-optimeringar
+               vfs objects = fruit streams_xattr
+               fruit:aapl = yes
+               fruit:time machine = yes
+               fruit:model = Macpro
+               fruit:metadata = stream
+               fruit:posix_rename = yes
+               fruit:zero_file_id = yes
+               fruit:wipe_intentionally_left_blank_rfork = yes
+               fruit:delete_empty_adfiles = yes
+
+            [NAS]
+               path = /mnt/nas
+               browseable = yes
+               read only = no
+               valid users = andreas_hedlund
+
+            [Backup-Andreas-Hedlund]
+               path = /mnt/backup-andreas-hedlund
+               browseable = yes
+               read only = no
+               valid users = andreas_hedlund
+
+            [TM-Claes-Hedlund]
+               path = /mnt/tm-claes-hedlund
+               browseable = yes
+               read only = no
+               valid users = claes_hedlund_tm
+
+            [Backup-Johanna-Hedlund]
+               path = /mnt/backup-johanna-hedlund
+               browseable = yes
+               read only = no
+               valid users = johanna_hedlund
+
+            [SVTPlay-DL]
+               path = /mnt/svtplay-dl
+               browseable = yes
+               read only = no
+               valid users = andreas_hedlund
+
+            [Backup-HA-Lahalla]
+               path = /mnt/backup-ha-lahalla
+               browseable = yes
+               read only = no
+               valid users = ha_lahalla
+
+    persistence:
+      config:
+        type: configMap
+        name: samba-config
+        advancedMounts:
+          main:
+            main:
+              - path: /container/config/samba/smb.conf
+                subPath: smb.conf
+
+      vol-nas:
+        type: persistentVolumeClaim
+        existingClaim: nas
+        globalMounts:
+          - path: /mnt/nas
+      vol-backup-andreas:
+        type: persistentVolumeClaim
+        existingClaim: backup-andreas-hedlund
+        globalMounts:
+          - path: /mnt/backup-andreas-hedlund
+      vol-tm-claes:
+        type: persistentVolumeClaim
+        existingClaim: tm-claes-hedlund
+        globalMounts:
+          - path: /mnt/tm-claes-hedlund
+      vol-backup-johanna:
+        type: persistentVolumeClaim
+        existingClaim: backup-johanna-hedlund
+        globalMounts:
+          - path: /mnt/backup-johanna-hedlund
+      vol-svtplay:
+        type: persistentVolumeClaim
+        existingClaim: svtplay-dl-samba
+        globalMounts:
+          - path: /mnt/svtplay-dl
+      vol-backup-ha:
+        type: persistentVolumeClaim
+        existingClaim: backup-ha-lahalla
+        globalMounts:
+          - path: /mnt/backup-ha-lahalla
