@@ -1,3 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: samba-netbird
+  namespace: samba
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: "ceph-fs-hdd-r2"
+  resources:
+    requests:
+      storage: 100Mi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

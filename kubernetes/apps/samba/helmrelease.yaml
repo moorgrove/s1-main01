@@ -177,6 +177,12 @@ spec:
             main:
               - path: /container/config/samba/smb.conf
                 subPath: smb.conf
+      netbird-state:
+        existingClaim: samba-netbird
+        advancedMounts:
+          iperf3:
+            netbird:
+              - path: /var/lib/netbird
 
       vol-nas:
         type: persistentVolumeClaim
