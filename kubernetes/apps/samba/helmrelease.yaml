@@ -83,7 +83,7 @@ spec:
               - name: smb
                 containerPort: 445
 
-        netbird:
+          netbird:
             image:
               repository: netbirdio/netbird
               tag: 0.77.0
