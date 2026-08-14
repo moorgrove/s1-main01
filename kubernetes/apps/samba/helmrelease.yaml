@@ -63,7 +63,7 @@ spec:
                 memory: 256Mi
               limits:
                 cpu: 1000m
-                memory: 512Mi
+                memory: 2Gi
             env:
               SAMBA_CONF_WORKGROUP: "WORKGROUP"
               SAMBA_CONF_SERVER_STRING: "Samba-s1-main01"
