@@ -67,7 +67,7 @@ spec:
             env:
               SAMBA_CONF_WORKGROUP: "WORKGROUP"
               SAMBA_CONF_SERVER_STRING: "Samba-s1-main01"
-              SAMBA_CONF_MAP_TO_GUEST: "Guest-User"
+              SAMBA_CONF_MAP_TO_GUEST: "Bad User"
               SAMBA_CONF_LOG_LEVEL: "1"
               ACCOUNT_andreas_hedlund:
                 valueFrom:
@@ -129,7 +129,7 @@ spec:
                server string = Samba-s1-main01
                server role = standalone server
                log level = 1
-               map to guest = Guest-User
+               map to guest = Bad User
                usershare allow guests = no
 
                # Globala Apple / macOS / VFS Fruit-optimeringar
