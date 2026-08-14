@@ -42,7 +42,7 @@ spec:
                 chmod 777 /mnt/nas \
                           /mnt/backup-andreas-hedlund-m-fe \
                           /mnt/tm-claes-hedlund \
-                          /mnt/backup-johanna-hedlund \
+                          /mnt/backup-johanna-hedlund-macbook \
                           /mnt/svtplay-dl \
                           /mnt/backup-ha-lahalla
 
@@ -150,8 +150,8 @@ spec:
                read only = no
                valid users = claes_hedlund_tm
 
-            [Backup-Johanna-Hedlund]
-               path = /mnt/backup-johanna-hedlund
+            [backup-johanna-hedlund-macbook]
+               path = /mnt/backup-johanna-hedlund-macbook
                browseable = yes
                read only = no
                valid users = johanna_hedlund
@@ -201,9 +201,9 @@ spec:
           - path: /mnt/tm-claes-hedlund
       vol-backup-johanna:
         type: persistentVolumeClaim
-        existingClaim: backup-johanna-hedlund
+        existingClaim: backup-johanna-hedlund-macbook
         globalMounts:
-          - path: /mnt/backup-johanna-hedlund
+          - path: /mnt/backup-johanna-hedlund-macbook
       vol-svtplay:
         type: persistentVolumeClaim
         existingClaim: svtplay-dl-samba

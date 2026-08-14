@@ -50,16 +50,16 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: samba-backup-johanna-hedlund-backup
+  name: samba-backup-johanna-hedlund-macbook-backup
   namespace: samba
 spec:
-  sourcePVC: backup-johanna-hedlund
+  sourcePVC: backup-johanna-hedlund-macbook
   trigger:
     schedule: "30 3 * * *"
   restic:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
-    repository: volsync-samba-backup-johanna-hedlund-secrets
+    repository: volsync-samba-backup-johanna-hedlund-macbook-secrets
     pruneIntervalDays: 14
     cacheAccessModes:
       - ReadWriteOnce
