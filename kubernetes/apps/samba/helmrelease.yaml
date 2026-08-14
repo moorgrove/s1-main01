@@ -17,6 +17,7 @@ spec:
     defaultPodOptions:
       automountServiceAccountToken: false
       priorityClassName: medium-priority
+      terminationGracePeriodSeconds: 60
 
     controllers:
       main:
