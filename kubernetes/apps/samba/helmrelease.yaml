@@ -53,6 +53,10 @@ spec:
             image:
               repository: ghcr.io/servercontainers/samba
               tag: latest
+            securityContext:
+              capabilities:
+                add:
+                  - NET_ADMIN
             resources:
               requests:
                 cpu: 50m
@@ -61,6 +65,10 @@ spec:
                 cpu: 1000m
                 memory: 512Mi
             env:
+              SAMBA_CONF_WORKGROUP: "WORKGROUP"
+              SAMBA_CONF_SERVER_STRING: "Samba-s1-main01"
+              SAMBA_CONF_MAP_TO_GUEST: "Guest-User"
+              SAMBA_CONF_LOG_LEVEL: "1"
               ACCOUNT_andreas_hedlund:
                 valueFrom:
                   secretKeyRef:
@@ -117,10 +125,11 @@ spec:
           smb.conf: |
             [global]
                workgroup = WORKGROUP
-               server string = Kubernetes Samba NAS
+               netbios name = SAMBA-NAS
+               server string = Samba-s1-main01
                server role = standalone server
                log level = 1
-               map to guest = Bad User
+               map to guest = Guest-User
                usershare allow guests = no
 
                # Globala Apple / macOS / VFS Fruit-optimeringar
