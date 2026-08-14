@@ -1,7 +1,7 @@
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshotClass
 metadata:
-  name: csi-rbdplugin-snapclass
+  name: csi-cephrbdplugin-snapclass
   annotations:
     snapshot.storage.kubernetes.io/is-default-class: "true"
 driver: rook-ceph.rbd.csi.ceph.com

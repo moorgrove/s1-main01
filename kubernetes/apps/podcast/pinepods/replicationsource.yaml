@@ -11,7 +11,7 @@ spec:
   restic:
     repository: volsync-pinepods-db-secrets
     copyMethod: Snapshot
-    volumeSnapshotClassName: csi-rbdplugin-snapclass
+    volumeSnapshotClassName: csi-cephrbdplugin-snapclass
     pruneIntervalDays: 14
     retain:
       hourly: 24

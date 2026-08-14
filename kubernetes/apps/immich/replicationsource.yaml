@@ -9,7 +9,7 @@ spec:
     schedule: "0 2 * * *"
   restic:
     copyMethod: Snapshot
-    volumeSnapshotClassName: csi-rbdplugin-snapclass
+    volumeSnapshotClassName: csi-cephrbdplugin-snapclass
     repository: immich-library-volsync-secret
     pruneIntervalDays: 28
     cacheAccessModes:
