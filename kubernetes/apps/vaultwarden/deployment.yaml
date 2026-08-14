@@ -66,7 +66,7 @@ spec:
               readOnly: true
 
         - name: netbird
-          image: netbirdio/netbird:0.76.3
+          image: netbirdio/netbird:0.77.0
           env:
             - name: NB_HOSTNAME
               value: vaultwarden-s1-main01
