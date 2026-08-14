@@ -83,6 +83,20 @@ spec:
               - name: smb
                 containerPort: 445
 
+        netbird:
+            image:
+              repository: netbirdio/netbird
+              tag: 0.77.0
+            env:
+              NB_HOSTNAME: samba-s1-main01
+            envFrom:
+              - secretRef:
+                  name: samba-netbird-secrets
+            securityContext:
+              capabilities:
+                add:
+                  - NET_ADMIN
+
     service:
       main:
         controller: main
