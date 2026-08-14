@@ -41,6 +41,7 @@ spec:
               - |
                 chmod 777 /mnt/nas \
                           /mnt/backup-andreas-hedlund-m-fe \
+                          /mnt/backup-andreas-hedlund-mac-mini \
                           /mnt/tm-claes-hedlund \
                           /mnt/backup-johanna-hedlund-macbook \
                           /mnt/svtplay-dl \
@@ -144,6 +145,12 @@ spec:
                read only = no
                valid users = andreas_hedlund
 
+            [backup-andreas-hedlund-mac-mini]
+               path = /mnt/backup-andreas-hedlund-mac-mini
+               browseable = yes
+               read only = no
+               valid users = andreas_hedlund
+
             [TM-Claes-Hedlund]
                path = /mnt/tm-claes-hedlund
                browseable = yes
@@ -189,17 +196,22 @@ spec:
         existingClaim: nas
         globalMounts:
           - path: /mnt/nas
-      vol-backup-m-fe-andreas:
+      vol-backup-andreas-hedlund-m-fe:
         type: persistentVolumeClaim
         existingClaim: backup-andreas-hedlund-m-fe
         globalMounts:
           - path: /mnt/backup-andreas-hedlund-m-fe
+      vol-backup-andreas-hedlund-mac-mini:
+        type: persistentVolumeClaim
+        existingClaim: backup-andreas-hedlund-mac-mini
+        globalMounts:
+          - path: /mnt/backup-andreas-hedlund-mac-mini
       vol-tm-claes:
         type: persistentVolumeClaim
         existingClaim: tm-claes-hedlund
         globalMounts:
           - path: /mnt/tm-claes-hedlund
-      vol-backup-johanna:
+      vol-backup-johanna-hedlund-macbook:
         type: persistentVolumeClaim
         existingClaim: backup-johanna-hedlund-macbook
         globalMounts:

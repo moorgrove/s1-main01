@@ -53,6 +53,19 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  name: backup-andreas-hedlund-mac-mini
+  namespace: samba
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ceph-rbd-hdd-r2
+  resources:
+    requests:
+      storage: 300Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
   name: backup-johanna-hedlund-macbook
   namespace: samba
 spec:

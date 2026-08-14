@@ -10,7 +10,7 @@ spec:
     schedule: "0 3 * * *"
   restic:
     copyMethod: Snapshot
-    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    volumeSnapshotClassName: csi-cephrbdplugin-snapclass
     repository: volsync-samba-backup-andreas-hedlund-m-fe-secrets
     pruneIntervalDays: 14
     cacheAccessModes:
@@ -21,7 +21,29 @@ spec:
       runAsGroup: 0
     retain:
       last: "2"
-
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: samba-backup-andreas-hedlund-mac-mini-backup
+  namespace: samba
+spec:
+  sourcePVC: backup-andreas-hedlund-mac-mini
+  trigger:
+    schedule: "0 3 * * *"
+  restic:
+    copyMethod: Snapshot
+    volumeSnapshotClassName: csi-cephrbdplugin-snapclass
+    repository: volsync-samba-backup-andreas-hedlund-mac-mini-secrets
+    pruneIntervalDays: 14
+    cacheAccessModes:
+      - ReadWriteOnce
+    cacheCapacity: 10Gi
+    moverSecurityContext:
+      runAsUser: 0
+      runAsGroup: 0
+    retain:
+      last: "2"
 ---
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
@@ -58,7 +80,7 @@ spec:
     schedule: "30 3 * * *"
   restic:
     copyMethod: Snapshot
-    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    volumeSnapshotClassName: csi-cephrbdplugin-snapclass
     repository: volsync-samba-backup-johanna-hedlund-macbook-secrets
     pruneIntervalDays: 14
     cacheAccessModes:
