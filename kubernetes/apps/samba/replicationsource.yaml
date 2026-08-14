@@ -2,16 +2,16 @@
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: samba-backup-m-fe-andreas-hedlund-backup
+  name: samba-backup-andreas-hedlund-m-fe-backup
   namespace: samba
 spec:
-  sourcePVC: backup-m-fe-andreas-hedlund
+  sourcePVC: backup-andreas-hedlund-m-fe
   trigger:
     schedule: "0 3 * * *"
   restic:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
-    repository: volsync-samba-backup-m-fe-andreas-hedlund-secrets
+    repository: volsync-samba-backup-andreas-hedlund-m-fe-secrets
     pruneIntervalDays: 14
     cacheAccessModes:
       - ReadWriteOnce

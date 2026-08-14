@@ -28,12 +28,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: backup-m-fe-andreas-hedlund
+  name: backup-andreas-hedlund-m-fe
   namespace: samba
 spec:
   accessModes:
-    - ReadWriteMany
-  storageClassName: ceph-fs-hdd-r2
+    - ReadWriteOnce
+  storageClassName: ceph-rbd-hdd-r2
   resources:
     requests:
       storage: 300Gi

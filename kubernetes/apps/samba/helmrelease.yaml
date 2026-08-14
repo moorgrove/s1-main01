@@ -40,7 +40,7 @@ spec:
               - -c
               - |
                 chmod 777 /mnt/nas \
-                          /mnt/backup-m-fe-andreas-hedlund \
+                          /mnt/backup-andreas-hedlund-m-fe \
                           /mnt/tm-claes-hedlund \
                           /mnt/backup-johanna-hedlund \
                           /mnt/svtplay-dl \
@@ -138,8 +138,8 @@ spec:
                read only = no
                valid users = andreas_hedlund
 
-            [Backup-M-FE-Andreas-Hedlund]
-               path = /mnt/backup-m-fe-andreas-hedlund
+            [backup-andreas-hedlund-m-fe]
+               path = /mnt/backup-andreas-hedlund-m-fe
                browseable = yes
                read only = no
                valid users = andreas_hedlund
@@ -185,9 +185,9 @@ spec:
           - path: /mnt/nas
       vol-backup-m-fe-andreas:
         type: persistentVolumeClaim
-        existingClaim: backup-m-fe-andreas-hedlund
+        existingClaim: backup-andreas-hedlund-m-fe
         globalMounts:
-          - path: /mnt/backup-m-fe-andreas-hedlund
+          - path: /mnt/backup-andreas-hedlund-m-fe
       vol-tm-claes:
         type: persistentVolumeClaim
         existingClaim: tm-claes-hedlund
