@@ -47,6 +47,7 @@ spec:
                           /mnt/backup-johanna-hedlund-macbook \
                           /mnt/svtplay-dl \
                           /mnt/backup-ha-lahalla
+                          /mnt/backup-ha-johanna
 
         containers:
           main:
@@ -89,6 +90,11 @@ spec:
                   secretKeyRef:
                     name: samba-auth
                     key: pass_ha_lahalla
+              ACCOUNT_ha_johanna:
+                valueFrom:
+                  secretKeyRef:
+                    name: samba-auth
+                    key: pass_ha_johanna
             ports:
               - name: smb
                 containerPort: 445
@@ -185,6 +191,12 @@ spec:
                read only = no
                valid users = ha_lahalla
 
+            [Backup-HA-Johanna]
+               path = /mnt/backup-ha-johanna
+               browseable = yes
+               read only = no
+               valid users = ha_johanna
+
     persistence:
       config:
         type: configMap
@@ -231,8 +243,13 @@ spec:
         existingClaim: svtplay-dl-samba
         globalMounts:
           - path: /mnt/svtplay-dl
-      vol-backup-ha:
+      vol-backup-ha-lahalla:
         type: persistentVolumeClaim
         existingClaim: backup-ha-lahalla
         globalMounts:
           - path: /mnt/backup-ha-lahalla
+      vol-backup-ha-johanna:
+        type: persistentVolumeClaim
+        existingClaim: backup-ha-johanna
+        globalMounts:
+          - path: /mnt/backup-ha-johanna

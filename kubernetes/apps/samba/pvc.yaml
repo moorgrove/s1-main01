@@ -102,3 +102,16 @@ spec:
   resources:
     requests:
       storage: 300Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: backup-ha-johanna
+  namespace: samba
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ceph-rbd-hdd-r2
+  resources:
+    requests:
+      storage: 100Gi
