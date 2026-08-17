@@ -46,7 +46,7 @@ spec:
                           /mnt/tm-claes-hedlund \
                           /mnt/backup-johanna-hedlund-macbook \
                           /mnt/svtplay-dl \
-                          /mnt/backup-ha-lahalla
+                          /mnt/backup-ha-lahalla \
                           /mnt/backup-ha-johanna
 
         containers:
