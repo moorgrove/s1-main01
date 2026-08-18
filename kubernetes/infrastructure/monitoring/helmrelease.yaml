@@ -167,7 +167,7 @@ spec:
               mountPath: /certs
               readOnly: true
 
-      extraVolumes:
+      extraVolumes: |
         - name: resolv-conf
           emptyDir: {}
         - name: netbird-data
