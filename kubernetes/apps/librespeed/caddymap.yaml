@@ -10,5 +10,5 @@ data:
     }
     :443 {
       tls /certs/tls.crt /certs/tls.key
-      reverse_proxy 127.0.0.1:80
+      reverse_proxy 127.0.0.1:8080
     }
