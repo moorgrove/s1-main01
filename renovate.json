@@ -19,6 +19,10 @@
       "allowedVersions": "<21.0.0"
     },
     {
+      "matchPackageNames": ["ttlequals0/minuspod"],
+      "sourceUrl": "https://github.com/ttlequals0/minuspod"
+    },
+    {
       "description": "Automerge renovate updates",
       "matchPackagePatterns": ["renovate"],
       "automerge": true
