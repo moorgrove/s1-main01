@@ -129,7 +129,7 @@ spec:
             - name: resolv-conf
               mountPath: /resolv-conf
 
-      extraContainers: |
+      extraContainers:
         - name: netbird
           image: netbirdio/netbird:0.77.0
           env:
@@ -171,7 +171,8 @@ spec:
         - name: resolv-conf
           emptyDir: {}
         - name: netbird-data
-          existingClaim: grafana-netbird
+          persistentVolumeClaim:
+            claimName: grafana-netbird
         - name: caddy-config
           configMap:
             name: grafana-caddy-config
