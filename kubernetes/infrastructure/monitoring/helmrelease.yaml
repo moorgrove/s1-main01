@@ -118,7 +118,7 @@ spec:
         storageClassName: ceph-rbd-hdd-r2
         size: 2Gi
 
-      extraInitContainers:
+      extraInitContainers: |
         - name: init-resolv-conf
           image: busybox:1.38
           command:
