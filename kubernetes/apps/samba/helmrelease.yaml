@@ -200,7 +200,7 @@ spec:
     persistence:
       config:
         type: configMap
-        name: samba-samba-config
+        name: samba
         advancedMounts:
           main:
             main:
