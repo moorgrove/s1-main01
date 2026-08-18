@@ -5,6 +5,7 @@ resources:
   - secrets.enc.yaml
   - pvc.yaml
   - helmrepository.yaml
+  - database.yaml
   - helmrelease.yaml
   - certificate.yaml
   - caddymap.yaml
