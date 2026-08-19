@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -10,10 +11,5 @@ data:
     }
     :443 {
       tls /certs/tls.crt /certs/tls.key
-      reverse_proxy 127.0.0.1:3000 {
-        header_up Host {upstream_host}
-        header_up X-Real-IP {remote_host}
-        header_up X-Forwarded-For {remote_host}
-        header_up X-Forwarded-Proto https
-      }
+      reverse_proxy 127.0.0.1:3000
     }
