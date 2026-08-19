@@ -149,7 +149,7 @@ spec:
 
     grafana:
       plugins:
-        - grafana-irm-app
+        - grafana-oncall-app
       admin:
         existingSecret: grafana-admin-credentials
         userKey: admin-user
