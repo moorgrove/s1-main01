@@ -27,6 +27,83 @@ spec:
               name: kube-prometheus-stack-grafana
             patch: |
               - op: add
+                path: /spec/template/spec/initContainers
+                value:
+                  - name: init-resolv-conf
+                    image: busybox:1.38
+                    command:
+                      - sh
+                      - -c
+                      - cp /etc/resolv.conf /resolv-conf/resolv.conf
+                    volumeMounts:
+                      - name: resolv-conf
+                        mountPath: /resolv-conf
+
+              - op: add
+                path: /spec/template/spec/containers/-
+                value:
+                  name: netbird
+                  image: netbirdio/netbird:0.77.0
+                  env:
+                    - name: NB_HOSTNAME
+                      value: grafana-s1-main01
+                  envFrom:
+                    - secretRef:
+                        name: grafana-netbird-secrets
+                  securityContext:
+                    runAsUser: 0
+                    runAsGroup: 0
+                    runAsNonRoot: false
+                    capabilities:
+                      add:
+                        - NET_ADMIN
+                  volumeMounts:
+                    - name: resolv-conf
+                      mountPath: /etc/resolv.conf
+                      subPath: resolv.conf
+                    - name: netbird-data
+                      mountPath: /var/lib/netbird
+
+              - op: add
+                path: /spec/template/spec/containers/-
+                value:
+                  name: caddy
+                  image: caddy:2
+                  resources:
+                    requests:
+                      cpu: 10m
+                      memory: 64Mi
+                    limits:
+                      memory: 128Mi
+                  volumeMounts:
+                    - name: caddy-config
+                      mountPath: /etc/caddy/Caddyfile
+                      subPath: Caddyfile
+                    - name: caddy-tls
+                      mountPath: /certs
+                      readOnly: true
+
+              - op: add
+                path: /spec/template/spec/volumes/-
+                value:
+                  name: resolv-conf
+                  emptyDir: {}
+
+              - op: add
+                path: /spec/template/spec/volumes/-
+                value:
+                  name: netbird-data
+                  persistentVolumeClaim:
+                    claimName: grafana-netbird
+
+              - op: add
+                path: /spec/template/spec/volumes/-
+                value:
+                  name: caddy-config
+                  configMap:
+                    name: grafana-caddy-config
+
+              - op: add
                 path: /spec/template/spec/volumes/-
                 value:
                   name: caddy-tls
@@ -117,65 +194,6 @@ spec:
         enabled: true
         storageClassName: ceph-rbd-hdd-r2
         size: 2Gi
-
-      extraInitContainers:
-        - name: init-resolv-conf
-          image: busybox:1.38
-          command:
-            - sh
-            - -c
-            - cp /etc/resolv.conf /resolv-conf/resolv.conf
-          volumeMounts:
-            - name: resolv-conf
-              mountPath: /resolv-conf
-
-      extraContainers:
-        - name: netbird
-          image: netbirdio/netbird:0.77.0
-          env:
-            - name: NB_HOSTNAME
-              value: grafana-s1-main01
-          envFrom:
-            - secretRef:
-                name: grafana-netbird-secrets
-          securityContext:
-            runAsUser: 0
-            runAsGroup: 0
-            runAsNonRoot: false
-            capabilities:
-              add:
-                - NET_ADMIN
-          volumeMounts:
-            - name: resolv-conf
-              mountPath: /etc/resolv.conf
-              subPath: resolv.conf
-            - name: netbird-data
-              mountPath: /var/lib/netbird
-        - name: caddy
-          image: caddy:2
-          resources:
-            requests:
-              cpu: 10m
-              memory: 64Mi
-            limits:
-              memory: 128Mi
-          volumeMounts:
-            - name: caddy-config
-              mountPath: /etc/caddy/Caddyfile
-              subPath: Caddyfile
-            - name: caddy-tls
-              mountPath: /certs
-              readOnly: true
-
-      extraVolumes:
-        - name: resolv-conf
-          emptyDir: {}
-        - name: netbird-data
-          persistentVolumeClaim:
-            claimName: grafana-netbird
-        - name: caddy-config
-          configMap:
-            name: grafana-caddy-config
 
       service:
         enabled: true
