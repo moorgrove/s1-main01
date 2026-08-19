@@ -118,7 +118,7 @@ spec:
         storageClassName: ceph-rbd-hdd-r2
         size: 2Gi
 
-      extraInitContainers: |
+      extraInitContainers:
         - name: init-resolv-conf
           image: busybox:1.38
           command:
@@ -129,7 +129,7 @@ spec:
             - name: resolv-conf
               mountPath: /resolv-conf
 
-      extraContainers: |
+      extraContainers:
         - name: netbird
           image: netbirdio/netbird:0.77.0
           env:
@@ -167,7 +167,7 @@ spec:
               mountPath: /certs
               readOnly: true
 
-      extraVolumes: |
+      extraVolumes:
         - name: resolv-conf
           emptyDir: {}
         - name: netbird-data
