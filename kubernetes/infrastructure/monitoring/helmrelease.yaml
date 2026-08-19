@@ -148,8 +148,6 @@ spec:
                   storage: 5Gi
 
     grafana:
-      plugins:
-        - grafana-oncall-app
       admin:
         existingSecret: grafana-admin-credentials
         userKey: admin-user
