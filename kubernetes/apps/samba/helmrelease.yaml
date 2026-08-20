@@ -216,11 +216,6 @@ spec:
         existingClaim: nas
         globalMounts:
           - path: /mnt/nas
-      vol-backup-andreas-hedlund-m-fe:
-        type: persistentVolumeClaim
-        existingClaim: backup-andreas-hedlund-m-fe
-        globalMounts:
-          - path: /mnt/backup-andreas-hedlund-m-fe
       vol-backup-andreas-hedlund-mac-mini:
         type: persistentVolumeClaim
         existingClaim: backup-andreas-hedlund-mac-mini
