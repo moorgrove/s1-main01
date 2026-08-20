@@ -43,10 +43,11 @@ parameters:
 reclaimPolicy: Retain
 allowVolumeExpansion: true
 ---
+# # NVMe - Replicated 1
 # apiVersion: ceph.rook.io/v1
 # kind: CephFilesystem
 # metadata:
-#   name: ceph-filesystem-nvme
+#   name: nvme-fs-r1
 #   namespace: rook-ceph
 # spec:
 #   metadataPool:
@@ -54,14 +55,14 @@ allowVolumeExpansion: true
 #     replicated:
 #       size: 1
 #       requireSafeReplicaSize: false
-#     deviceClass: ssd
+#     deviceClass: nvme
 #   dataPools:
 #     - name: data
 #       failureDomain: osd
 #       replicated:
 #         size: 1
 #         requireSafeReplicaSize: false
-#       deviceClass: ssd
+#       deviceClass: nvme
 #   preserveFilesystemOnDelete: true
 #   metadataServer:
 #     activeCount: 1
@@ -71,12 +72,12 @@ allowVolumeExpansion: true
 # apiVersion: storage.k8s.io/v1
 # kind: StorageClass
 # metadata:
-#   name: ceph-filesystem-nvme
+#   name: ceph-fs-nvme-r1
 # provisioner: rook-ceph.cephfs.csi.ceph.com
 # parameters:
 #   clusterID: rook-ceph
-#   fsName: ceph-filesystem-nvme
-#   pool: ceph-filesystem-nvme-data
+#   fsName: nvme-fs-r1
+#   pool: nvme-fs-r1-data
 #   csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
 #   csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
 #   csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
