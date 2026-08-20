@@ -16,6 +16,8 @@ spec:
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 10Gi
+    cacheStorageClassName: ceph-rbd-nvme-r1
+    storageClassName: ceph-rbd-hdd-r2
     moverSecurityContext:
       runAsUser: 0
       runAsGroup: 0
@@ -39,6 +41,8 @@ spec:
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 10Gi
+    cacheStorageClassName: ceph-rbd-nvme-r1
+    storageClassName: ceph-rbd-hdd-r2
     moverSecurityContext:
       runAsUser: 0
       runAsGroup: 0
@@ -62,6 +66,8 @@ spec:
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 10Gi
+    cacheStorageClassName: ceph-rbd-nvme-r1
+    storageClassName: ceph-rbd-hdd-r2
     moverSecurityContext:
       runAsUser: 0
       runAsGroup: 0
@@ -85,6 +91,8 @@ spec:
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 10Gi
+    cacheStorageClassName: ceph-rbd-nvme-r1
+    storageClassName: ceph-rbd-hdd-r2 
     moverSecurityContext:
       runAsUser: 0
       runAsGroup: 0
@@ -108,6 +116,8 @@ spec:
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 15Gi
+    cacheStorageClassName: ceph-rbd-nvme-r1
+    storageClassName: ceph-rbd-hdd-r2
     moverSecurityContext:
       runAsUser: 0
       runAsGroup: 0
@@ -132,6 +142,8 @@ spec:
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 15Gi
+    cacheStorageClassName: ceph-rbd-nvme-r1
+    storageClassName: ceph-rbd-hdd-r2
     moverSecurityContext:
       runAsUser: 0
       runAsGroup: 0
@@ -158,6 +170,8 @@ spec:
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 10Gi
+    cacheStorageClassName: ceph-rbd-nvme-r1
+    storageClassName: ceph-rbd-hdd-r2
     moverSecurityContext:
       runAsUser: 0
       runAsGroup: 0

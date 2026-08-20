@@ -12,9 +12,11 @@ spec:
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
     repository: volsync-minuspod-secrets
     pruneIntervalDays: 28
+    cacheStorageClassName: ceph-rbd-nvme-r1
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 5Gi
+    storageClassName: ceph-rbd-hdd-r2
     moverSecurityContext:
       runAsNonRoot: true
       runAsUser: 1000

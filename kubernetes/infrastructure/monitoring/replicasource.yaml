@@ -1,6 +1,3 @@
-# TODO: sourcePVC måste matcha det faktiska PVC-namnet som grafana-subchartet
-# skapar (troligen "kube-prometheus-stack-grafana", men bekräfta med
-# `kubectl -n monitoring get pvc` efter första deploy innan du applyar detta).
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
@@ -15,6 +12,7 @@ spec:
     volumeSnapshotClassName: csi-cephrbdplugin-snapclass
     repository: grafana-config-volsync-secret
     pruneIntervalDays: 28
+    cacheStorageClassName: ceph-rbd-nvme-r1
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 2Gi
