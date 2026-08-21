@@ -7,6 +7,12 @@ spec:
   sourcePVC: minuspod
   trigger:
     schedule: "0 * * * *"
+  moverSecurityContext:
+    fsGroupChangePolicy: OnRootMismatch
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
   restic:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
@@ -17,11 +23,6 @@ spec:
       - ReadWriteOnce
     cacheCapacity: 5Gi
     storageClassName: ceph-fs-hdd-r2
-    moverSecurityContext:
-      runAsNonRoot: true
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
     retain:
       hourly: 24
       daily: 7
