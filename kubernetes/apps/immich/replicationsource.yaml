@@ -7,12 +7,6 @@ spec:
   sourcePVC: immich-library
   trigger:
     schedule: "0 2 * * *"
-  moverSecurityContext:
-    fsGroupChangePolicy: OnRootMismatch
-    runAsNonRoot: true
-    runAsUser: 1000
-    runAsGroup: 1000
-    fsGroup: 1000
   restic:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephrbdplugin-snapclass
@@ -23,6 +17,12 @@ spec:
       - ReadWriteOnce
     cacheCapacity: 2Gi
     storageClassName: ceph-rbd-hdd-r2
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
     retain:
       hourly: 24
       daily: 7
