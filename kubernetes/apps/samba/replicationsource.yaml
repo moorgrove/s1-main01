@@ -159,12 +159,12 @@ metadata:
   name: samba-backup-claes-hedlund-backup
   namespace: samba
 spec:
-  sourcePVC: tm-claes-hedlund
+  sourcePVC: backup-claes-hedlund-macbook
   trigger:
     schedule: "0 4 * * *"
   restic:
     copyMethod: Snapshot
-    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    volumeSnapshotClassName: csi-cephrbdplugin-snapclass
     repository: volsync-samba-backup-claes-hedlund-secrets
     pruneIntervalDays: 14
     cacheAccessModes:
