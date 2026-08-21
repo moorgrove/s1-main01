@@ -79,7 +79,7 @@ spec:
                   secretKeyRef:
                     name: samba-auth
                     key: pass_andreas_hedlund_backup_mac_mini
-              ACCOUNT_claes_hedlund_tm:
+              ACCOUNT_claes_hedlund:
                 valueFrom:
                   secretKeyRef:
                     name: samba-auth
@@ -169,7 +169,7 @@ spec:
                path = /mnt/backup-claes-hedlund-macbook
                browseable = yes
                read only = no
-               valid users = claes_hedlund_tm
+               valid users = claes_hedlund
 
             [backup-johanna-hedlund-macbook]
                path = /mnt/backup-johanna-hedlund-macbook
@@ -221,7 +221,7 @@ spec:
         existingClaim: backup-andreas-hedlund-mac-mini
         globalMounts:
           - path: /mnt/backup-andreas-hedlund-mac-mini
-      vol-tm-claes:
+      vol-backup-claes-hedlund-macbook:
         type: persistentVolumeClaim
         existingClaim: backup-claes-hedlund-macbook
         globalMounts:
