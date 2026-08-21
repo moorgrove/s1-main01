@@ -16,7 +16,7 @@ spec:
       - ReadWriteOnce
     cacheCapacity: 5Gi
     cacheStorageClassName: ceph-rbd-nvme-r1
-    storageClassName: ceph-rbd-hdd-r2
+    storageClassName: ceph-fs-hdd-r2
     moverSecurityContext:
       runAsNonRoot: true
       runAsUser: 1000
