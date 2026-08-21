@@ -8,6 +8,11 @@ spec:
   cephVersion:
     image: quay.io/ceph/ceph:v20.2.4
     allowUnsupported: false
+  security:
+    cephx:
+      daemon:
+        keyRotationPolicy: KeyGeneration
+        keyGeneration: 2
   dataDirHostPath: /var/lib/rook
   skipUpgradeChecks: false
   continueUpgradeAfterChecksEvenIfNotHealthy: true
