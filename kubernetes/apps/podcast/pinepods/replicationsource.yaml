@@ -47,7 +47,7 @@ spec:
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 5Gi
-    storageClassName: ceph-rbd-hdd-r2
+    storageClassName: ceph-fs-hdd-r2
     pruneIntervalDays: 14
     retain:
       hourly: 24
@@ -78,7 +78,7 @@ spec:
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 5Gi
-    storageClassName: ceph-rbd-hdd-r2
+    storageClassName: ceph-fs-hdd-r2
     pruneIntervalDays: 28
     retain:
       daily: 7
