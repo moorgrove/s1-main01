@@ -7,12 +7,6 @@ spec:
   sourcePVC: svtplay-dl
   trigger:
     schedule: "0 3 * * *"
-  moverSecurityContext:
-    fsGroupChangePolicy: OnRootMismatch
-    runAsNonRoot: true
-    runAsUser: 1000
-    runAsGroup: 1000
-    fsGroup: 1000
   restic:
     copyMethod: Direct
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
@@ -23,6 +17,12 @@ spec:
     cacheCapacity: 5Gi
     cacheStorageClassName: ceph-rbd-nvme-r1
     storageClassName: ceph-fs-hdd-r2
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
     retain:
       daily: 7
       weekly: 2

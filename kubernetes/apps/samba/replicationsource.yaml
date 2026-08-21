@@ -8,10 +8,6 @@ spec:
   sourcePVC: backup-andreas-hedlund-m-fe
   trigger:
     schedule: "0 3 * * *"
-  moverSecurityContext:
-    fsGroupChangePolicy: OnRootMismatch
-    runAsUser: 0
-    runAsGroup: 0
   restic:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephrbdplugin-snapclass
@@ -22,6 +18,10 @@ spec:
     cacheCapacity: 10Gi
     cacheStorageClassName: ceph-rbd-nvme-r1
     storageClassName: ceph-rbd-hdd-r2
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsUser: 0
+      runAsGroup: 0
     retain:
       last: "2"
 ---
@@ -34,10 +34,6 @@ spec:
   sourcePVC: backup-andreas-hedlund-mac-mini
   trigger:
     schedule: "0 3 * * *"
-  moverSecurityContext:
-    fsGroupChangePolicy: OnRootMismatch
-    runAsUser: 0
-    runAsGroup: 0
   restic:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephrbdplugin-snapclass
@@ -48,6 +44,10 @@ spec:
     cacheCapacity: 10Gi
     cacheStorageClassName: ceph-rbd-nvme-r1
     storageClassName: ceph-rbd-hdd-r2
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsUser: 0
+      runAsGroup: 0
     retain:
       last: "2"
 ---
@@ -60,10 +60,6 @@ spec:
   sourcePVC: backup-ha-lahalla
   trigger:
     schedule: "15 3 * * *"
-  moverSecurityContext:
-    fsGroupChangePolicy: OnRootMismatch
-    runAsUser: 0
-    runAsGroup: 0
   restic:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
@@ -74,6 +70,10 @@ spec:
     cacheCapacity: 10Gi
     cacheStorageClassName: ceph-rbd-nvme-r1
     storageClassName: ceph-fs-hdd-r2
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsUser: 0
+      runAsGroup: 0
     retain:
       last: "2"
 ---
@@ -86,10 +86,6 @@ spec:
   sourcePVC: backup-ha-johanna
   trigger:
     schedule: "15 3 * * *"
-  moverSecurityContext:
-    fsGroupChangePolicy: OnRootMismatch
-    runAsUser: 0
-    runAsGroup: 0
   restic:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephrbdplugin-snapclass
@@ -99,7 +95,11 @@ spec:
       - ReadWriteOnce
     cacheCapacity: 10Gi
     cacheStorageClassName: ceph-rbd-nvme-r1
-    storageClassName: ceph-rbd-hdd-r2 
+    storageClassName: ceph-rbd-hdd-r2
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsUser: 0
+      runAsGroup: 0
     retain:
       last: "2"
 ---
@@ -112,10 +112,6 @@ spec:
   sourcePVC: backup-johanna-hedlund-macbook
   trigger:
     schedule: "30 3 * * *"
-  moverSecurityContext:
-    fsGroupChangePolicy: OnRootMismatch
-    runAsUser: 0
-    runAsGroup: 0
   restic:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephrbdplugin-snapclass
@@ -126,6 +122,10 @@ spec:
     cacheCapacity: 15Gi
     cacheStorageClassName: ceph-rbd-nvme-r1
     storageClassName: ceph-rbd-hdd-r2
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsUser: 0
+      runAsGroup: 0
     retain:
       last: "2"
 
@@ -139,10 +139,6 @@ spec:
   sourcePVC: nas
   trigger:
     schedule: "45 3 * * *"
-  moverSecurityContext:
-    fsGroupChangePolicy: OnRootMismatch
-    runAsUser: 0
-    runAsGroup: 0
   restic:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
@@ -153,6 +149,10 @@ spec:
     cacheCapacity: 15Gi
     cacheStorageClassName: ceph-rbd-nvme-r1
     storageClassName: ceph-fs-hdd-r2
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsUser: 0
+      runAsGroup: 0
     retain:
       daily: 7
       weekly: 2
@@ -168,10 +168,6 @@ spec:
   sourcePVC: backup-claes-hedlund-macbook
   trigger:
     schedule: "0 4 * * *"
-  moverSecurityContext:
-    fsGroupChangePolicy: OnRootMismatch
-    runAsUser: 0
-    runAsGroup: 0
   restic:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephrbdplugin-snapclass
@@ -182,5 +178,9 @@ spec:
     cacheCapacity: 10Gi
     cacheStorageClassName: ceph-rbd-nvme-r1
     storageClassName: ceph-rbd-hdd-r2
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsUser: 0
+      runAsGroup: 0
     retain:
       last: "2"

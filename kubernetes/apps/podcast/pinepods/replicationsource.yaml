@@ -8,12 +8,6 @@ spec:
   sourcePVC: data-pinepods-postgresql-0
   trigger:
     schedule: "0 * * * *"
-  moverSecurityContext:
-    fsGroupChangePolicy: OnRootMismatch
-    runAsNonRoot: true
-    runAsUser: 1000
-    runAsGroup: 1000
-    fsGroup: 1000
   restic:
     repository: volsync-pinepods-db-secrets
     copyMethod: Snapshot
@@ -24,6 +18,12 @@ spec:
     cacheCapacity: 5Gi
     storageClassName: ceph-rbd-hdd-r2
     pruneIntervalDays: 14
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
     retain:
       hourly: 24
       daily: 7
@@ -40,12 +40,6 @@ spec:
   sourcePVC: pinepods-backups
   trigger:
     schedule: "15 * * * *"
-  moverSecurityContext:
-    fsGroupChangePolicy: OnRootMismatch
-    runAsNonRoot: true
-    runAsUser: 1000
-    runAsGroup: 1000
-    fsGroup: 1000
   restic:
     repository: volsync-pinepods-backups-secrets
     copyMethod: Snapshot
@@ -56,6 +50,12 @@ spec:
     cacheCapacity: 5Gi
     storageClassName: ceph-fs-hdd-r2
     pruneIntervalDays: 14
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
     retain:
       hourly: 24
       daily: 7
@@ -72,12 +72,6 @@ spec:
   sourcePVC: pinepods-downloads
   trigger:
     schedule: "0 3 * * *"
-  moverSecurityContext:
-    fsGroupChangePolicy: OnRootMismatch
-    runAsNonRoot: true
-    runAsUser: 1000
-    runAsGroup: 1000
-    fsGroup: 1000
   restic:
     repository: volsync-pinepods-downloads-secrets
     copyMethod: Snapshot
@@ -88,6 +82,12 @@ spec:
     cacheCapacity: 5Gi
     storageClassName: ceph-fs-hdd-r2
     pruneIntervalDays: 28
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
     retain:
       daily: 7
       weekly: 4
