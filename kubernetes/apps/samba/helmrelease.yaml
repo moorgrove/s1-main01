@@ -79,11 +79,11 @@ spec:
                   secretKeyRef:
                     name: samba-auth
                     key: pass_andreas_hedlund_backup_mac_mini
-              ACCOUNT_claes_hedlund:
+              ACCOUNT_claes_hedlund_backup_macbook:
                 valueFrom:
                   secretKeyRef:
                     name: samba-auth
-                    key: pass_claes_hedlund
+                    key: pass_claes_hedlund_backup_macbook
               ACCOUNT_johanna_hedlund:
                 valueFrom:
                   secretKeyRef:
@@ -169,7 +169,7 @@ spec:
                path = /mnt/backup-claes-hedlund-macbook
                browseable = yes
                read only = no
-               valid users = claes_hedlund
+               valid users = claes_hedlund_backup_macbook
 
             [backup-johanna-hedlund-macbook]
                path = /mnt/backup-johanna-hedlund-macbook
