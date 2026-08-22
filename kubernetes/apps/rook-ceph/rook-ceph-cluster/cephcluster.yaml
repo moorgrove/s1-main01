@@ -14,7 +14,7 @@ spec:
         keyRotationPolicy: KeyGeneration
         keyGeneration: 2
   dataDirHostPath: /var/lib/rook
-  skipUpgradeChecks: false
+  skipUpgradeChecks: true
   continueUpgradeAfterChecksEvenIfNotHealthy: true
   disruptionManagement:
     managePodBudgets: true
