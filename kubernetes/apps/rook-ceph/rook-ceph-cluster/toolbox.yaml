@@ -54,6 +54,9 @@ spec:
                       name: ceph-config
                     - mountPath: /etc/rook
                       name: mon-endpoint-volume
+                    - mountPath: /var/lib/rook-ceph-mon
+                      name: rook-ceph-mons-keyring
+                      readOnly: true
             volumes:
                 - name: ceph-config
                   emptyDir: {}
@@ -63,3 +66,9 @@ spec:
                     items:
                       - key: data
                         path: mon-endpoints
+                - name: rook-ceph-mons-keyring
+                  secret:
+                    secretName: rook-ceph-mons-keyring
+                    items:
+                      - key: keyring
+                        path: secret.keyring
