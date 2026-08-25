@@ -10,9 +10,13 @@ spec:
     allowUnsupported: false
   security:
     cephx:
+      allowedCiphers:
+        - aes
+        - aes256k
       daemon:
         keyRotationPolicy: KeyGeneration
         keyGeneration: 2
+        keyType: aes
   dataDirHostPath: /var/lib/rook
   skipUpgradeChecks: true
   continueUpgradeAfterChecksEvenIfNotHealthy: true
@@ -86,7 +90,7 @@ spec:
     enabled: true
     ssl: false
     prometheusEndpoint: "http://kube-prometheus-stack-prometheus.monitoring.svc:9090"
-    
+
   storage:
     useAllNodes: false
     useAllDevices: false
