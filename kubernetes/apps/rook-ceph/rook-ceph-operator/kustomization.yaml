@@ -3,5 +3,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - helmrelease-operator.yaml
-  - rbac.yaml
-  - rbac-leader-election.yaml
+  # - rbac.yaml
+  # - rbac-leader-election.yaml
