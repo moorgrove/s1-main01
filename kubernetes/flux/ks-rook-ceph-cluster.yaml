@@ -1,26 +1,26 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: rook-ceph-operator
+  name: rook-ceph-cluster
   namespace: flux-system
 spec:
   dependsOn:
-    - name: rook-ceph-infrastructure
-    - name: rook-ceph-secrets
+    - name: rook-ceph-operator
   interval: 60m
-  path: ./kubernetes/apps/rook-ceph/rook-ceph-operator
-  prune: true
-  wait: true
-  timeout: 30m
   sourceRef:
     kind: GitRepository
     name: flux-system
+  path: ./kubernetes/apps/rook-ceph/rook-ceph-cluster
+  prune: false
+  wait: true
+  timeout: 30m
   decryption:
     provider: sops
     secretRef:
       name: sops-age
   healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: rook-ceph-operator
+    - apiVersion: ceph.rook.io/v1
+      kind: CephCluster
+      name: rook-ceph
       namespace: rook-ceph

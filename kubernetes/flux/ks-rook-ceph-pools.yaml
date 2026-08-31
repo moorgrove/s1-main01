@@ -7,7 +7,6 @@ metadata:
 spec:
   dependsOn:
     - name: rook-ceph-cluster
-    - name: rook-ceph-secrets
   interval: 60m
   sourceRef:
     kind: GitRepository
