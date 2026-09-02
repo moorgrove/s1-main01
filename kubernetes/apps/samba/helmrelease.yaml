@@ -176,13 +176,13 @@ spec:
                read only = no
                valid users = johanna_hedlund
 
-            [Backup-HA-Lahalla]
+            [backup-ha-lahalla]
                path = /mnt/backup-ha-lahalla
                browseable = yes
                read only = no
                valid users = ha_lahalla
 
-            [Backup-HA-Johanna]
+            [backup-ha-johanna]
                path = /mnt/backup-ha-johanna
                browseable = yes
                read only = no
