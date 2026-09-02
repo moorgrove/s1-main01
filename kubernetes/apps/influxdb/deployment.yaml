@@ -29,7 +29,7 @@ spec:
           command:
             - influxdb3
             - serve
-            - --node-id=homelab-node0
+            - --node-id=s1-node0
             - --object-store=s3
             - --bucket=$(BUCKET_NAME)
             - --aws-endpoint=http://$(BUCKET_HOST):$(BUCKET_PORT)
