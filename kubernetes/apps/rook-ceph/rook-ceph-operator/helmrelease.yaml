@@ -22,3 +22,6 @@ spec:
       priorityClassName: urgent-priority
       provisionerPriorityClassName: urgent-priority
       pluginPriorityClassName: urgent-priority
+      cephcsi:
+        repository: quay.io/cephcsi/cephcsi
+        tag: v3.17.1
