@@ -22,5 +22,3 @@ spec:
     substituteFrom:
       - kind: Secret
         name: flux-immich-secrets
-      - kind: Secret
-        name: flux-immich-database-secrets
