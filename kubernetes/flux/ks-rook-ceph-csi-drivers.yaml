@@ -1,0 +1,30 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: rook-ceph-csi-drivers
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: rook-ceph-operator
+  interval: 60m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./kubernetes/apps/rook-ceph/rook-ceph-csi-drivers
+  prune: true
+  wait: true
+  timeout: 30m
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  healthChecks:
+    - apiVersion: csi.ceph.io/v1
+      kind: Driver
+      name: rook-ceph.rbd.csi.ceph.com
+      namespace: rook-ceph
+    - apiVersion: csi.ceph.io/v1
+      kind: Driver
+      name: rook-ceph.cephfs.csi.ceph.com
+      namespace: rook-ceph

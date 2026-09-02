@@ -8,6 +8,7 @@ resources:
   - ks-rook-ceph-infrastructure.yaml
   - ks-rook-ceph-operator.yaml
   - ks-rook-ceph-cluster.yaml
+  - ks-rook-ceph-csi-drivers.yaml
   - ks-rook-ceph-pools.yaml
   - ks-storage-infrastructure.yaml
   - ks-monitoring.yaml
