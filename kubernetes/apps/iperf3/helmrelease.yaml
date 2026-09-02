@@ -50,7 +50,7 @@ spec:
 
     persistence:
       netbird-state:
-        existingClaim: iperf3-netbird
+        existingClaim: iperf3-server-netbird
         advancedMounts:
           iperf3:
             netbird:
