@@ -62,14 +62,14 @@ spec:
     schedule: "15 3 * * *"
   restic:
     copyMethod: Snapshot
-    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    volumeSnapshotClassName: csi-cephrbdplugin-snapclass
     repository: volsync-samba-backup-ha-lahalla-secrets
     pruneIntervalDays: 14
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 10Gi
     cacheStorageClassName: ceph-rbd-hdd-r2  # ceph-rbd-nvme-r1
-    storageClassName: ceph-fs-hdd-r2
+    storageClassName: ceph-rbd-hdd-r2
     moverSecurityContext:
       fsGroupChangePolicy: OnRootMismatch
       runAsUser: 0
