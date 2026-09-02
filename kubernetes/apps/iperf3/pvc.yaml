@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: iperf3-netbird
+  name: iperf3-server-netbird
   namespace: iperf3
 spec:
   accessModes:
