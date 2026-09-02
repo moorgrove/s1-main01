@@ -12,7 +12,7 @@ spec:
     volumeSnapshotClassName: csi-cephrbdplugin-snapclass
     repository: immich-library-volsync-secret
     pruneIntervalDays: 28
-    cacheStorageClassName: ceph-rbd-nvme-r1
+    cacheStorageClassName: ceph-rbd-hdd-r2  # ceph-rbd-nvme-r1
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 2Gi
