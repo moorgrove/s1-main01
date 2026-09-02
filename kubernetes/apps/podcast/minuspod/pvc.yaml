@@ -8,8 +8,8 @@ metadata:
       kustomize.toolkit.fluxcd.io/prune: disabled
 spec:
   accessModes:
-    - ReadWriteMany
-  storageClassName: ceph-fs-hdd-r2
+    - ReadWriteOnce
+  storageClassName: ceph-rbd-hdd-r2
   resources:
     requests:
       storage: 50Gi

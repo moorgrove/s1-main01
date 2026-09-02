@@ -10,14 +10,14 @@ spec:
   
   restic:
     copyMethod: Snapshot
-    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    volumeSnapshotClassName: csi-cephrbdplugin-snapclass
     repository: volsync-minuspod-secrets
     pruneIntervalDays: 28
-    cacheStorageClassName: ceph-rbd-nvme-r1
+    cacheStorageClassName: ceph-rbd-hdd-r2  # ceph-rbd-nvme-r1
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 5Gi
-    storageClassName: ceph-fs-hdd-r2
+    storageClassName: ceph-rbd-hdd-r2
     moverSecurityContext:
       fsGroupChangePolicy: OnRootMismatch
       runAsNonRoot: true

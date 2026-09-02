@@ -12,7 +12,7 @@ spec:
     repository: volsync-pinepods-db-secrets
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephrbdplugin-snapclass
-    cacheStorageClassName: ceph-rbd-nvme-r1
+    cacheStorageClassName: ceph-rbd-hdd-r2  # ceph-rbd-nvme-r1
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 5Gi
@@ -44,7 +44,7 @@ spec:
     repository: volsync-pinepods-backups-secrets
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
-    cacheStorageClassName: ceph-rbd-nvme-r1
+    cacheStorageClassName: ceph-rbd-hdd-r2  # ceph-rbd-nvme-r1
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 5Gi
@@ -76,7 +76,7 @@ spec:
     repository: volsync-pinepods-downloads-secrets
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
-    cacheStorageClassName: ceph-rbd-nvme-r1
+    cacheStorageClassName: ceph-rbd-hdd-r2  # ceph-rbd-nvme-r1
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 5Gi
