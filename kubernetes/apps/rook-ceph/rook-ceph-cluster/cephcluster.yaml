@@ -11,6 +11,12 @@ spec:
   dataDirHostPath: /var/lib/rook
   skipUpgradeChecks: false
   continueUpgradeAfterChecksEvenIfNotHealthy: false
+  security:
+    cephx:
+      csi:
+        keyType: aes
+        keyRotationPolicy: KeyGeneration
+        keyGeneration: 1
   disruptionManagement:
     managePodBudgets: true
     osdMaintenanceTimeout: 30
