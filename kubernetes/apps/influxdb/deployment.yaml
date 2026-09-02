@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb3-core
+  namespace: influxdb
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: influxdb3-core
+  template:
+    metadata:
+      labels:
+        app: influxdb3-core
+    spec:
+      containers:
+        - name: influxdb3-core
+          image: influxdb:3.10-core
+          ports:
+            - containerPort: 8181
+              name: http
+          envFrom:
+            - configMapRef:
+                name: influxdb-bucket
+            - secretRef:
+                name: influxdb-bucket
+          command:
+            - influxdb3
+            - serve
+            - --node-id=homelab-node0
+            - --object-store=s3
+            - --bucket=$(BUCKET_NAME)
+            - --aws-endpoint=http://$(BUCKET_HOST):$(BUCKET_PORT)
+            - --aws-allow-http
+            - --http-bind=0.0.0.0:8181
+          resources:
+            requests:
+              cpu: 50m
+              memory: 512Mi
+            limits:
+              cpu: 1000m
+              memory: 2Gi
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8181
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8181
+            initialDelaySeconds: 30
+            periodSeconds: 30
