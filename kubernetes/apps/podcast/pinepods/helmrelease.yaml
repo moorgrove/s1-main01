@@ -59,10 +59,10 @@ spec:
     persistence:
       enabled: true
       downloads:
-        storageClass: "ceph-fs-hdd-r2"
+        storageClass: "ceph-rbd-hdd-r2"
         size: 20Gi
       backups:
-        storageClass: "ceph-fs-hdd-r2"
+        storageClass: "ceph-rbd-hdd-r2"
         size: 5Gi
 
     postgresql:
@@ -76,7 +76,7 @@ spec:
         database: pinepods_database
       persistence:
         enabled: true
-        storageClass: "ceph-fs-hdd-r2"
+        storageClass: "ceph-rbd-hdd-r2"
         size: 5Gi
 
     valkey:
