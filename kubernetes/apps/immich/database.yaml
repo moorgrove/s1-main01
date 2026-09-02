@@ -20,14 +20,3 @@ spec:
   storage:
     size: 20Gi
     storageClass: ceph-rbd-hdd-r2
-  backup:
-    barmanObjectStore:
-      destinationPath: ${BARMAN_DESTINATION_PATH}
-      endpointURL: ${BARMAN_ENDPOINT_URL}
-      s3Credentials:
-        accessKeyId:
-          name: immich-database-barman-secret
-          key: AWS_ACCESS_KEY_ID
-        secretAccessKey:
-          name: immich-database-barman-secret
-          key: AWS_SECRET_ACCESS_KEY
