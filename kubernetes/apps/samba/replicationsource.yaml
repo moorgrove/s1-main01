@@ -184,3 +184,29 @@ spec:
       runAsGroup: 0
     retain:
       last: "2"
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: samba-backup-asa-hedlund-backup
+  namespace: samba
+spec:
+  sourcePVC: backup-asa-hedlund-macbook
+  trigger:
+    schedule: "0 4 * * *"
+  restic:
+    copyMethod: Snapshot
+    volumeSnapshotClassName: csi-cephrbdplugin-snapclass
+    repository: volsync-samba-backup-asa-hedlund-secrets
+    pruneIntervalDays: 14
+    cacheAccessModes:
+      - ReadWriteOnce
+    cacheCapacity: 10Gi
+    cacheStorageClassName: ceph-rbd-hdd-r2  # ceph-rbd-nvme-r1
+    storageClassName: ceph-rbd-hdd-r2
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsUser: 0
+      runAsGroup: 0
+    retain:
+      last: "2"
