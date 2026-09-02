@@ -205,7 +205,7 @@ spec:
                path = /mnt/backup-asa-hedlund-macbook
                browseable = yes
                read only = no
-               valid users = asa_hedlund
+               valid users = asa_hedlund_backup_macbook
 
     persistence:
       config:
