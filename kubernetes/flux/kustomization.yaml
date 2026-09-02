@@ -12,7 +12,7 @@ resources:
   - ks-rook-ceph-pools.yaml
   - ks-storage-infrastructure.yaml
   - ks-monitoring.yaml
-  - kustomization-samba.yaml
+  - ks-samba.yaml
   - kustomization-metrics-server.yaml
   - kustomization-svtplay-dl.yaml
   - kustomization-podcast.yaml
