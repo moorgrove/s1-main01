@@ -44,7 +44,6 @@ spec:
                           /mnt/backup-andreas-hedlund-mac-mini \
                           /mnt/backup-claes-hedlund-macbook \
                           /mnt/backup-johanna-hedlund-macbook \
-                          /mnt/svtplay-dl \
                           /mnt/backup-ha-lahalla \
                           /mnt/backup-ha-johanna
 
@@ -177,12 +176,6 @@ spec:
                read only = no
                valid users = johanna_hedlund
 
-            [SVTPlay-DL]
-               path = /mnt/svtplay-dl
-               browseable = yes
-               read only = no
-               valid users = andreas_hedlund
-
             [Backup-HA-Lahalla]
                path = /mnt/backup-ha-lahalla
                browseable = yes
@@ -231,11 +224,6 @@ spec:
         existingClaim: backup-johanna-hedlund-macbook
         globalMounts:
           - path: /mnt/backup-johanna-hedlund-macbook
-      vol-svtplay:
-        type: persistentVolumeClaim
-        existingClaim: svtplay-dl-samba
-        globalMounts:
-          - path: /mnt/svtplay-dl
       vol-backup-ha-lahalla:
         type: persistentVolumeClaim
         existingClaim: backup-ha-lahalla
