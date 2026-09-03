@@ -4,5 +4,5 @@ metadata:
   name: influxdb-bucket
   namespace: influxdb
 spec:
-  generateBucketName: influxdb
+  bucketName: influxdb-data
   storageClassName: ceph-bucket-hdd-r2
