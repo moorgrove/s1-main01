@@ -35,6 +35,7 @@ spec:
             - --aws-endpoint=http://$(BUCKET_HOST):$(BUCKET_PORT)
             - --aws-allow-http
             - --http-bind=0.0.0.0:8181
+            - --disable-authz=health,ping,metrics 
           resources:
             requests:
               cpu: 10m
