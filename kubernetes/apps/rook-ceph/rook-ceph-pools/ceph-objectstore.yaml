@@ -18,13 +18,13 @@ spec:
       requireSafeReplicaSize: false
     deviceClass: hdd
   preservePoolsOnDelete: true
-  # gateway:
-  #   port: 80
-  #   instances: 1
-  #   priorityClassName: low-priority
-  #   service:
-  #     annotations:
-  #       io.cilium/lb-ipam-ips: "192.168.201.100"
+  gateway:
+    port: 80
+    instances: 1
+    priorityClassName: low-priority
+    service:
+      annotations:
+        io.cilium/lb-ipam-ips: "192.168.201.102"
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
