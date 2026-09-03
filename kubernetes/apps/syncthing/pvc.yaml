@@ -1,6 +1,19 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  name: syncthing-config
+  namespace: syncthing
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ceph-rbd-hdd-r2
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
   name: syncthing-data
   namespace: syncthing
 spec:
@@ -9,7 +22,7 @@ spec:
   storageClassName: ceph-rbd-hdd-r2
   resources:
     requests:
-      storage: 100Gi
+      storage: 500Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

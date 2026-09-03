@@ -1,0 +1,29 @@
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: syncthing-config
+  namespace: syncthing
+spec:
+  sourcePVC: syncthing-config
+  trigger:
+    schedule: "0 3 * * *"
+  restic:
+    copyMethod: Snapshot
+    volumeSnapshotClassName: csi-cephrbdplugin-snapclass
+    repository: syncthing-config-volsync-secret
+    pruneIntervalDays: 28
+    cacheStorageClassName: ceph-rbd-hdd-r2
+    cacheAccessModes:
+      - ReadWriteOnce
+    cacheCapacity: 1Gi
+    storageClassName: ceph-rbd-hdd-r2
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    retain:
+      daily: 7
+      weekly: 4
+      monthly: 6

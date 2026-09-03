@@ -68,10 +68,6 @@ spec:
                 cpu: 100m
                 memory: 128Mi
 
-    # Public LoadBalancer service for the sync protocol itself (not the GUI), so external
-    # Syncthing peers (laptop, phone, remote nodes) can connect directly. Without a router
-    # port-forward of WAN 22000/tcp+udp to this LB IP, Syncthing still works via the public
-    # relay pool — just slower and less private.
     service:
       sync:
         controller: main
@@ -87,13 +83,21 @@ spec:
             protocol: UDP
 
     persistence:
+      syncthing-config:
+        type: persistentVolumeClaim
+        existingClaim: syncthing-config
+        advancedMounts:
+          main:
+            main:
+              - path: /var/syncthing/config
+
       syncthing-data:
         type: persistentVolumeClaim
         existingClaim: syncthing-data
         advancedMounts:
           main:
             main:
-              - path: /var/syncthing
+              - path: /var/syncthing/data
 
       netbird-data:
         type: persistentVolumeClaim
