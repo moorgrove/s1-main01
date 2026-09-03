@@ -43,7 +43,7 @@ spec:
                 path: /spec/template/spec/containers/-
                 value:
                   name: netbird
-                  image: netbirdio/netbird:0.77.0
+                  image: netbirdio/netbird:0.77.1
                   env:
                     - name: NB_HOSTNAME
                       value: grafana-s1-main01

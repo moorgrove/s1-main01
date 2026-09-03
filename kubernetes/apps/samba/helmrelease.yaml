@@ -118,7 +118,7 @@ spec:
           netbird:
             image:
               repository: netbirdio/netbird
-              tag: 0.77.0
+              tag: 0.77.1
             env:
               NB_HOSTNAME: samba-s1-main01
             envFrom:
