@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: influxdb3-core
-          image: influxdb:3.10-core
+          image: influxdb:3.11-core
           ports:
             - containerPort: 8181
               name: http
