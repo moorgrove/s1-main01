@@ -1,0 +1,132 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: syncthing
+  namespace: syncthing
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: "5.1.0"
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: syncthing
+  values:
+    controllers:
+      main:
+        initContainers:
+          init-resolv-conf:
+            image:
+              repository: busybox
+              tag: "1.38"
+            command:
+              - sh
+              - -c
+              - cp /etc/resolv.conf /resolv-conf/resolv.conf
+
+        containers:
+          main:
+            image:
+              repository: syncthing/syncthing
+              tag: "1.28"
+            env:
+              STGUIADDRESS: "127.0.0.1:8384"
+              STHOMEDIR: /var/syncthing/config
+            resources:
+              requests:
+                cpu: 10m
+                memory: 64Mi
+              limits:
+                cpu: 1000m
+                memory: 1Gi
+
+          netbird:
+            image:
+              repository: netbirdio/netbird
+              tag: "0.77.1"
+            env:
+              NB_HOSTNAME: syncthing-s1-main01
+            envFrom:
+              - secretRef:
+                  name: syncthing-netbird-secrets
+            securityContext:
+              capabilities:
+                add:
+                  - NET_ADMIN
+
+          caddy:
+            image:
+              repository: caddy
+              tag: "2"
+            resources:
+              requests:
+                cpu: 10m
+                memory: 64Mi
+              limits:
+                cpu: 100m
+                memory: 128Mi
+
+    # Public LoadBalancer service for the sync protocol itself (not the GUI), so external
+    # Syncthing peers (laptop, phone, remote nodes) can connect directly. Without a router
+    # port-forward of WAN 22000/tcp+udp to this LB IP, Syncthing still works via the public
+    # relay pool — just slower and less private.
+    service:
+      sync:
+        controller: main
+        type: LoadBalancer
+        annotations:
+          io.cilium/lb-ipam-ips: "192.168.201.129"
+        ports:
+          sync-tcp:
+            port: 22000
+            protocol: TCP
+          sync-udp:
+            port: 22000
+            protocol: UDP
+
+    persistence:
+      syncthing-data:
+        type: persistentVolumeClaim
+        existingClaim: syncthing-data
+        advancedMounts:
+          main:
+            main:
+              - path: /var/syncthing
+
+      netbird-data:
+        type: persistentVolumeClaim
+        existingClaim: syncthing-netbird
+        advancedMounts:
+          main:
+            netbird:
+              - path: /var/lib/netbird
+
+      resolv-conf:
+        type: emptyDir
+        advancedMounts:
+          main:
+            init-resolv-conf:
+              - path: /resolv-conf
+            netbird:
+              - path: /etc/resolv.conf
+                subPath: resolv.conf
+
+      caddy-config:
+        type: configMap
+        name: syncthing-caddy-config
+        advancedMounts:
+          main:
+            caddy:
+              - path: /etc/caddy/Caddyfile
+                subPath: Caddyfile
+
+      caddy-tls:
+        type: secret
+        name: syncthing-tls
+        advancedMounts:
+          main:
+            caddy:
+              - path: /certs
+                readOnly: true

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: syncthing-caddy-config
+  namespace: syncthing
+data:
+  Caddyfile: |-
+    {
+      auto_https off
+    }
+    :443 {
+      tls /certs/tls.crt /certs/tls.key
+      reverse_proxy 127.0.0.1:8384
+    }
