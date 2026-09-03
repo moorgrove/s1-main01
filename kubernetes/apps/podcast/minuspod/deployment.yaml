@@ -22,7 +22,7 @@ spec:
         kubernetes.io/hostname: s1-main01-cpwr11
       containers:
         - name: minuspod
-          image: ttlequals0/minuspod:2.94.10-cpu
+          image: ttlequals0/minuspod:2.94.11-cpu
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
