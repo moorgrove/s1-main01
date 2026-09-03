@@ -1,0 +1,64 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: influxdb-backup
+  namespace: influxdb
+spec:
+  schedule: "0 3 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: rclone-backup
+              image: rclone/rclone:latest
+              env:
+                - name: SRC_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef: { name: influxdb-bucket, key: AWS_ACCESS_KEY_ID }
+                - name: SRC_SECRET_KEY
+                  valueFrom:
+                    secretKeyRef: { name: influxdb-bucket, key: AWS_SECRET_ACCESS_KEY }
+                - name: SRC_BUCKET
+                  valueFrom:
+                    configMapKeyRef: { name: influxdb-bucket, key: BUCKET_NAME }
+                - name: SRC_ENDPOINT
+                  valueFrom:
+                    configMapKeyRef: { name: influxdb-bucket, key: BUCKET_HOST }
+                - name: DST_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef: { name: influxdb-data-backup-secrets, key: S3_ACCESS_KEY }
+                - name: DST_SECRET_KEY
+                  valueFrom:
+                    secretKeyRef: { name: influxdb-data-backup-secrets, key: S3_SECRET_KEY }
+                - name: DST_ENDPOINT
+                  valueFrom:
+                    secretKeyRef: { name: influxdb-data-backup-secrets, key: S3_ENDPOINT }
+                - name: DST_BUCKET
+                  valueFrom:
+                    secretKeyRef: { name: influxdb-data-backup-secrets, key: S3_BUCKET }
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  set -e
+                  export RCLONE_CONFIG_SRC_TYPE=s3
+                  export RCLONE_CONFIG_SRC_PROVIDER=Ceph
+                  export RCLONE_CONFIG_SRC_ACCESS_KEY_ID=$SRC_ACCESS_KEY
+                  export RCLONE_CONFIG_SRC_SECRET_ACCESS_KEY=$SRC_SECRET_KEY
+                  export RCLONE_CONFIG_SRC_ENDPOINT=http://$SRC_ENDPOINT
+
+                  export RCLONE_CONFIG_DST_TYPE=s3
+                  export RCLONE_CONFIG_DST_PROVIDER=S3
+                  export RCLONE_CONFIG_DST_ACCESS_KEY_ID=$DST_ACCESS_KEY
+                  export RCLONE_CONFIG_DST_SECRET_ACCESS_KEY=$DST_SECRET_KEY
+                  export RCLONE_CONFIG_DST_ENDPOINT=http://$DST_ENDPOINT
+
+                  NODE_ID=s1-node0
+                  for dir in snapshots dbs wal catalog; do
+                    echo "Syncar $dir..."
+                    rclone sync "SRC:$SRC_BUCKET/$NODE_ID/$dir" "DST:$DST_BUCKET/$NODE_ID/$dir"
+                  done
+                  rclone copyto "SRC:$SRC_BUCKET/$NODE_ID/_catalog_checkpoint" "DST:$DST_BUCKET/$NODE_ID/_catalog_checkpoint"
+                  echo "Backup klar."
