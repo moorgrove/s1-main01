@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: victoriametrics
 resources:
   - namespace.yaml
+  - secrets.enc.yaml
   - pvc.yaml
   - deployment.yaml
   - service.yaml
