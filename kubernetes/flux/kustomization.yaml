@@ -27,6 +27,6 @@ resources:
   - ks-volsync.yaml
   - ks-immich.yaml
   - ks-cnpg-system.yaml
-  - ks-influxdb.yaml
+  # - ks-influxdb.yaml
   - ks-syncthing.yaml
   - ks-victoriametrics.yaml
