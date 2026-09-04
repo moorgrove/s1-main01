@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: victoriametrics
+  namespace: victoriametrics
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: victoriametrics
+  template:
+    metadata:
+      labels:
+        app: victoriametrics
+    spec:
+      containers:
+        - name: victoriametrics
+          image: victoriametrics/victoria-metrics:v1.103.0
+          args:
+            - --storageDataPath=/storage
+            - --httpListenAddr=:8428
+            - --retentionPeriod=99y
+            - --httpAuth.username=admin
+            - --httpAuth.password=file:///etc/vm-auth/password
+          ports:
+            - containerPort: 8428
+              name: http
+            - containerPort: 8089
+              name: influx-write
+          volumeMounts:
+            - name: data
+              mountPath: /storage
+            - name: auth
+              mountPath: /etc/vm-auth
+              readOnly: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 2000m
+              memory: 4Gi
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8428
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8428
+            initialDelaySeconds: 15
+            periodSeconds: 30
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: victoriametrics-data
+        - name: auth
+          secret:
+            secretName: victoriametrics-auth
