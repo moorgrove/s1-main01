@@ -12,6 +12,6 @@ spec:
     kind: GitRepository
     name: flux-system
   path: ./kubernetes/infrastructure/rook-ceph
-  prune: true
+  prune: false
   wait: true
   timeout: 30m

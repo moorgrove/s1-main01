@@ -6,7 +6,7 @@ metadata:
 spec:
   interval: 10m
   path: ./kubernetes/apps/immich
-  prune: true
+  prune: false
   wait: true
   timeout: 30m
   sourceRef:

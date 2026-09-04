@@ -12,7 +12,7 @@ spec:
     kind: GitRepository
     name: flux-system
   path: ./kubernetes/apps/rook-ceph/rook-ceph-csi-drivers
-  prune: true
+  prune: false
   wait: true
   timeout: 30m
   decryption:
