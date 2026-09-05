@@ -12,8 +12,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  dependsOn:
-    - name: cnpg-system
   decryption:
     provider: sops
     secretRef:

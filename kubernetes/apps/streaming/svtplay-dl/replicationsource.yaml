@@ -2,21 +2,21 @@ apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
   name: svtplay-dl-backup
-  namespace: svtplay-dl
+  namespace: streaming
 spec:
   sourcePVC: svtplay-dl
   trigger:
     schedule: "0 3 * * *"
   restic:
     copyMethod: Direct
-    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    volumeSnapshotClassName: csi-cephrbdplugin-snapclass
     repository: volsync-svtplay-dl-secrets
     pruneIntervalDays: 28
     cacheAccessModes:
       - ReadWriteOnce
     cacheCapacity: 5Gi
-    cacheStorageClassName: ceph-rbd-nvme-r1
-    storageClassName: ceph-fs-hdd-r2
+    cacheStorageClassName: ceph-rbd-hdd-r2  # ceph-rbd-nvme-r1
+    storageClassName: ceph-rbd-hdd-r2
     moverSecurityContext:
       fsGroupChangePolicy: OnRootMismatch
       runAsNonRoot: true

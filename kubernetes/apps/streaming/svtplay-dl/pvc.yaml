@@ -3,12 +3,11 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: svtplay-dl
-  namespace: svtplay-dl
+  namespace: streaming
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
+  storageClassName: ceph-rbd-hdd-r2
   resources:
     requests:
       storage: 1Ti
-  volumeName: svtplay-dl-pv
-  storageClassName: ""
