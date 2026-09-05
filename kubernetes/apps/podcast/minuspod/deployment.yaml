@@ -100,7 +100,7 @@ spec:
               readOnly: true
 
         - name: netbird
-          image: netbirdio/netbird:0.77.1
+          image: netbirdio/netbird:0.78.1
           env:
             - name: TZ
               value: Europe/Stockholm
