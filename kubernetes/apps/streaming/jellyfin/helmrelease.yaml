@@ -79,6 +79,15 @@ spec:
         enabled: false
 
     persistence:
+      netbird-data:
+        type: persistentVolumeClaim
+        existingClaim: jellyfin-netbird
+        advancedMounts:
+          main:
+            netbird:
+              - path: /var/lib/netbird
+ 
+
       config:
         type: persistentVolumeClaim
         existingClaim: jellyfin-config
