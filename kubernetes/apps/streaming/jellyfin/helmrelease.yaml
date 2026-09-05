@@ -96,6 +96,15 @@ spec:
               - path: /media
                 readOnly: true
 
+      svtplay-dl:
+        type: persistentVolumeClaim
+        existingClaim: svtplay-dl
+        advancedMounts:
+          main:
+            main:
+              - path: /svtplay-dl
+                readOnly: true
+
       # /dev/dri för hårdvarutranskodning:
       # dri:
       #   type: hostPath
