@@ -29,3 +29,4 @@ resources:
   - ks-cnpg-system.yaml
   - ks-influxdb.yaml
   - ks-syncthing.yaml
+  - ks-streaming.yaml

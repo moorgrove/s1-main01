@@ -1,0 +1,135 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: jellyfin
+  namespace: streaming
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: "5.1.0"
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: streaming
+  values:
+    controllers:
+      main:
+        # nodeSelector:
+        #   kubernetes.io/hostname: <NOD_MED_GPU_FOR_VAAPI>
+        # pod:
+        #   securityContext:
+        #     supplementalGroups:
+        #       - REPLACE_WITH_RENDER_GID
+
+        initContainers:
+          init-resolv-conf:
+            image:
+              repository: busybox
+              tag: "1.38"
+            command:
+              - sh
+              - -c
+              - cp /etc/resolv.conf /resolv-conf/resolv.conf
+
+        containers:
+          main:
+            image:
+              repository: ghcr.io/jellyfin/jellyfin
+              tag: "10.11.11"
+            env:
+              TZ: Europe/Stockholm
+              JELLYFIN_PublishedServerUrl: https://${DNS_NAME_JELLYFIN}
+            resources:
+              requests:
+                cpu: 50m
+                memory: 512Mi
+              limits:
+                cpu: 2000m
+                memory: 4Gi
+          netbird:
+            image:
+              repository: netbirdio/netbird
+              tag: 0.77.1
+            env:
+              NB_HOSTNAME: jellyfin-s1-main01
+            envFrom:
+              - secretRef:
+                  name: jellyfin-netbird-secrets
+            securityContext:
+              capabilities:
+                add:
+                  - NET_ADMIN
+
+          caddy:
+            image:
+              repository: caddy
+              tag: "2"
+            resources:
+              requests:
+                cpu: 10m
+                memory: 64Mi
+              limits:
+                cpu: 100m
+                memory: 128Mi
+
+    ingress:
+      main:
+        enabled: false
+
+    persistence:
+      config:
+        type: persistentVolumeClaim
+        existingClaim: jellyfin-config
+        advancedMounts:
+          main:
+            main:
+              - path: /config
+
+      media:
+        type: persistentVolumeClaim
+        existingClaim: jellyfin-media
+        advancedMounts:
+          main:
+            main:
+              - path: /media
+                readOnly: true
+
+      # /dev/dri för hårdvarutranskodning:
+      # dri:
+      #   type: hostPath
+      #   hostPath: /dev/dri
+      #   hostPathType: Directory
+      #   advancedMounts:
+      #     main:
+      #       main:
+      #         - path: /dev/dri
+
+      resolv-conf:
+        type: emptyDir
+        advancedMounts:
+          main:
+            init-resolv-conf:
+              - path: /resolv-conf
+            netbird:
+              - path: /etc/resolv.conf
+                subPath: resolv.conf
+
+      caddy-config:
+        type: configMap
+        name: jellyfin-caddy-config
+        advancedMounts:
+          main:
+            caddy:
+              - path: /etc/caddy/Caddyfile
+                subPath: Caddyfile
+
+      caddy-tls:
+        type: secret
+        name: jellyfin-tls
+        advancedMounts:
+          main:
+            caddy:
+              - path: /certs
+                readOnly: true
