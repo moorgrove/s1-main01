@@ -29,3 +29,4 @@ resources:
   - ks-influxdb.yaml
   - ks-syncthing.yaml
   - ks-streaming.yaml
+  - ks-music.yaml
