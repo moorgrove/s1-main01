@@ -82,17 +82,18 @@ spec:
             limits:
               cpu: 500m
               memory: 256Mi
+          envFrom:
+            - secretRef:
+                name: navidrome-netbird-secrets
           env:
-            - name: NB_SETUP_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: navidrome-netbird-secrets
-                  key: NB_SETUP_KEY
+            - name: NB_HOSTNAME
+              value: navidrome-s1-main01
           volumeMounts:
             - name: netbird-config
               mountPath: /var/lib/netbird
             - name: netbird-etc
-              mountPath: /etc
+              mountPath: /etc/resolv.conf
+              subPath: resolv.conf
 
       volumes:
         - name: data
