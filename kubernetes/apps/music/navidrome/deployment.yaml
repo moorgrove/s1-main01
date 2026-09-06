@@ -20,7 +20,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
       initContainers:
         - name: netbird-resolv-isolate
-          image: busybox:1.36
+          image: busybox:1.38
           command: ["sh", "-c", "cp /etc/resolv.conf /netbird-etc/resolv.conf"]
           volumeMounts:
             - name: netbird-etc
