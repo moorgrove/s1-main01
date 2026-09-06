@@ -80,7 +80,7 @@ spec:
             - name: NB_SETUP_KEY
               valueFrom:
                 secretKeyRef:
-                  name: netbird-navidrome
+                  name: netbird-navidrome-secrets
                   key: setup-key
           volumeMounts:
             - name: netbird-config
@@ -100,6 +100,6 @@ spec:
             name: navidrome-caddyfile
         - name: netbird-config
           persistentVolumeClaim:
-            claimName: navidrome-netbird-config
+            claimName: navidrome-netbird
         - name: netbird-etc
           emptyDir: {}
