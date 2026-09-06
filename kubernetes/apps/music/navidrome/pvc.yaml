@@ -24,3 +24,16 @@ spec:
   resources:
     requests:
       storage: 100Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: navidrome-music
+  namespace: music
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ceph-fs-hdd-r2
+  resources:
+    requests:
+      storage: 500Gi
