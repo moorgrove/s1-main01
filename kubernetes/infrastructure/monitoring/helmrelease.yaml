@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: "88.6.3"
+      version: "88.6.5"
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
@@ -43,7 +43,7 @@ spec:
                 path: /spec/template/spec/containers/-
                 value:
                   name: netbird
-                  image: netbirdio/netbird:0.77.1
+                  image: netbirdio/netbird:0.78.1
                   env:
                     - name: NB_HOSTNAME
                       value: grafana-s1-main01
