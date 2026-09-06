@@ -15,6 +15,9 @@ spec:
       labels:
         app: navidrome
     spec:
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
       initContainers:
         - name: netbird-resolv-isolate
           image: busybox:1.36
@@ -63,6 +66,9 @@ spec:
           volumeMounts:
             - name: caddy-config
               mountPath: /etc/caddy
+            - name: tls-certs
+              mountPath: /certs
+              readOnly: true
 
         - name: netbird
           image: netbirdio/netbird:latest
@@ -80,8 +86,8 @@ spec:
             - name: NB_SETUP_KEY
               valueFrom:
                 secretKeyRef:
-                  name: netbird-navidrome-secrets
-                  key: setup-key
+                  name: navidrome-netbird-secrets
+                  key: NB_SETUP_KEY
           volumeMounts:
             - name: netbird-config
               mountPath: /var/lib/netbird
@@ -98,6 +104,9 @@ spec:
         - name: caddy-config
           configMap:
             name: navidrome-caddyfile
+        - name: tls-certs
+          secret:
+            secretName: navidrome-tls
         - name: netbird-config
           persistentVolumeClaim:
             claimName: navidrome-netbird
