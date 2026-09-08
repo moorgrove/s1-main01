@@ -50,6 +50,8 @@ spec:
       runAsGroup: 0
     retain:
       last: "2"
+    excludes:
+      - "*.sparsebundle/com.apple.TimeMachine.sync.*"
 ---
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
@@ -128,6 +130,8 @@ spec:
       runAsGroup: 0
     retain:
       last: "2"
+    excludes:
+      - "*.sparsebundle/com.apple.TimeMachine.sync.*"
 
 ---
 apiVersion: volsync.backube/v1alpha1
@@ -162,7 +166,7 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: samba-backup-claes-hedlund-backup
+  name: samba-backup-claes-hedlund-macbook-backup
   namespace: samba
 spec:
   sourcePVC: backup-claes-hedlund-macbook
@@ -171,7 +175,7 @@ spec:
   restic:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephrbdplugin-snapclass
-    repository: volsync-samba-backup-claes-hedlund-secrets
+    repository: volsync-samba-backup-claes-hedlund-macbooksecrets
     pruneIntervalDays: 14
     cacheAccessModes:
       - ReadWriteOnce
@@ -184,6 +188,8 @@ spec:
       runAsGroup: 0
     retain:
       last: "2"
+    excludes:
+      - "*.sparsebundle/com.apple.TimeMachine.sync.*"
 ---
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
@@ -210,3 +216,5 @@ spec:
       runAsGroup: 0
     retain:
       last: "2"
+    excludes:
+      - "*.sparsebundle/com.apple.TimeMachine.sync.*"
