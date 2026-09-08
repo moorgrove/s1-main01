@@ -7,7 +7,7 @@ metadata:
 spec:
   sourcePVC: data-pinepods-postgresql-0
   trigger:
-    schedule: "0 * * * *"
+    schedule: "0 4 * * *"
   restic:
     repository: volsync-pinepods-db-secrets
     copyMethod: Snapshot
@@ -39,7 +39,7 @@ metadata:
 spec:
   sourcePVC: pinepods-backups
   trigger:
-    schedule: "15 * * * *"
+    schedule: "15 4 * * *"
   restic:
     repository: volsync-pinepods-backups-secrets
     copyMethod: Snapshot
@@ -71,7 +71,7 @@ metadata:
 spec:
   sourcePVC: pinepods-downloads
   trigger:
-    schedule: "0 3 * * *"
+    schedule: "30 4 * * *"
   restic:
     repository: volsync-pinepods-downloads-secrets
     copyMethod: Snapshot
