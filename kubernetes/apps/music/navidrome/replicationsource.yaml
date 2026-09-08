@@ -33,14 +33,14 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: navidrome-config-backup
+  name: navidrome-music-backup
   namespace: music
 spec:
   sourcePVC: navidrome-music
   trigger:
     schedule: "0 2 * * *"
   restic:
-    repository: volsync-navidrome-data-secrets
+    repository: volsync-navidrome-music-secrets
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
     cacheStorageClassName: ceph-rbd-hdd-r2  # ceph-rbd-nvme-r1
