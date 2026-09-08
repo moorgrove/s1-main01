@@ -48,7 +48,7 @@ spec:
   storageClassName: ceph-rbd-hdd-r2
   resources:
     requests:
-      storage: 350Gi
+      storage: 1Ti
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
