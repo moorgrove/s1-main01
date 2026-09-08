@@ -7,7 +7,7 @@ metadata:
 spec:
   sourcePVC: navidrome-data
   trigger:
-    schedule: "0 * * * *"
+    schedule: "0 2 * * *"
   restic:
     repository: volsync-navidrome-data-secrets
     copyMethod: Snapshot
@@ -17,6 +17,37 @@ spec:
       - ReadWriteOnce
     cacheCapacity: 5Gi
     storageClassName: ceph-rbd-hdd-r2
+    pruneIntervalDays: 14
+    moverSecurityContext:
+      fsGroupChangePolicy: OnRootMismatch
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    retain:
+      hourly: 24
+      daily: 7
+      weekly: 4
+      monthly: 12
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: navidrome-config-backup
+  namespace: music
+spec:
+  sourcePVC: navidrome-music
+  trigger:
+    schedule: "0 2 * * *"
+  restic:
+    repository: volsync-navidrome-data-secrets
+    copyMethod: Snapshot
+    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    cacheStorageClassName: ceph-rbd-hdd-r2  # ceph-rbd-nvme-r1
+    cacheAccessModes:
+      - ReadWriteOnce
+    cacheCapacity: 5Gi
+    storageClassName: ceph-fs-hdd-r2
     pruneIntervalDays: 14
     moverSecurityContext:
       fsGroupChangePolicy: OnRootMismatch
