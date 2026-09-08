@@ -15,7 +15,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: renovate
-              image: renovate/renovate:44.65.5
+              image: renovate/renovate:44.69.8
               args:
                 - "moorgrove/s1-main01"
               env:
