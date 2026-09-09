@@ -29,5 +29,3 @@ spec:
       weekly: 4
       monthly: 12
       yearly: 3
-    excludes:
-      - "caddy/last_clean.json"

@@ -50,8 +50,6 @@ spec:
       runAsGroup: 0
     retain:
       last: "2"
-    excludes:
-      - "*.sparsebundle/com.apple.TimeMachine.sync.*"
 ---
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
@@ -130,8 +128,6 @@ spec:
       runAsGroup: 0
     retain:
       last: "2"
-    excludes:
-      - "*.sparsebundle/com.apple.TimeMachine.sync.*"
 
 ---
 apiVersion: volsync.backube/v1alpha1
@@ -188,8 +184,6 @@ spec:
       runAsGroup: 0
     retain:
       last: "2"
-    excludes:
-      - "*.sparsebundle/com.apple.TimeMachine.sync.*"
 ---
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
@@ -216,5 +210,3 @@ spec:
       runAsGroup: 0
     retain:
       last: "2"
-    excludes:
-      - "*.sparsebundle/com.apple.TimeMachine.sync.*"
