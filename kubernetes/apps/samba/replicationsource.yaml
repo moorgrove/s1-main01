@@ -171,7 +171,7 @@ spec:
   restic:
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephrbdplugin-snapclass
-    repository: volsync-samba-backup-claes-hedlund-macbooksecrets
+    repository: volsync-samba-backup-claes-hedlund-macbook-secrets
     pruneIntervalDays: 14
     cacheAccessModes:
       - ReadWriteOnce
