@@ -9,7 +9,7 @@ spec:
   trigger:
     schedule: "0 2 * * *"
   restic:
-    repository: navidrome-data-volsync-secrets
+    repository: navidrome-data-volsync-secret
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephrbdplugin-snapclass
     cacheStorageClassName: ceph-rbd-hdd-r2  # ceph-rbd-nvme-r1
@@ -40,7 +40,7 @@ spec:
   trigger:
     schedule: "0 2 * * *"
   restic:
-    repository: navidrome-music-volsync-secrets
+    repository: navidrome-music-volsync-secret
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapclass
     cacheStorageClassName: ceph-rbd-hdd-r2  # ceph-rbd-nvme-r1
