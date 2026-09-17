@@ -44,7 +44,7 @@ spec:
               memory: 512Mi
             limits:
               cpu: 4000m
-              memory: 20Gi
+              memory: 23Gi
           readinessProbe:
             httpGet:
               path: /health
