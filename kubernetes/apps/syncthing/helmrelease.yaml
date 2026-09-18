@@ -45,7 +45,7 @@ spec:
           netbird:
             image:
               repository: netbirdio/netbird
-              tag: "0.78.1"
+              tag: "0.79.0"
             env:
               NB_HOSTNAME: syncthing-s1-main01
             envFrom:
