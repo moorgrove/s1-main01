@@ -12,7 +12,7 @@ spec:
       serviceAccountName: rook-ceph-osd
       containers:
       - name: ceph-cli
-        image: rook/ceph:v1.20.6
+        image: rook/ceph:v1.20.7
         command: ["/bin/bash", "-c"]
         args:
           - |
